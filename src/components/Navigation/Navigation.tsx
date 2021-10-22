@@ -3,24 +3,93 @@ import searchIcon from '../../assets/search_icon.png'
 import profileIcon from '../../assets/profile_icon.png'
 import cartIcon from '../../assets/cart_icon.png'
 import menuIcon from '../../assets/menu_icon.png'
+import { useMenuDropdownState } from '../../atoms/menuDropdown'
 
 export type NavigationProps = {}
 
 function Navigation({}: NavigationProps) {
+  const [, setMenuDropdownState] = useMenuDropdownState()
+
   return (
     <nav css={navigation}>
       <ul className='primary'>
         <li>
-          <a href='/'>Home</a>
+          <span
+            id='men'
+            onMouseOver={(e) =>
+              setMenuDropdownState({
+                show: true,
+                id: e.currentTarget.id,
+              })
+            }
+          >
+            Men
+          </span>
         </li>
         <li>
-          <a href='/shop'>Shop</a>
+          <span
+            id='women'
+            onMouseOver={(e) =>
+              setMenuDropdownState({
+                show: true,
+                id: e.currentTarget.id,
+              })
+            }
+          >
+            Women
+          </span>
         </li>
         <li>
-          <a href='/pages'>Pages</a>
+          <span
+            id='shoes'
+            onMouseOver={(e) =>
+              setMenuDropdownState({
+                show: true,
+                id: e.currentTarget.id,
+              })
+            }
+          >
+            Shoes
+          </span>
         </li>
         <li>
-          <a href='/contact'>Contact</a>
+          <span
+            id='bags'
+            onMouseOver={(e) =>
+              setMenuDropdownState({
+                show: true,
+                id: e.currentTarget.id,
+              })
+            }
+          >
+            Bags
+          </span>
+        </li>
+        <li>
+          <span
+            id='kids'
+            onMouseOver={(e) =>
+              setMenuDropdownState({
+                show: true,
+                id: e.currentTarget.id,
+              })
+            }
+          >
+            Kids
+          </span>
+        </li>
+        <li>
+          <span
+            id='jewelry'
+            onMouseOver={(e) =>
+              setMenuDropdownState({
+                show: true,
+                id: e.currentTarget.id,
+              })
+            }
+          >
+            Jewelry & Watches
+          </span>
         </li>
       </ul>
       <ul className='secondary'>
@@ -44,12 +113,15 @@ function Navigation({}: NavigationProps) {
 const navigation = css`
   display: flex;
   align-items: center;
-  padding: 0 5rem;
+
   ul {
     display: flex;
     list-style: none;
     li {
-      padding: 0 1.3rem;
+      padding: 0 0.8rem;
+      color: #5c5b5b;
+      text-decoration: none;
+      font-size: 1rem;
       img {
         cursor: pointer;
         vertical-align: middle;
@@ -58,12 +130,12 @@ const navigation = css`
   }
 
   .primary {
-    width: 30rem;
-  }
-  a {
-    color: #5c5b5b;
-    text-decoration: none;
-    font-size: 1.05rem;
+    width: 35rem;
+    li {
+      span {
+        cursor: pointer;
+      }
+    }
   }
 `
 

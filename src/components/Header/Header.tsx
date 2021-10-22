@@ -18,7 +18,6 @@ const header = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
   font-size: 15px;
   font-weight: 500;
   line-height: 134px;
