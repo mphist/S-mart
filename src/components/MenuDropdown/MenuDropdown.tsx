@@ -1,19 +1,22 @@
 import { css } from '@emotion/react'
-import { useMenuDropdownState } from '../../atoms/menuDropdown'
+import { useMenuDropdownState, useTimerState } from '../../atoms/menuDropdown'
 
 export type MenuDropdownProps = {}
 
 function MenuDropdown({}: MenuDropdownProps) {
   const [menuDropdownState, setMenuDropdownState] = useMenuDropdownState()
+  const [, setTimerState] = useTimerState()
+
   return (
     <div
       css={menuDropdown}
-      onMouseLeave={() =>
-        setTimeout(
+      onMouseLeave={() => {
+        const timer = setTimeout(
           () => setMenuDropdownState({ ...menuDropdownState, show: false }),
           300
         )
-      }
+        setTimerState(timer)
+      }}
     >
       {menuDropdownState.id}
     </div>

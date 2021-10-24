@@ -10,4 +10,10 @@ export const menuDropdownState = atom<MenuDropdownState>({
   default: { id: null, show: false },
 })
 
+export const timerState = atom<NodeJS.Timeout | null>({
+  key: 'timerState',
+  default: null,
+})
+
 export const useMenuDropdownState = () => useRecoilState(menuDropdownState)
+export const useTimerState = () => useRecoilState(timerState)

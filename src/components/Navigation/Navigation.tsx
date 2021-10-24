@@ -3,18 +3,24 @@ import searchIcon from '../../assets/search_icon.png'
 import profileIcon from '../../assets/profile_icon.png'
 import cartIcon from '../../assets/cart_icon.png'
 import menuIcon from '../../assets/menu_icon.png'
-import { useMenuDropdownState } from '../../atoms/menuDropdown'
+import { useMenuDropdownState, useTimerState } from '../../atoms/menuDropdown'
 
 export type NavigationProps = {}
 
 function Navigation({}: NavigationProps) {
   const [, setMenuDropdownState] = useMenuDropdownState()
+  const [timer, setTimer] = useTimerState()
+  const openMenu = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    if (timer) {
+      clearTimeout(timer)
+      setTimer(null)
+    }
 
-  const openMenu = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) =>
     setMenuDropdownState({
       show: true,
       id: e.currentTarget.id,
     })
+  }
 
   return (
     <nav css={navigation}>
