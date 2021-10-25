@@ -8,7 +8,7 @@ import { useMenuDropdownState, useTimerState } from '../../atoms/menuDropdown'
 export type NavigationProps = {}
 
 function Navigation({}: NavigationProps) {
-  const [, setMenuDropdownState] = useMenuDropdownState()
+  const [menuDropdownState, setMenuDropdownState] = useMenuDropdownState()
   const [timer, setTimer] = useTimerState()
   const openMenu = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     if (timer) {
@@ -23,7 +23,7 @@ function Navigation({}: NavigationProps) {
   }
 
   return (
-    <nav css={navigation}>
+    <nav css={navigation(menuDropdownState.id)}>
       <ul className='primary'>
         <li>
           <span id='men' onMouseOver={openMenu}>
@@ -33,11 +33,6 @@ function Navigation({}: NavigationProps) {
         <li>
           <span id='women' onMouseOver={openMenu}>
             Women
-          </span>
-        </li>
-        <li>
-          <span id='shoes' onMouseOver={openMenu}>
-            Shoes
           </span>
         </li>
         <li>
@@ -74,7 +69,7 @@ function Navigation({}: NavigationProps) {
   )
 }
 
-const navigation = css`
+const navigation = (id: string | null) => css`
   display: flex;
   align-items: center;
 
@@ -99,6 +94,12 @@ const navigation = css`
       span {
         cursor: pointer;
       }
+      ${id &&
+      css`
+        #${id} {
+          color: black;
+        }
+      `}
     }
   }
 `

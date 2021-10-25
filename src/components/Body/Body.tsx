@@ -7,11 +7,10 @@ import MenuDropdown from '../MenuDropdown/MenuDropdown'
 export type BodyProps = {}
 
 function Body({}: BodyProps) {
-  const { show } = useRecoilValue(menuDropdownState)
-
+  const { show, id } = useRecoilValue(menuDropdownState)
   return (
     <>
-      {show ? <MenuDropdown /> : null}
+      {show ? <MenuDropdown id={id} /> : null}
       <Browse />
     </>
   )
