@@ -36,11 +36,6 @@ function Navigation({}: NavigationProps) {
           </span>
         </li>
         <li>
-          <span id='bags' onMouseOver={openMenu}>
-            Bags
-          </span>
-        </li>
-        <li>
           <span id='kids' onMouseOver={openMenu}>
             Kids
           </span>
@@ -76,6 +71,8 @@ const navigation = (id: string | null) => css`
   ul {
     display: flex;
     list-style: none;
+    justify-content: center;
+    align-items: center;
     li {
       padding: 0 0.8rem;
       color: #5c5b5b;
@@ -91,6 +88,7 @@ const navigation = (id: string | null) => css`
   .primary {
     width: 35rem;
     li {
+      padding: 1.5rem;
       span {
         cursor: pointer;
       }

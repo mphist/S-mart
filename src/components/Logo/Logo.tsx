@@ -8,7 +8,7 @@ function Logo({}: LogoProps) {
 
 const logo = css`
   font-size: 2rem;
-  width: 15rem;
+  width: 12rem;
   text-align: center;
 `
 
