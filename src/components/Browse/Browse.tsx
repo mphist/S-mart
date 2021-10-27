@@ -15,10 +15,6 @@ function Browse({}: BrowseProps) {
 }
 
 const browse = css`
-  width: 70rem;
-  margin: 0 auto;
-  display: flex;
-
   .background {
     width: 100%;
     margin: 0 auto;
