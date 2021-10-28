@@ -1,5 +1,6 @@
-import { css } from '@emotion/react'
 import React from 'react'
+import { css } from '@emotion/react'
+import { Route } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { menuDropdownState } from '../../atoms/menuDropdown'
 import Browse from '../Browse/Browse'
@@ -14,8 +15,14 @@ function Body({}: BodyProps) {
     <>
       {show ? <MenuDropdown id={id} /> : null}
       <div css={body}>
-        <Browse />
-        <ProductList category='NEW ARRIVALS' />
+        <Route path='/' exact>
+          <Browse />
+          <ProductList category='NEW ARRIVALS' />
+          <ProductList category='BEST SELLERS' />
+        </Route>
+        <Route path='/test-product'>
+          <div>Test product</div>
+        </Route>
       </div>
     </>
   )
