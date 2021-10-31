@@ -4,44 +4,58 @@ import profileIcon from '../../assets/profile_icon.png'
 import cartIcon from '../../assets/cart_icon.png'
 import menuIcon from '../../assets/menu_icon.png'
 import { useMenuDropdownState, useTimerState } from '../../atoms/menuDropdown'
+import { useState } from 'react'
 
 export type NavigationProps = {}
 
 function Navigation({}: NavigationProps) {
   const [menuDropdownState, setMenuDropdownState] = useMenuDropdownState()
   const [timer, setTimer] = useTimerState()
+  const [ignore, setIgnore] = useState<NodeJS.Timeout | null>(null)
   const openMenu = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    const id = e.currentTarget.id
     if (timer) {
       clearTimeout(timer)
       setTimer(null)
     }
 
-    setMenuDropdownState({
-      show: true,
-      id: e.currentTarget.id,
-    })
+    // mouse pointer passing by the navigation bar
+    setIgnore(
+      setTimeout(
+        () =>
+          setMenuDropdownState({
+            show: true,
+            id,
+          }),
+        100
+      )
+    )
+  }
+
+  const mouseLeave = () => {
+    ignore && clearTimeout(ignore)
   }
 
   return (
     <nav css={navigation(menuDropdownState.id)}>
       <ul className='primary'>
         <li>
-          <span id='men' onMouseOver={openMenu}>
+          <span id='men' onMouseOver={openMenu} onMouseLeave={mouseLeave}>
             Men
           </span>
         </li>
         <li>
-          <span id='women' onMouseOver={openMenu}>
+          <span id='women' onMouseOver={openMenu} onMouseLeave={mouseLeave}>
             Women
           </span>
         </li>
         <li>
-          <span id='kids' onMouseOver={openMenu}>
+          <span id='kids' onMouseOver={openMenu} onMouseLeave={mouseLeave}>
             Kids
           </span>
         </li>
         <li>
-          <span id='jewelry' onMouseOver={openMenu}>
+          <span id='jewelry' onMouseOver={openMenu} onMouseLeave={mouseLeave}>
             Jewelry & Watches
           </span>
         </li>
