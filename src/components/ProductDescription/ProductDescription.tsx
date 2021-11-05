@@ -169,6 +169,11 @@ const productDescription = css`
     margin: 1rem 0;
     display: flex;
     div {
+      :hover {
+        fieldset {
+          border-color: black;
+        }
+      }
       fieldset {
         border: 1px solid gray;
         border-radius: 0;
