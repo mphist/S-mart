@@ -9,7 +9,7 @@ function Product({}: ProductProps) {
         <img src={hoodieNew} alt='new hoodie' />
         <div css={description}>
           <span>$60</span>
-          <p>Oversize Hoodie with 3D Nylon Trefoil Patch</p>
+          <p>Marimekko Oversize Hoodie with 3D Nylon Trefoil Patch</p>
         </div>
       </a>
     </li>

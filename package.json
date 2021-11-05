@@ -6,6 +6,8 @@
     "@babel/core": "7.12.3",
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@mui/material": "^5.0.6",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@svgr/webpack": "5.5.0",
     "@testing-library/jest-dom": "^5.11.4",

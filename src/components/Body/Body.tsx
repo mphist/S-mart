@@ -6,6 +6,7 @@ import { menuDropdownState } from '../../atoms/menuDropdown'
 import Browse from '../Browse/Browse'
 import MenuDropdown from '../MenuDropdown/MenuDropdown'
 import ProductList from '../ProductList/ProductList'
+import ProductDetails from '../ProductDetails/ProductDetails'
 
 export type BodyProps = {}
 
@@ -21,7 +22,7 @@ function Body({}: BodyProps) {
           <ProductList category='BEST SELLERS' />
         </Route>
         <Route path='/test-product'>
-          <div>Test product</div>
+          <ProductDetails name='Marimekko Oversize Hoodie with 3D Nylon Trefoil Patch' />
         </Route>
       </div>
     </>
