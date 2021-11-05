@@ -189,6 +189,9 @@ const productDescription = css`
       font-weight: bold;
       cursor: pointer;
       border: none;
+      :hover {
+        opacity: 0.8;
+      }
     }
   }
 `
