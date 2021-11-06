@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
-import ProductDescription from '../ProductDescription/ProductDescription'
-import ProductImages from '../ProductImages/ProductImages'
+import ProductDescription from '../../components/ProductDescription/ProductDescription'
+import ProductImages from '../../components/ProductImages/ProductImages'
 
 export type ProductDetailsProps = {
   name: string

@@ -6,7 +6,7 @@ import { menuDropdownState } from '../../atoms/menuDropdown'
 import Browse from '../Browse/Browse'
 import MenuDropdown from '../MenuDropdown/MenuDropdown'
 import ProductList from '../ProductList/ProductList'
-import ProductDetails from '../ProductDetails/ProductDetails'
+import ProductDetails from '../../pages/ProductDetails/ProductDetails'
 
 export type BodyProps = {}
 
