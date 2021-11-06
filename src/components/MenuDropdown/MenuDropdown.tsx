@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import { useEffect, useState } from 'react'
 import { useMenuDropdownState, useTimerState } from '../../atoms/menuDropdown'
 import Menu from '../Menu/Menu'
 
@@ -9,6 +10,11 @@ export type MenuDropdownProps = {
 function MenuDropdown({ id }: MenuDropdownProps) {
   const [, setMenuDropdownState] = useMenuDropdownState()
   const [, setTimerState] = useTimerState()
+  const [sticky, setSticky] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => setSticky(true))
+  })
 
   const closeMenuDropdown = () => {
     const timer = setTimeout(
@@ -75,7 +81,7 @@ function MenuDropdown({ id }: MenuDropdownProps) {
   }
 
   return (
-    <div css={menuDropdown} onMouseLeave={closeMenuDropdown}>
+    <div css={menuDropdown(sticky)} onMouseLeave={closeMenuDropdown}>
       {renderMenu(id)}
     </div>
   )
@@ -99,14 +105,21 @@ const category = css`
   /* align-items: center; */
 `
 
-const menuDropdown = css`
-  position: fixed;
+const menuDropdown = (sticky: boolean) => css`
+  ${sticky
+    ? css`
+        position: sticky;
+        top: 0;
+      `
+    : css`
+        position: fixed;
+        top: 10%;
+      `}
   z-index: 1;
   width: 100%;
   height: 20rem;
   /* left: 50%;
   margin-left: -35%; //negative half of width */
-  top: 10%;
   border: 1px solid lightgray;
   background: white;
   display: flex;
