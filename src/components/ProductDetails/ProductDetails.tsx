@@ -20,8 +20,8 @@ function ProductDetails({ name }: ProductDetailsProps) {
 const productDetails = css``
 const productDetailsWrapper = css`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 `
 
 export default ProductDetails
