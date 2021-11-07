@@ -7,6 +7,7 @@ import Browse from '../Browse/Browse'
 import MenuDropdown from '../MenuDropdown/MenuDropdown'
 import ProductList from '../ProductList/ProductList'
 import ProductDetails from '../../pages/ProductDetails/ProductDetails'
+import ProductCatalog from '../../pages/ProductCatalog/ProductCatalog'
 
 export type BodyProps = {}
 
@@ -23,6 +24,9 @@ function Body({}: BodyProps) {
         </Route>
         <Route path='/test-product'>
           <ProductDetails name='Marimekko Oversize Hoodie with 3D Nylon Trefoil Patch' />
+        </Route>
+        <Route path={['/men-clothing-new-arrivals']}>
+          <ProductCatalog />
         </Route>
       </div>
     </>
