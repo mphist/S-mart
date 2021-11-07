@@ -39,10 +39,17 @@ const filterHeaderLeft = css`
   } */
   .MuiFormControl-root {
     flex-direction: row;
+    padding: 0 !important;
     label {
       position: relative;
       color: black;
     }
+  }
+  .MuiSelect-select {
+    padding: 0;
+  }
+  .MuiSelect-outlined {
+    padding-right: 0 !important;
   }
   .MuiOutlinedInput-root {
     all: unset;
@@ -50,6 +57,9 @@ const filterHeaderLeft = css`
     width: 6rem;
     position: relative;
     right: 2rem;
+    /* border: 1px solid black; */
+    /* padding: 0 !important;
+    margin: 0 !important; */
   }
   .Mui-focused {
   }
