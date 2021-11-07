@@ -8,12 +8,13 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material'
-import { useState } from 'react'
+import { useFilterState } from '../../atoms/filters'
 
 export type SizeFilterProps = {}
 
 function SizeFilter({}: SizeFilterProps) {
-  const [size, setSize] = useState<string[]>([])
+  const [filter, setFilter] = useFilterState()
+  const size = filter.size
 
   const ITEM_HEIGHT = 48
   const ITEM_PADDING_TOP = 8
@@ -32,9 +33,11 @@ function SizeFilter({}: SizeFilterProps) {
     const {
       target: { value },
     } = e
-    setSize(
+    setFilter(
       // On autofill we get a the stringified value.
-      typeof value === 'string' ? value.split(',') : value
+      typeof value === 'string'
+        ? { ...filter, size: value.split(',') }
+        : { ...filter, size: value }
     )
   }
   return (
@@ -42,7 +45,7 @@ function SizeFilter({}: SizeFilterProps) {
       <InputLabel
         id='sizeFilter'
         sx={
-          size.length > 0
+          size!.length > 0
             ? {
                 fontWeight: 'bold !important',
                 margin: '0 -0.641px !important',
@@ -65,7 +68,7 @@ function SizeFilter({}: SizeFilterProps) {
       >
         {sizes.map((size_) => (
           <MenuItem key={size_} value={size_}>
-            <Checkbox checked={size.indexOf(size_) > -1} />
+            <Checkbox checked={size!.indexOf(size_) > -1} />
             <ListItemText primary={size_} />
           </MenuItem>
         ))}

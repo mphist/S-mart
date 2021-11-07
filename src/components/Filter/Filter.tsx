@@ -85,5 +85,7 @@ const filterHeaderRight = css``
 
 const filterHeader = css`
   display: flex;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 `
 export default Filter

@@ -8,12 +8,13 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material'
-import { useState } from 'react'
+import { useFilterState } from '../../atoms/filters'
 
 export type TypeFilterProps = {}
 
 function TypeFilter({}: TypeFilterProps) {
-  const [type, setType] = useState<string[]>([])
+  const [filter, setFilter] = useFilterState()
+  const type = filter.type
 
   const ITEM_HEIGHT = 48
   const ITEM_PADDING_TOP = 8
@@ -32,9 +33,11 @@ function TypeFilter({}: TypeFilterProps) {
     const {
       target: { value },
     } = e
-    setType(
+    setFilter(
       // On autofill we get a the stringified value.
-      typeof value === 'string' ? value.split(',') : value
+      typeof value === 'string'
+        ? { ...filter, type: value.split(',') }
+        : { ...filter, type: value }
     )
   }
   return (
@@ -42,7 +45,7 @@ function TypeFilter({}: TypeFilterProps) {
       <InputLabel
         id='typeFilter'
         sx={
-          type.length > 0
+          type!.length > 0
             ? {
                 height: '2rem !important',
                 fontWeight: 'bold !important',
@@ -78,7 +81,7 @@ function TypeFilter({}: TypeFilterProps) {
       >
         {types.map((type_) => (
           <MenuItem key={type_} value={type_}>
-            <Checkbox checked={type.indexOf(type_) > -1} />
+            <Checkbox checked={type!.indexOf(type_) > -1} />
             <ListItemText primary={type_} />
           </MenuItem>
         ))}

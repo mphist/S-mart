@@ -1,5 +1,6 @@
 import Filter from '../../components/Filter/Filter'
 import ProductList from '../../components/ProductList/ProductList'
+import SelectedFilter from '../../components/SelectedFilter/SelectedFilter'
 
 export type ProductCatalogProps = {}
 
@@ -10,6 +11,7 @@ function ProductCatalog({}: ProductCatalogProps) {
         <i>MEN &gt; CLOTHING &gt; NEW ARRIVALS</i>
       </h2>
       <Filter />
+      <SelectedFilter />
       <ProductList />
     </div>
   )
