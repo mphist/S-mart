@@ -5,7 +5,18 @@ export type SelectedFilterProps = {}
 
 function SelectedFilter({}: SelectedFilterProps) {
   const [filter, setFilter] = useFilterState()
-  console.log(filter)
+
+  const isEmpty = (obj: Object) => {
+    let len = 0
+    Object.values(obj).forEach((arr) => {
+      len += arr.length
+    })
+    return len === 0
+  }
+
+  const clearAllFilters = () => {
+    setFilter({ type: [], size: [], color: [] })
+  }
 
   const removeSelectedFilter = (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>
@@ -40,6 +51,11 @@ function SelectedFilter({}: SelectedFilterProps) {
           <span>x</span>
         </span>
       ))}
+      {!isEmpty(filter) && (
+        <span id='clearAll' onClick={clearAllFilters}>
+          Clear All
+        </span>
+      )}
     </div>
   )
 }
@@ -57,6 +73,17 @@ const selectedFilter = css`
       padding: 0;
       margin: 0;
       margin-left: 0.3rem;
+    }
+  }
+  #clearAll {
+    all: unset;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    background: white;
+    margin-left: 1rem;
+    cursor: pointer;
+    span {
+      background: white;
     }
   }
 `
