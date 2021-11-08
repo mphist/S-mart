@@ -10,7 +10,7 @@ Run the following commands.
 
 ```console
 $ yarn add
-$ cd /packages/client
+$ cd packages/client
 $ yarn start
 ```
 
@@ -18,7 +18,7 @@ or
 
 ```console
 $ npm install
-$ cd /packages/client
+$ cd packages/client
 $ npm start
 ```
 
