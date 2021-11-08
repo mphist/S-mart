@@ -81,7 +81,10 @@ function TypeFilter({}: TypeFilterProps) {
       >
         {types.map((type_) => (
           <MenuItem key={type_} value={type_}>
-            <Checkbox checked={type!.indexOf(type_) > -1} />
+            <Checkbox
+              checked={type!.indexOf(type_) > -1}
+              sx={{ color: 'black !important' }}
+            />
             <ListItemText primary={type_} />
           </MenuItem>
         ))}

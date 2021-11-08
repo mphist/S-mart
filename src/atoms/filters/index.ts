@@ -1,9 +1,10 @@
 import { atom, useRecoilState } from 'recoil'
 
 type FilterState = {
-  type?: string[]
-  size?: string[]
-  color?: string[]
+  type: string[]
+  size: string[]
+  color: string[]
+  [key: string]: string[]
 }
 const filterState = atom<FilterState>({
   key: 'filterState',

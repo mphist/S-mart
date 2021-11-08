@@ -68,7 +68,10 @@ function SizeFilter({}: SizeFilterProps) {
       >
         {sizes.map((size_) => (
           <MenuItem key={size_} value={size_}>
-            <Checkbox checked={size!.indexOf(size_) > -1} />
+            <Checkbox
+              checked={size!.indexOf(size_) > -1}
+              sx={{ color: 'black !important' }}
+            />
             <ListItemText primary={size_} />
           </MenuItem>
         ))}

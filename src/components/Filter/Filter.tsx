@@ -74,6 +74,9 @@ const filterHeaderLeft = css`
   }
   .MuiSelect-iconOpen {
   }
+  .MuiCheckbox-colorPrimary {
+    color: red;
+  }
   /* .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
     padding: 0;
   }
