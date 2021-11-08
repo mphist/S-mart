@@ -4,11 +4,29 @@ S-mart is a mock E-commerce app, presenting clothing and accessory products from
 
 \*Users will not actually be able to purchase items on this app as it was only built for demonstration purposes.
 
+## To run the Client project on your computer
+
+Run the following commands.
+
+```console
+$ yarn add
+$ cd /packages/client
+$ yarn start
+```
+
+or
+
+```console
+$ npm install
+$ cd /packages/client
+$ npm start
+```
+
 ## Stack
 
-### Web
+### Client
 
-Web project is built with React and the following libraries/technologies were used (list is incomplete):
+Client project is built with React and the following libraries/technologies were used (list is incomplete):
 
 - TypeScript
 - React Router
