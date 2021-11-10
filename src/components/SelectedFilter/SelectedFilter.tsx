@@ -3,16 +3,16 @@ import { useFilterState } from '../../atoms/filters'
 
 export type SelectedFilterProps = {}
 
+export const isEmpty = (obj: Object) => {
+  let len = 0
+  Object.values(obj).forEach((arr) => {
+    len += arr.length
+  })
+  return len === 0
+}
+
 function SelectedFilter({}: SelectedFilterProps) {
   const [filter, setFilter] = useFilterState()
-
-  const isEmpty = (obj: Object) => {
-    let len = 0
-    Object.values(obj).forEach((arr) => {
-      len += arr.length
-    })
-    return len === 0
-  }
 
   const clearAllFilters = () => {
     setFilter({ type: [], size: [], color: [] })
