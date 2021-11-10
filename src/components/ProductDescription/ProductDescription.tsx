@@ -9,18 +9,25 @@ export type ProductDescriptionProps = {
   name: string
 }
 
+export const isColorValid = () => {}
+export const isSizeValid = (size: string) => {
+  return size !== ''
+}
+
 function ProductDescription({ name }: ProductDescriptionProps) {
   const select = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const liNodes = document?.querySelector('#sizeWrapper')?.childNodes
     liNodes?.forEach((e) => (e as Element).removeAttribute('class'))
     e.currentTarget.className = 'selected'
+    setSize(e.currentTarget.id)
   }
 
+  const [size, setSize] = useState('')
   const [overlayState, setOverlayState] = useOverlayState()
   const [quantity, setQuantity] = useState(1)
 
   const handleAddToBag = () => {
-    setOverlayState(true)
+    isSizeValid(size) && setOverlayState(true)
   }
 
   const renderSize = (type: string) => {
