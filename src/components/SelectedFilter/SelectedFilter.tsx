@@ -4,11 +4,7 @@ import { useFilterState } from '../../atoms/filters'
 export type SelectedFilterProps = {}
 
 export const isEmpty = (obj: Object) => {
-  let len = 0
-  Object.values(obj).forEach((arr) => {
-    len += arr.length
-  })
-  return len === 0
+  return Object.keys(obj).length === 0
 }
 
 function SelectedFilter({}: SelectedFilterProps) {
