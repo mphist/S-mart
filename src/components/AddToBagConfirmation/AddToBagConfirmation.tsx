@@ -2,9 +2,12 @@ import { css } from '@mui/styled-engine'
 import newHoodie from '../../assets/products/newHoodie.jpg'
 import { useOverlayState } from '../../atoms/uiState'
 
-export type AddToBagConfirmationProps = {}
+export type AddToBagConfirmationProps = {
+  color?: string
+  size: string
+}
 
-function AddToBagConfirmation({}: AddToBagConfirmationProps) {
+function AddToBagConfirmation({ color, size }: AddToBagConfirmationProps) {
   const [, setOverlayState] = useOverlayState()
   return (
     <div css={addToBagConfirmation}>
@@ -20,7 +23,7 @@ function AddToBagConfirmation({}: AddToBagConfirmationProps) {
             <h4>Marimekko Oversize Hoodie with 3D Nylon Trefoil Patch</h4>
             <p id='price'>$60</p>
             <p id='color'>Color: Pink</p>
-            <p id='size'>Size: XS</p>
+            <p id='size'>{`Size: ${size.toUpperCase()}`}</p>
             <p id='quantity'>Quantity: 1</p>
           </div>
         </div>
