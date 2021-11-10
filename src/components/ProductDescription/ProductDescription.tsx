@@ -232,8 +232,9 @@ const productDescription = css`
       font-weight: bold;
       cursor: pointer;
       border: none;
+      transition: color 0.3s;
       :hover {
-        opacity: 0.8;
+        color: rgba(255, 255, 255, 0.5);
       }
     }
   }
