@@ -4,6 +4,7 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 import { useOverlayState } from '../../atoms/uiState'
+import AddToBagConfirmation from '../AddToBagConfirmation/AddToBagConfirmation'
 
 export type ProductDescriptionProps = {
   name: string
@@ -25,9 +26,21 @@ function ProductDescription({ name }: ProductDescriptionProps) {
   const [size, setSize] = useState('')
   const [overlayState, setOverlayState] = useOverlayState()
   const [quantity, setQuantity] = useState(1)
+  const [errorColor, setErrorColor] = useState()
+  const [errorSize, setErrorSize] = useState(false)
 
   const handleAddToBag = () => {
-    isSizeValid(size) && setOverlayState(true)
+    if (isSizeValid(size)) {
+      errorSize && setErrorSize(false)
+      setOverlayState(true) // comment out when uncommenting below
+      // if (isColorValid(color)) {
+      //   errorColor && setErrorColor(false)
+      // } else {
+      //   setErrorColor(true)
+      // }
+    } else {
+      setErrorSize(true)
+    }
   }
 
   const renderSize = (type: string) => {
@@ -59,49 +72,53 @@ function ProductDescription({ name }: ProductDescriptionProps) {
     }
   }
   return (
-    <div css={productDescription}>
-      <h2>{name}</h2>
-      <div id='ratings'>
-        <Rating name='readonly' value={4} readOnly size='small' />
-        <span id='rating_value'>4</span>
-      </div>
-      <div id='description'>
-        From the beginning, both adidas and Marimekko have been dedicated to
-        empowerment and expression. On this hoodie, the Finnish label's Unikko
-        poppy print fills the iconic Trefoil as a visual representation of our
-        collaborative intention. The loose shape and cozy fleece material come
-        together for a feeling of absolute comfort.
-      </div>
-      <div id='price'>
-        <p>$60.00</p>
-      </div>
-      <div id='color'>
-        <p>Color</p>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
+    <div>
+      <div css={productDescription}>
+        <h2>{name}</h2>
+        <div id='ratings'>
+          <Rating name='readonly' value={4} readOnly size='small' />
+          <span id='rating_value'>4</span>
+        </div>
+        <div id='description'>
+          From the beginning, both adidas and Marimekko have been dedicated to
+          empowerment and expression. On this hoodie, the Finnish label's Unikko
+          poppy print fills the iconic Trefoil as a visual representation of our
+          collaborative intention. The loose shape and cozy fleece material come
+          together for a feeling of absolute comfort.
+        </div>
+        <div id='price'>
+          <p>$60.00</p>
+        </div>
+        <div id='color'>
+          <p>Color</p>
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
 
-      <div id='size'>{renderSize('CLOTHING')}</div>
-      <div id='quant_btns'>
-        <div id='quantity'>
-          <Select
-            id='quantitySelector'
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value as number)}
-          >
-            <MenuItem value={1}>1</MenuItem>
-            <MenuItem value={2}>2</MenuItem>
-            <MenuItem value={3}>3</MenuItem>
-          </Select>
-          <div id='buttons'>
-            <button onClick={handleAddToBag}>ADD TO BAG</button>
+        <div id='size'>{renderSize('CLOTHING')}</div>
+        <div id='error'>{errorSize && <p>Please select your size</p>}</div>
+        <div id='quant_btns'>
+          <div id='quantity'>
+            <Select
+              id='quantitySelector'
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value as number)}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+            </Select>
+            <div id='buttons'>
+              <button onClick={handleAddToBag}>ADD TO BAG</button>
+            </div>
           </div>
         </div>
       </div>
+      {overlayState && <AddToBagConfirmation size={size} />}
     </div>
   )
 }
@@ -175,6 +192,14 @@ const productDescription = css`
         align-items: center;
         cursor: pointer;
       }
+    }
+  }
+  #error {
+    color: red;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    p {
+      margin: 0;
     }
   }
   #quantity {
