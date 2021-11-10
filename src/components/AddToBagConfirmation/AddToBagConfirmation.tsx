@@ -5,9 +5,14 @@ import { useOverlayState } from '../../atoms/uiState'
 export type AddToBagConfirmationProps = {
   color?: string
   size: string
+  quantity: number
 }
 
-function AddToBagConfirmation({ color, size }: AddToBagConfirmationProps) {
+function AddToBagConfirmation({
+  color,
+  size,
+  quantity,
+}: AddToBagConfirmationProps) {
   const [, setOverlayState] = useOverlayState()
   return (
     <div css={addToBagConfirmation}>
@@ -24,7 +29,7 @@ function AddToBagConfirmation({ color, size }: AddToBagConfirmationProps) {
             <p id='price'>$60</p>
             <p id='color'>Color: Pink</p>
             <p id='size'>{`Size: ${size.toUpperCase()}`}</p>
-            <p id='quantity'>Quantity: 1</p>
+            <p id='quantity'>{`Quantity: ${quantity}`}</p>
           </div>
         </div>
         <div id='border'></div>

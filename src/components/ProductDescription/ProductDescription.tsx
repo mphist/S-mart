@@ -118,7 +118,7 @@ function ProductDescription({ name }: ProductDescriptionProps) {
           </div>
         </div>
       </div>
-      {overlayState && <AddToBagConfirmation size={size} />}
+      {overlayState && <AddToBagConfirmation quantity={quantity} size={size} />}
     </div>
   )
 }
