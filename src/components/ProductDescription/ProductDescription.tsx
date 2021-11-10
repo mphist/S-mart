@@ -3,6 +3,7 @@ import Rating from '@mui/material/Rating'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
+import { useOverlayState } from '../../atoms/uiState'
 
 export type ProductDescriptionProps = {
   name: string
@@ -15,7 +16,12 @@ function ProductDescription({ name }: ProductDescriptionProps) {
     e.currentTarget.className = 'selected'
   }
 
+  const [overlayState, setOverlayState] = useOverlayState()
   const [quantity, setQuantity] = useState(1)
+
+  const handleAddToBag = () => {
+    setOverlayState(true)
+  }
 
   const renderSize = (type: string) => {
     switch (type) {
@@ -85,7 +91,7 @@ function ProductDescription({ name }: ProductDescriptionProps) {
             <MenuItem value={3}>3</MenuItem>
           </Select>
           <div id='buttons'>
-            <button>ADD TO BAG</button>
+            <button onClick={handleAddToBag}>ADD TO BAG</button>
           </div>
         </div>
       </div>
