@@ -9,3 +9,28 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Product {
+  id          Int      @id @unique
+  type        String   @db.VarChar(20)
+  gender      String   @db.VarChar(1)
+  name        String   @db.VarChar(100)
+  description String   @db.Text
+  price       Decimal
+  color       Json
+  size        Json
+  image       Json
+  rating      Float?
+  soldCount   Int      @default(0)
+  createdAt   DateTime @default(now())
+  review      Review?  @relation(fields: [reviewId], references: [id])
+  reviewId    String?  @unique
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  review    Json[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  product   Product?
+}

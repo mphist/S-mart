@@ -1,8 +1,3 @@
-import express from 'express'
+import { startServer } from './utils/startServer'
 
-const app = express()
-const port = 4000
-
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`)
-})
+startServer()
