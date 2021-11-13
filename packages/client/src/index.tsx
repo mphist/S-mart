@@ -4,11 +4,15 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { RecoilRoot } from 'recoil'
+import { ApolloProvider } from '@apollo/client'
+import { client } from './modules/apolloClient'
 
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
