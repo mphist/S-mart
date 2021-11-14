@@ -6,9 +6,9 @@ export const addProduct = async (
   name: string,
   description: string,
   price: number,
-  color: Prisma.InputJsonValue,
   size: Prisma.InputJsonValue,
-  image: Prisma.InputJsonArray
+  image: Prisma.InputJsonArray,
+  color?: Prisma.InputJsonValue
 ) => {
   const prisma = new PrismaClient()
 
@@ -30,9 +30,9 @@ export const addProduct = async (
         name,
         description,
         price,
-        color,
         size,
         image,
+        color,
       },
     })
     return {

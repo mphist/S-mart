@@ -40,9 +40,9 @@ export const typeDefs = gql`
       name: String
       description: String
       price: Float
-      color: Color
       size: Size
       image: Image
+      color: Color
     ): AddProductResponse!
   }
 

@@ -19,7 +19,7 @@ export const resolvers = {
   Mutation: {
     addProduct: async (
       _: any,
-      { id, type, gender, name, description, price, color, size, image }: any,
+      { id, type, gender, name, description, price, size, image, color }: any,
       context: any
     ) => {
       try {
@@ -30,13 +30,16 @@ export const resolvers = {
           name,
           description,
           price,
-          color,
           size,
-          image
+          image,
+          color
         )
         return res
-      } catch (e) {
-        return { error: true, message: 'Could not add the product' }
+      } catch (e: any) {
+        return {
+          error: true,
+          message: 'Could not add the product. ' + e.message,
+        }
       }
     },
   },
