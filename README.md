@@ -35,8 +35,10 @@ Client project is built with React and the following libraries/technologies were
 
 ### Server
 
-Server project is built with Express and PostgreSQL was used for the database. The following libraries & APIs were used (list is incomplete):
+Server project is built with Express and PostgreSQL was used for the database. The following libraries/technologies & APIs were used (list is incomplete):
 
+- Apollo GraphQL
+- Prisma
 - Stripe
 
 ### Mock Products
