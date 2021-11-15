@@ -31,6 +31,7 @@ export const typeDefs = gql`
   type Query {
     getProduct(id: Int): Product
     getProductsByCategoryAndGender(category: String, gender: String): [Product]
+    getNewArrivalsByGender(gender: String): [Product]
   }
 
   type Mutation {
@@ -56,7 +57,6 @@ export const colorScalar = new GraphQLScalarType({
   name: 'Color',
   description: 'Color custom scalar type',
   serialize(value) {
-    console.log(value)
     return value
   },
 })
@@ -65,7 +65,6 @@ export const sizeScalar = new GraphQLScalarType({
   name: 'Size',
   description: 'Size custom scalar type',
   serialize(value) {
-    console.log(value)
     return value
   },
 })
@@ -74,7 +73,6 @@ export const imageScalar = new GraphQLScalarType({
   name: 'Image',
   description: 'Image custom scalar type',
   serialize(value) {
-    console.log(value)
     return value
   },
 })
