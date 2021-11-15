@@ -16,7 +16,7 @@ function Menu({ category, id }: MenuProps) {
               <a href={`/${id}-clothing-new-arrivals`}>New Arrivals</a>
             </li>
             <li>
-              <a href={`/${id}-hoodies-sweaters`}>Hoodies & Sweaters</a>
+              <a href={`/${id}-hoodies&sweaters`}>Hoodies & Sweaters</a>
             </li>
             <li>
               <a href={`/${id}-shirts`}>Shirts</a>
@@ -88,7 +88,7 @@ function Menu({ category, id }: MenuProps) {
           <h3>BOYS CLOTHING</h3>
           <ul>
             <li>
-              <a href={`boys-hoodies-sweaters`}>Hoodies & Sweaters</a>
+              <a href={`boys-hoodies&sweaters`}>Hoodies & Sweaters</a>
             </li>
             <li>
               <a href={`boys-shirts`}>Shirts</a>
@@ -109,7 +109,7 @@ function Menu({ category, id }: MenuProps) {
           <h3>GIRLS CLOTHING</h3>
           <ul>
             <li>
-              <a href={`girls-hoodies-sweaters`}>Hoodies & Sweaters</a>
+              <a href={`girls-hoodies&sweaters`}>Hoodies & Sweaters</a>
             </li>
             <li>
               <a href={`girls-shirts`}>Shirts</a>

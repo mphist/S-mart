@@ -28,7 +28,7 @@ function Body({}: BodyProps) {
         <Route path='/test-product'>
           <ProductDetails name='Marimekko Oversize Hoodie with 3D Nylon Trefoil Patch' />
         </Route>
-        <Route path={['/men-clothing-new-arrivals']}>
+        <Route path={['/men-clothing-new-arrivals', '/men-hoodies&sweaters']}>
           <ProductCatalog />
         </Route>
         {overlay && <Overlay />}

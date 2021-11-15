@@ -1,4 +1,6 @@
 import { css } from '@emotion/react'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import Product from '../Product/Product'
 
 export type ProductListProps = {
@@ -6,34 +8,34 @@ export type ProductListProps = {
 }
 
 function ProductList({ category }: ProductListProps) {
-  if (category) {
-    return (
-      <section css={productList}>
-        <h2>{category}</h2>
-        <div css={list}>
-          <ul>
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-          </ul>
-        </div>
-      </section>
-    )
-  } else
-    return (
-      <section css={productList}>
-        <div css={listForCatalog}>
-          <ul>
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-          </ul>
-        </div>
-      </section>
-    )
+  // if (category) {
+  //   return (
+  //     <section css={productList}>
+  //       <h2>{category}</h2>
+  //       <div css={list}>
+  //         <ul>
+  //           <Product />
+  //           <Product />
+  //           <Product />
+  //           <Product />
+  //           <Product />
+  //         </ul>
+  //       </div>
+  //     </section>
+  //   )
+  // } else
+  return (
+    <section css={productList}>
+      <div css={listForCatalog}>
+        <ul>
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </ul>
+      </div>
+    </section>
+  )
 }
 
 const list = css`
