@@ -1,41 +1,49 @@
 import { css } from '@emotion/react'
-import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import Product from '../Product/Product'
+import { Product as ProductType } from '../../graphql/types'
 
 export type ProductListProps = {
   category?: string
+  products?: ProductType[]
 }
 
-function ProductList({ category }: ProductListProps) {
-  // if (category) {
-  //   return (
-  //     <section css={productList}>
-  //       <h2>{category}</h2>
-  //       <div css={list}>
-  //         <ul>
-  //           <Product />
-  //           <Product />
-  //           <Product />
-  //           <Product />
-  //           <Product />
-  //         </ul>
-  //       </div>
-  //     </section>
-  //   )
-  // } else
-  return (
-    <section css={productList}>
-      <div css={listForCatalog}>
-        <ul>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-        </ul>
-      </div>
-    </section>
-  )
+function ProductList({ category, products }: ProductListProps) {
+  const items = products
+
+  if (category) {
+    return (
+      <section css={productList}>
+        <h2>{category}</h2>
+        <div css={list}>
+          <ul>
+            {items?.map((item, key) => (
+              <Product item={item} key={key} />
+            ))}
+            {/* <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product /> */}
+          </ul>
+        </div>
+      </section>
+    )
+  } else
+    return (
+      <section css={productList}>
+        <div css={listForCatalog}>
+          <ul>
+            {/* <Product />
+            <Product />
+            <Product />
+            <Product /> */}
+            {items?.map((item, key) => (
+              <Product item={item} key={key} />
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
 }
 
 const list = css`

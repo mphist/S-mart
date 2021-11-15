@@ -1,22 +1,24 @@
 import { css } from '@emotion/react'
 import hoodieNew from '../../assets/products/newHoodie.jpg'
-export type ProductProps = {}
+import { Product as ProductType } from '../../graphql/types'
 
-function Product({}: ProductProps) {
+export type ProductProps = { item?: ProductType; key: string | number }
+
+function Product({ item, key }: ProductProps) {
   return (
-    <li css={item}>
+    <li css={itemList}>
       <a href={`/test-product`}>
-        <img src={hoodieNew} alt='new hoodie' />
+        <img src={Object.values(item!.image)[0][0]} alt={`product-${key}`} />
         <div css={description}>
-          <span>$60</span>
-          <p>Marimekko Oversize Hoodie with 3D Nylon Trefoil Patch</p>
+          <span>{`$${item?.price}`}</span>
+          <p>{item?.name}</p>
         </div>
       </a>
     </li>
   )
 }
 
-const item = css`
+const itemList = css`
   a {
     /* display: flex;
     flex-direction: column; */
