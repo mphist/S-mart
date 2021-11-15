@@ -6,7 +6,7 @@ export const getNewArrivalsByGender = async (gender: string) => {
   try {
     const items = await prisma.product.findMany({
       where: {
-        gender: gender,
+        gender: gender === 'W' ? 'F' : 'M',
       },
       orderBy: {
         createdAt: 'desc',
