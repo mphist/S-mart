@@ -1,6 +1,7 @@
 import { colorScalar, imageScalar, sizeScalar } from '../typeDefs'
 import { addProduct } from './addProduct'
 import { getProduct } from './getProduct'
+import { getProductsByCategoryAndGender } from './getProductsByCategoryAndGender'
 
 export const resolvers = {
   Color: colorScalar,
@@ -10,6 +11,18 @@ export const resolvers = {
     getProduct: async (_: any, { id }: any, context: any) => {
       try {
         const res = await getProduct(id)
+        return res
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    getProductsByCategoryAndGender: async (
+      _: any,
+      { category, gender }: any,
+      context: any
+    ) => {
+      try {
+        const res = await getProductsByCategoryAndGender(category, gender)
         return res
       } catch (e) {
         console.log(e)
