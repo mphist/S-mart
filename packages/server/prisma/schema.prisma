@@ -13,7 +13,7 @@ datasource db {
 model Product {
   id          Int      @id @unique
   type        String   @db.VarChar(20)
-  category    String   @default("") @db.VarChar(20)
+  category    String   @db.VarChar(20)
   gender      String   @db.VarChar(1)
   name        String   @db.VarChar(100)
   description String   @db.Text
