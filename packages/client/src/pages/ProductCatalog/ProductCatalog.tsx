@@ -13,10 +13,9 @@ function ProductCatalog({}: ProductCatalogProps) {
   return (
     <div css={productCatalog}>
       <h2 id='catalogHeader'>
-        <i>{`${gender} > ${type && `${type} >`} ${category.replace(
-          '&',
-          ' & '
-        )}`}</i>
+        <i>{`${gender} > ${type && `${type} >`} ${category
+          .replace('&', ' & ')
+          .replace('_', ' ')}`}</i>
       </h2>
       <Filter />
       <SelectedFilter />
