@@ -38,6 +38,7 @@ export const typeDefs = gql`
     addProduct(
       id: Int
       type: String
+      category: String
       gender: String
       name: String
       description: String

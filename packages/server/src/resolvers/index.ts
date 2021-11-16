@@ -45,13 +45,25 @@ export const resolvers = {
   Mutation: {
     addProduct: async (
       _: any,
-      { id, type, gender, name, description, price, size, image, color }: any,
+      {
+        id,
+        type,
+        category,
+        gender,
+        name,
+        description,
+        price,
+        size,
+        image,
+        color,
+      }: any,
       context: any
     ) => {
       try {
         const res = await addProduct(
           id,
           type,
+          category,
           gender,
           name,
           description,

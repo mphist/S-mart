@@ -2,6 +2,7 @@ import { Prisma, PrismaClient } from '@prisma/client'
 export const addProduct = async (
   id: number,
   type: string,
+  category: string,
   gender: string,
   name: string,
   description: string,
@@ -26,6 +27,7 @@ export const addProduct = async (
       data: {
         id,
         type,
+        category,
         gender,
         name,
         description,
