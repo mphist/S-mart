@@ -1,7 +1,7 @@
 import { useLazyQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { GET_NEW_ARRIVALS_BY_GENDER } from '../graphql/getNewArrivalsByGender'
+import { GET_NEW_ARRIVALS_BY_TYPE_AND_GENDER } from '../graphql/getNewArrivalsByTypeAndGender'
 import { GET_PRODUCTS_BY_CATEGORY_AND_GENDER } from '../graphql/getProductsByCategoryAndGender'
 import { Product } from '../graphql/types'
 
@@ -22,20 +22,20 @@ export default function useProductsQueryEffect() {
     }
   )
   const [
-    getNewArrivalsByGender,
+    getNewArrivalsByTypeAndGender,
     { loading: loadingNewArrivals, data: newArrivals },
-  ] = useLazyQuery<{ getNewArrivalsByGender: Product[] }>(
-    GET_NEW_ARRIVALS_BY_GENDER,
+  ] = useLazyQuery<{ getNewArrivalsByTypeAndGender: Product[] }>(
+    GET_NEW_ARRIVALS_BY_TYPE_AND_GENDER,
     {
-      variables: { category, gender: gender[0]?.toUpperCase() },
+      variables: { type, gender: gender[0]?.toUpperCase() },
     }
   )
 
   useEffect(() => {
     setQueryParams(locationStr)
     if (category === 'New Arrivals') {
-      getNewArrivalsByGender()
-      setProducts(newArrivals?.getNewArrivalsByGender)
+      getNewArrivalsByTypeAndGender()
+      setProducts(newArrivals?.getNewArrivalsByTypeAndGender)
       setLoading(loadingNewArrivals)
     } else {
       getProductsByCategoryAndGender()
@@ -49,7 +49,7 @@ export default function useProductsQueryEffect() {
     results,
     locationStr,
     getProductsByCategoryAndGender,
-    getNewArrivalsByGender,
+    getNewArrivalsByTypeAndGender,
     newArrivals,
   ])
 
