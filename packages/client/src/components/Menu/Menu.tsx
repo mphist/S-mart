@@ -43,13 +43,13 @@ function Menu({ category, id }: MenuProps) {
               <a href={`${id}-sneakers`}>Sneakers</a>
             </li>
             <li>
-              <a href={`${id}-running-shoes`}>Running Shoes</a>
+              <a href={`${id}-running_shoes`}>Running Shoes</a>
             </li>
             <li>
-              <a href={`${id}-tennis-shoes`}>Tennis Shoes</a>
+              <a href={`${id}-tennis_shoes`}>Tennis Shoes</a>
             </li>
             <li>
-              <a href={`${id}-basketball-shoes`}>Basketball Shoes</a>
+              <a href={`${id}-basketball_shoes`}>Basketball Shoes</a>
             </li>
             <li>
               <a href={`${id}-boots`}>Boots</a>
@@ -133,10 +133,10 @@ function Menu({ category, id }: MenuProps) {
               <a href={`boys-sneakers`}>Sneakers</a>
             </li>
             <li>
-              <a href={`boys-running-shoes`}>Running Shoes</a>
+              <a href={`boys-running_shoes`}>Running Shoes</a>
             </li>
             <li>
-              <a href={`boys-soccer-cleats`}>Soccer Cleats</a>
+              <a href={`boys-soccer_cleats`}>Soccer Cleats</a>
             </li>
           </ul>
         </div>
@@ -151,10 +151,10 @@ function Menu({ category, id }: MenuProps) {
               <a href={`girls-sneakers`}>Sneakers</a>
             </li>
             <li>
-              <a href={`girls-running-shoes`}>Running Shoes</a>
+              <a href={`girls-running_shoes`}>Running Shoes</a>
             </li>
             <li>
-              <a href={`girls-soccer-cleats`}>Soccer Cleats</a>
+              <a href={`girls-soccer_cleats`}>Soccer Cleats</a>
             </li>
           </ul>
         </div>
@@ -184,7 +184,7 @@ function Menu({ category, id }: MenuProps) {
           <h3>EARRINGS</h3>
           <ul>
             <li>
-              <a href={`${id}-earrings-american-west`}>American West</a>
+              <a href={`${id}-earrings-american_west`}>American West</a>
             </li>
             <li>
               <a href={`${id}-earrings-arabella`}>Arabella</a>
@@ -196,7 +196,7 @@ function Menu({ category, id }: MenuProps) {
               <a href={`${id}-earrings-le-vian`}>Le Vian</a>
             </li> */}
             <li>
-              <a href={`${id}-earrings-michael-kors`}>Michael Kors</a>
+              <a href={`${id}-earrings-michael_kors`}>Michael Kors</a>
             </li>
             <li>
               <a href={`${id}-earrings-sirena`}>Sirena</a>
@@ -211,19 +211,19 @@ function Menu({ category, id }: MenuProps) {
           <h3>RINGS</h3>
           <ul>
             <li>
-              <a href={`${id}-rings-alex-woo`}>Alex Woo</a>
+              <a href={`${id}-rings-alex_woo`}>Alex Woo</a>
             </li>
             <li>
-              <a href={`${id}-rings-american-west`}>American West</a>
+              <a href={`${id}-rings-american_west`}>American West</a>
             </li>
             <li>
-              <a href={`${id}-rings-giani-bernini`}>Giani Bernini</a>
+              <a href={`${id}-rings-giani_bernini`}>Giani Bernini</a>
             </li>
             <li>
-              <a href={`${id}-rings-le-vian`}>Le Vian</a>
+              <a href={`${id}-rings-le_vian`}>Le Vian</a>
             </li>
             <li>
-              <a href={`${id}-rings-sarah-chloe`}>Sarah Chloe</a>
+              <a href={`${id}-rings-sarah_chloe`}>Sarah Chloe</a>
             </li>
             <li>
               <a href={`${id}-rings-triton`}>Triton</a>
@@ -238,21 +238,21 @@ function Menu({ category, id }: MenuProps) {
           <h3>BRACELETS</h3>
           <ul>
             <li>
-              <a href={`${id}-bracelets-belle-de-mer`}>Belle De Mer</a>
+              <a href={`${id}-bracelets-belle_de_mer`}>Belle De Mer</a>
             </li>
             <li>
               <a href={`${id}-bracelets-macys`}>Macy's</a>
             </li>
             <li>
-              <a href={`${id}-bracelets-michael-kors`}>Michael Kors</a>
+              <a href={`${id}-bracelets-michael_kors`}>Michael Kors</a>
             </li>
             <li>
-              <a href={`${id}-bracelets-peter-thomas-roth`}>
+              <a href={`${id}-bracelets-peter_thomas_roth`}>
                 Peter Thomas Roth
               </a>
             </li>
             <li>
-              <a href={`${id}-bracelets-simone-i-smith`}>Simone I. Smith</a>
+              <a href={`${id}-bracelets-simone_i_smith`}>Simone I. Smith</a>
             </li>
             <li>
               <a href={`${id}-bracelets-unwritten`}>Unwritten</a>
@@ -267,10 +267,10 @@ function Menu({ category, id }: MenuProps) {
           <h3>WATCHES</h3>
           <ul>
             <li>
-              <a href={`${id}-watches-armani-exchange`}>Armani Exchange</a>
+              <a href={`${id}-watches-armani_exchange`}>Armani Exchange</a>
             </li>
             <li>
-              <a href={`${id}-watches-charter-club`}>Charter Club</a>
+              <a href={`${id}-watches-charter_club`}>Charter Club</a>
             </li>
             <li>
               <a href={`${id}-watches-coach`}>COACH</a>
@@ -279,10 +279,10 @@ function Menu({ category, id }: MenuProps) {
               <a href={`${id}-watches-diesel`}>Diesel</a>
             </li>
             <li>
-              <a href={`${id}-watches-olivia-burton`}>Olivia Burton</a>
+              <a href={`${id}-watches-olivia_burton`}>Olivia Burton</a>
             </li>
             <li>
-              <a href={`${id}-watches-tag-heuer`}>TAG Heuer</a>
+              <a href={`${id}-watches-tag_heuer`}>TAG Heuer</a>
             </li>
           </ul>
         </div>

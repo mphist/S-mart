@@ -32,8 +32,19 @@ function Body({}: BodyProps) {
           path={[
             '/men-clothing-new-arrivals',
             '/men-hoodies&sweaters',
+            '/men-jackets',
+            '/men-shirts',
+            '/men-pants',
             '/women-clothing-new-arrivals',
             '/women-hoodies&sweaters',
+            '/women-jackets',
+            '/women-shirts',
+            '/women-pants',
+            '/women-sneakers',
+            '/women-running_shoes',
+            '/women-tennis_shoes',
+            '/women-basketball_shoes',
+            '/women-boots',
           ]}
         >
           <ProductCatalog />

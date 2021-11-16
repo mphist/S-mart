@@ -66,15 +66,17 @@ const list = css`
 `
 const listForCatalog = css`
   ul {
-    display: flex;
-    list-style: none;
+    /* display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    list-style: none;
     padding: 0;
     li {
       border: 1px solid lightgray;
       width: 22.2rem;
-      height: 28rem;
+      /* height: 28rem; */
       cursor: pointer;
       :hover {
         border: 1px solid black;
