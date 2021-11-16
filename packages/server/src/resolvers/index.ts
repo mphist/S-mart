@@ -1,6 +1,6 @@
 import { colorScalar, imageScalar, sizeScalar } from '../typeDefs'
 import { addProduct } from './addProduct'
-import { getNewArrivalsByGender } from './getNewArrivalsByGender'
+import { getNewArrivalsByTypeAndGender } from './getNewArrivalsByTypeAndGender'
 import { getProduct } from './getProduct'
 import { getProductsByCategoryAndGender } from './getProductsByCategoryAndGender'
 
@@ -29,9 +29,13 @@ export const resolvers = {
         console.log(e)
       }
     },
-    getNewArrivalsByGender: async (_: any, { gender }: any, context: any) => {
+    getNewArrivalsByTypeAndGender: async (
+      _: any,
+      { type, gender }: any,
+      context: any
+    ) => {
       try {
-        const res = await getNewArrivalsByGender(gender)
+        const res = await getNewArrivalsByTypeAndGender(type, gender)
         return res
       } catch (e) {
         console.log(e)

@@ -1,11 +1,15 @@
 import { PrismaClient } from '.prisma/client'
 
-export const getNewArrivalsByGender = async (gender: string) => {
+export const getNewArrivalsByTypeAndGender = async (
+  type: string,
+  gender: string
+) => {
   const prisma = new PrismaClient()
 
   try {
     const items = await prisma.product.findMany({
       where: {
+        type,
         gender: gender === 'W' ? 'F' : 'M',
       },
       orderBy: {

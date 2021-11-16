@@ -31,7 +31,7 @@ export const typeDefs = gql`
   type Query {
     getProduct(id: Int): Product
     getProductsByCategoryAndGender(category: String, gender: String): [Product]
-    getNewArrivalsByGender(gender: String): [Product]
+    getNewArrivalsByTypeAndGender(type: String, gender: String): [Product]
   }
 
   type Mutation {
