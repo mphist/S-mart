@@ -5,7 +5,7 @@ import { addProduct } from '../resolvers/addProduct'
 export function loadDb() {
   const data = JSON.parse(
     fs.readFileSync(
-      'C:\\Users\\Owner\\Desktop\\Python\\Sportchek Scraper\\women-boots.json',
+      'C:\\Users\\Owner\\Desktop\\Python\\Sportchek Scraper\\men-boots.json',
       'utf8'
     )
   )
@@ -13,6 +13,7 @@ export function loadDb() {
     addProduct(
       product.id,
       product.type,
+      product.category,
       product.gender,
       product.name,
       product.description,

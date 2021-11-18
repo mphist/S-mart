@@ -1,8 +1,6 @@
-import { PrismaClient } from '.prisma/client'
+import { Context } from '../utils/context'
 
-export const getProduct = async (id: number) => {
-  const prisma = new PrismaClient()
-
+export const getProduct = async (id: number, { prisma }: Context) => {
   try {
     const item = await prisma.product.findFirst({ where: { id } })
     return item

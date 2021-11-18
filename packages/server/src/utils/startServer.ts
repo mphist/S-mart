@@ -1,14 +1,21 @@
+import { PrismaClient } from '.prisma/client'
 import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
 import { resolvers } from '../resolvers'
 import loadDbRoute from '../routes/api/loadDb'
 import { typeDefs } from '../typeDefs'
+import { context } from './context'
 
 export const startServer = async () => {
   const app = express()
   const port =
     process.env.NODE_ENV === 'production' ? 'replace with prod port' : 4000
-  const server = new ApolloServer({ typeDefs, resolvers })
+
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context,
+  })
 
   //middleware
 

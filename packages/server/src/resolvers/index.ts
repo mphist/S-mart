@@ -1,4 +1,5 @@
 import { colorScalar, imageScalar, sizeScalar } from '../typeDefs'
+import { Context } from '../utils/context'
 import { addProduct } from './addProduct'
 import { getNewArrivalsByTypeAndGender } from './getNewArrivalsByTypeAndGender'
 import { getProduct } from './getProduct'
@@ -9,9 +10,9 @@ export const resolvers = {
   Size: sizeScalar,
   Image: imageScalar,
   Query: {
-    getProduct: async (_: any, { id }: any, context: any) => {
+    getProduct: async (_: any, { id }: any, context: Context) => {
       try {
-        const res = await getProduct(id)
+        const res = await getProduct(id, context)
         return res
       } catch (e) {
         console.log(e)
@@ -20,10 +21,14 @@ export const resolvers = {
     getProductsByCategoryAndGender: async (
       _: any,
       { category, gender }: any,
-      context: any
+      context: Context
     ) => {
       try {
-        const res = await getProductsByCategoryAndGender(category, gender)
+        const res = await getProductsByCategoryAndGender(
+          category,
+          gender,
+          context
+        )
         return res
       } catch (e) {
         console.log(e)
@@ -32,10 +37,10 @@ export const resolvers = {
     getNewArrivalsByTypeAndGender: async (
       _: any,
       { type, gender }: any,
-      context: any
+      context: Context
     ) => {
       try {
-        const res = await getNewArrivalsByTypeAndGender(type, gender)
+        const res = await getNewArrivalsByTypeAndGender(type, gender, context)
         return res
       } catch (e) {
         console.log(e)
@@ -57,7 +62,7 @@ export const resolvers = {
         image,
         color,
       }: any,
-      context: any
+      context: Context
     ) => {
       try {
         const res = await addProduct(
@@ -70,6 +75,7 @@ export const resolvers = {
           price,
           size,
           image,
+          context,
           color
         )
         return res

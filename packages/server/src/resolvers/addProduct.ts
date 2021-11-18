@@ -1,4 +1,5 @@
 import { Prisma, PrismaClient } from '@prisma/client'
+import { Context } from '../utils/context'
 export const addProduct = async (
   id: number,
   type: string,
@@ -9,12 +10,12 @@ export const addProduct = async (
   price: number,
   size: Prisma.InputJsonValue,
   image: Prisma.InputJsonArray,
+  { prisma }: Context,
   color?: Prisma.InputJsonValue
 ) => {
-  const prisma = new PrismaClient()
-
   try {
-    const check = await prisma.product.findFirst({
+    const prisma_ = new PrismaClient() // prisma bug. Use context in other resolvers
+    const check = await prisma_.product.findFirst({
       where: { name: name },
     })
     if (check)
@@ -23,7 +24,7 @@ export const addProduct = async (
         message: 'Same product name already exists',
       }
 
-    const item = await prisma.product.create({
+    await prisma_.product.create({
       data: {
         id,
         type,

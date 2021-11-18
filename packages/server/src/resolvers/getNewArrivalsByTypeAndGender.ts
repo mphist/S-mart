@@ -1,11 +1,10 @@
-import { PrismaClient } from '.prisma/client'
+import { Context } from '../utils/context'
 
 export const getNewArrivalsByTypeAndGender = async (
   type: string,
-  gender: string
+  gender: string,
+  { prisma }: Context
 ) => {
-  const prisma = new PrismaClient()
-
   try {
     const items = await prisma.product.findMany({
       where: {
