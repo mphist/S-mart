@@ -1,6 +1,7 @@
 import { colorScalar, imageScalar, sizeScalar } from '../typeDefs'
 import { Context } from '../utils/context'
 import { addProduct } from './addProduct'
+import { getBestSellers } from './getBestSellers'
 import { getNewArrivals } from './getNewArrivals'
 import { getNewArrivalsByTypeAndGender } from './getNewArrivalsByTypeAndGender'
 import { getProduct } from './getProduct'
@@ -50,6 +51,14 @@ export const resolvers = {
     getNewArrivals: async (_: any, __: any, context: Context) => {
       try {
         const res = await getNewArrivals(context)
+        return res
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    getBestSellers: async (_: any, __: any, context: Context) => {
+      try {
+        const res = await getBestSellers(context)
         return res
       } catch (e) {
         console.log(e)
