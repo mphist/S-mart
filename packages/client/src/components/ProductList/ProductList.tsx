@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import Product from '../Product/Product'
 import { Product as ProductType } from '../../graphql/types'
+import useGetNewOrBestProductsEffect from '../../hooks/useGetNewOrBestProductsEffect'
 
 export type ProductListProps = {
   category?: string
@@ -8,17 +9,18 @@ export type ProductListProps = {
 }
 
 function ProductList({ category, products }: ProductListProps) {
-  const items = products
-
+  const { newArrivals } = useGetNewOrBestProductsEffect()
   if (category) {
     return (
       <section css={productList}>
         <h2>{category}</h2>
         <div css={list}>
           <ul>
-            {items?.map((item) => (
-              <Product item={item} />
-            ))}
+            {category === 'NEW ARRIVALS'
+              ? newArrivals?.map((item, key) => (
+                  <Product item={item} key={key} />
+                ))
+              : ''}
             {/* <Product />
             <Product />
             <Product />
@@ -28,7 +30,8 @@ function ProductList({ category, products }: ProductListProps) {
         </div>
       </section>
     )
-  } else
+  } else {
+    const items = products
     return (
       <section css={productList}>
         <div css={listForCatalog}>
@@ -44,6 +47,7 @@ function ProductList({ category, products }: ProductListProps) {
         </div>
       </section>
     )
+  }
 }
 
 const list = css`
