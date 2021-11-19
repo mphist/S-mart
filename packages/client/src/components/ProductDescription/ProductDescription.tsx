@@ -2,12 +2,14 @@ import { css } from '@emotion/react'
 import Rating from '@mui/material/Rating'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useOverlayState } from '../../atoms/uiState'
 import AddToBagConfirmation from '../AddToBagConfirmation/AddToBagConfirmation'
+import { Product } from '../../graphql/types'
+import { useProductState } from '../../atoms/product'
 
 export type ProductDescriptionProps = {
-  name: string
+  product: Product
 }
 
 export const isColorValid = () => {}
@@ -15,19 +17,52 @@ export const isSizeValid = (size: string) => {
   return size !== ''
 }
 
-function ProductDescription({ name }: ProductDescriptionProps) {
-  const select = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+function ProductDescription({ product }: ProductDescriptionProps) {
+  const selectSize = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const liNodes = document?.querySelector('#sizeWrapper')?.childNodes
     liNodes?.forEach((e) => (e as Element).removeAttribute('class'))
     e.currentTarget.className = 'selected'
     setSize(e.currentTarget.id)
   }
 
+  const selectColor = (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    color: string
+  ) => {
+    const liNodes = document?.querySelector('#colorWrapper')?.childNodes
+    liNodes?.forEach((e) => (e as Element).removeAttribute('class'))
+    e.currentTarget.className = 'selected'
+    setProductState({ ...productState, color })
+  }
+
   const [size, setSize] = useState('')
+  const [productState, setProductState] = useProductState()
   const [overlayState, setOverlayState] = useOverlayState()
   const [quantity, setQuantity] = useState(1)
   const [errorColor, setErrorColor] = useState()
   const [errorSize, setErrorSize] = useState(false)
+
+  const colorKeys = Object.keys(product?.color)
+
+  const parseId = (str: string) => {
+    return str
+      .replaceAll('/', '-')
+      .replaceAll(' ', '-')
+      .replace(/[0-9()]/g, '')
+      .replace('-', '')
+  }
+
+  useEffect(() => {
+    if (!productState.color) {
+      setProductState({
+        ...productState,
+        color: colorKeys[0],
+      })
+    } else {
+      document.querySelector(`#${parseId(productState.color)}`)!.className =
+        'selected'
+    }
+  }, [productState])
 
   const handleAddToBag = () => {
     if (isSizeValid(size)) {
@@ -48,22 +83,22 @@ function ProductDescription({ name }: ProductDescriptionProps) {
       case 'CLOTHING': {
         return (
           <ul id='sizeWrapper'>
-            <li id='xs' onClick={select}>
+            <li id='xs' onClick={selectSize}>
               XS
             </li>
-            <li id='s' onClick={select}>
+            <li id='s' onClick={selectSize}>
               S
             </li>
-            <li id='m' onClick={select}>
+            <li id='m' onClick={selectSize}>
               M
             </li>
-            <li id='l' onClick={select}>
+            <li id='l' onClick={selectSize}>
               L
             </li>
-            <li id='xl' onClick={select}>
+            <li id='xl' onClick={selectSize}>
               XL
             </li>
-            <li id='xxl' onClick={select}>
+            <li id='xxl' onClick={selectSize}>
               XXL
             </li>
           </ul>
@@ -74,28 +109,27 @@ function ProductDescription({ name }: ProductDescriptionProps) {
   return (
     <div>
       <div css={productDescription}>
-        <h2>{name}</h2>
+        <h2>{product?.name}</h2>
         <div id='ratings'>
           <Rating name='readonly' value={4} readOnly size='small' />
           <span id='rating_value'>4</span>
         </div>
-        <div id='description'>
-          From the beginning, both adidas and Marimekko have been dedicated to
-          empowerment and expression. On this hoodie, the Finnish label's Unikko
-          poppy print fills the iconic Trefoil as a visual representation of our
-          collaborative intention. The loose shape and cozy fleece material come
-          together for a feeling of absolute comfort.
-        </div>
+        <div id='description'>{product?.description}</div>
         <div id='price'>
-          <p>$60.00</p>
+          <p>{`$${product?.price}`}</p>
         </div>
         <div id='color'>
-          <p>Color</p>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+          <p>{`Color: ${productState.color}`}</p>
+          <ul id='colorWrapper'>
+            {colorKeys.map((color, key) => (
+              <li
+                key={key}
+                id={parseId(color)}
+                onClick={(e) => selectColor(e, color)}
+              >
+                <img src={product.color[color]} alt='product color' />
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -124,7 +158,7 @@ function ProductDescription({ name }: ProductDescriptionProps) {
 }
 
 const productDescription = css`
-  width: 50%;
+  /* width: 50%; */
   padding: 0 2rem;
   h2 {
     margin: 0.2rem 0;
@@ -160,12 +194,21 @@ const productDescription = css`
       list-style: none;
       margin: 0;
       padding: 0;
+      .selected {
+        border: 2px solid black;
+        border-radius: 50%;
+        padding: 2px;
+        margin: -4px 4px;
+      }
       li {
         margin: 0 0.5rem;
-        border: 1px solid;
-        border-radius: 50%;
         width: 1.6rem;
         height: 1.6rem;
+        img {
+          cursor: pointer;
+          width: 100%;
+          border-radius: 50%;
+        }
       }
     }
   }
@@ -186,7 +229,7 @@ const productDescription = css`
       li {
         width: 2rem;
         height: 2rem;
-        margin: 0.5rem;
+        margin: 0.3rem;
         display: flex;
         justify-content: center;
         align-items: center;

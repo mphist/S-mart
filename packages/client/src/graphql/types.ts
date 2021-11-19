@@ -5,7 +5,7 @@ export type Product = {
   name: string
   description: string
   price: number
-  color: Object
+  color: { [key: string]: string }
   size: Object
   image: Object
   rating: Object

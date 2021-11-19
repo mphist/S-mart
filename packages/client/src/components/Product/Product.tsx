@@ -5,9 +5,10 @@ import { Product as ProductType } from '../../graphql/types'
 export type ProductProps = { item?: ProductType; key: string | number }
 
 function Product({ item, key }: ProductProps) {
+  const linkName = item?.name.replaceAll(' ', '-').toLowerCase()
   return (
     <li css={itemList}>
-      <a href={`/test-product`}>
+      <a href={`/product/${linkName}-${item?.id}`}>
         <img src={Object.values(item!.image)[0][0]} alt={`product-${key}`} />
         <div css={description}>
           <span>{`$${item?.price}`}</span>

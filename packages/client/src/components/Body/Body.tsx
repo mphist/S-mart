@@ -25,8 +25,8 @@ function Body({}: BodyProps) {
           <ProductList category='NEW ARRIVALS' />
           <ProductList category='BEST SELLERS' />
         </Route>
-        <Route path='/test-product'>
-          <ProductDetails name='Marimekko Oversize Hoodie with 3D Nylon Trefoil Patch' />
+        <Route path='/product'>
+          <ProductDetails />
         </Route>
         <Route
           path={[
@@ -35,11 +35,18 @@ function Body({}: BodyProps) {
             '/men-jackets',
             '/men-shirts',
             '/men-pants',
+            '/men-shoes-new-arrivals',
+            '/men-sneakers',
+            '/men-running_shoes',
+            '/men-tennis_shoes',
+            '/men-basketball_shoes',
+            '/men-boots',
             '/women-clothing-new-arrivals',
             '/women-hoodies&sweaters',
             '/women-jackets',
             '/women-shirts',
             '/women-pants',
+            '/women-shoes-new-arrivals',
             '/women-sneakers',
             '/women-running_shoes',
             '/women-tennis_shoes',
