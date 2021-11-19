@@ -9,7 +9,7 @@ export type ProductListProps = {
 }
 
 function ProductList({ category, products }: ProductListProps) {
-  const { newArrivals } = useGetNewOrBestProductsEffect()
+  const { newArrivals, bestSellers } = useGetNewOrBestProductsEffect()
   if (category) {
     return (
       <section css={productList}>
@@ -20,7 +20,9 @@ function ProductList({ category, products }: ProductListProps) {
               ? newArrivals?.map((item, key) => (
                   <Product item={item} key={key} />
                 ))
-              : ''}
+              : bestSellers?.map((item, key) => (
+                  <Product item={item} key={key} />
+                ))}
             {/* <Product />
             <Product />
             <Product />
