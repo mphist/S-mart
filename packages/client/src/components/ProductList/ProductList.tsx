@@ -16,8 +16,8 @@ function ProductList({ category, products }: ProductListProps) {
         <h2>{category}</h2>
         <div css={list}>
           <ul>
-            {items?.map((item, key) => (
-              <Product item={item} key={key} />
+            {items?.map((item) => (
+              <Product item={item} />
             ))}
             {/* <Product />
             <Product />

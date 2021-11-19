@@ -2,14 +2,16 @@ import { css } from '@emotion/react'
 import hoodieNew from '../../assets/products/newHoodie.jpg'
 import { Product as ProductType } from '../../graphql/types'
 
-export type ProductProps = { item?: ProductType; key: string | number }
+export type ProductProps = {
+  item?: ProductType
+}
 
-function Product({ item, key }: ProductProps) {
+function Product({ item }: ProductProps) {
   const linkName = item?.name.replaceAll(' ', '-').toLowerCase()
   return (
     <li css={itemList}>
       <a href={`/product/${linkName}-${item?.id}`}>
-        <img src={Object.values(item!.image)[0][0]} alt={`product-${key}`} />
+        <img src={Object.values(item!.image)[0][0]} alt={`product}`} />
         <div css={description}>
           <span>{`$${item?.price}`}</span>
           <p>{item?.name}</p>
