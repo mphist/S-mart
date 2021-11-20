@@ -54,11 +54,11 @@ function Navigation({}: NavigationProps) {
             Kids
           </span>
         </li>
-        <li>
+        {/* <li>
           <span id='jewelry' onMouseOver={openMenu} onMouseLeave={mouseLeave}>
             Jewelry & Watches
           </span>
-        </li>
+        </li> */}
       </ul>
       <ul className='secondary'>
         <li>
@@ -100,7 +100,7 @@ const navigation = (id: string | null) => css`
   }
 
   .primary {
-    width: 35rem;
+    width: 17rem;
     li {
       padding: 1.5rem;
       span {
@@ -113,6 +113,9 @@ const navigation = (id: string | null) => css`
         }
       `}
     }
+  }
+  .secondary {
+    margin-left: 16rem;
   }
 `
 
