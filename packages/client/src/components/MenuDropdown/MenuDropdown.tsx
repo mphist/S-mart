@@ -113,7 +113,7 @@ const menuDropdown = (sticky: boolean) => css`
       `
     : css`
         position: fixed;
-        top: 10%;
+        top: 15%;
       `}
   z-index: 1;
   width: 100%;
