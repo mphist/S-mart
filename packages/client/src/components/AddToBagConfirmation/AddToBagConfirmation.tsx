@@ -1,17 +1,21 @@
 import { css } from '@mui/styled-engine'
-import newHoodie from '../../assets/products/newHoodie.jpg'
 import { useOverlayState } from '../../atoms/uiState'
 
 export type AddToBagConfirmationProps = {
-  color?: string
   size: string
   quantity: number
+  productInfo: {
+    color: string
+    image: string
+    name: string
+    price: number
+  }
 }
 
 function AddToBagConfirmation({
-  color,
   size,
   quantity,
+  productInfo,
 }: AddToBagConfirmationProps) {
   const [, setOverlayState] = useOverlayState()
   return (
@@ -22,12 +26,12 @@ function AddToBagConfirmation({
       <div id='addToBagBody'>
         <div id='addToBagBodyLeft'>
           <div id='itemImage'>
-            <img src={newHoodie} alt='hoodie' />
+            <img src={productInfo.image} alt='hoodie' />
           </div>
           <div id='itemDescription'>
-            <h4>Marimekko Oversize Hoodie with 3D Nylon Trefoil Patch</h4>
-            <p id='price'>$60</p>
-            <p id='color'>Color: Pink</p>
+            <h4>{productInfo.name}</h4>
+            <p id='price'>{`$${productInfo.price}`}</p>
+            <p id='color'>{`Color: ${productInfo.color}`} </p>
             <p id='size'>{`Size: ${size.toUpperCase()}`}</p>
             <p id='quantity'>{`Quantity: ${quantity}`}</p>
           </div>

@@ -152,7 +152,18 @@ function ProductDescription({ product }: ProductDescriptionProps) {
           </div>
         </div>
       </div>
-      {overlayState && <AddToBagConfirmation quantity={quantity} size={size} />}
+      {overlayState && (
+        <AddToBagConfirmation
+          productInfo={{
+            image: product.image[productState.color][0],
+            color: productState.color,
+            name: product.name,
+            price: product.price,
+          }}
+          quantity={quantity}
+          size={size}
+        />
+      )}
     </div>
   )
 }
