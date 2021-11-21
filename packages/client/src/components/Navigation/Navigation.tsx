@@ -5,6 +5,7 @@ import bagIcon from '../../assets/bag_icon.png'
 import menuIcon from '../../assets/menu_icon.png'
 import { useMenuDropdownState, useTimerState } from '../../atoms/menuDropdown'
 import { useState } from 'react'
+import SearchBar from '../SearchBar/SearchBar'
 
 export type NavigationProps = {}
 
@@ -12,6 +13,7 @@ function Navigation({}: NavigationProps) {
   const [menuDropdownState, setMenuDropdownState] = useMenuDropdownState()
   const [timer, setTimer] = useTimerState()
   const [ignore, setIgnore] = useState<NodeJS.Timeout | null>(null)
+  const [openSearch, setOpenSearch] = useState(false)
   const openMenu = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     const id = e.currentTarget.id
     if (timer) {
@@ -62,7 +64,7 @@ function Navigation({}: NavigationProps) {
       </ul>
       <ul className='secondary'>
         <li>
-          <img src={searchIcon} alt='search_btn' />
+          <SearchBar />
         </li>
         {/* <li>
           <img src={profileIcon} alt='profile_btn' />
