@@ -1,5 +1,7 @@
 import { css } from '@mui/styled-engine'
+import { useEffect, useState } from 'react'
 import { useOverlayState } from '../../atoms/uiState'
+import { ShoppingBag } from '../../utils/shoppingBag'
 
 export type AddToBagConfirmationProps = {
   size: string
@@ -18,6 +20,17 @@ function AddToBagConfirmation({
   productInfo,
 }: AddToBagConfirmationProps) {
   const [, setOverlayState] = useOverlayState()
+  const [bagQuantity, setBagQuantity] = useState(0)
+  const [bagTotal, setBagTotal] = useState(0)
+  useEffect(() => {
+    const bag = sessionStorage.getItem('bag')
+    if (bag) {
+      const bagObj = JSON.parse(bag)
+      const shoppingBag = new ShoppingBag(bagObj.quantity, bagObj.cost)
+      setBagQuantity(shoppingBag.getQuantity())
+      setBagTotal(shoppingBag.getCost())
+    }
+  }, [])
   return (
     <div css={addToBagConfirmation}>
       <div id='addToBagHeader'>
@@ -40,10 +53,10 @@ function AddToBagConfirmation({
         <div id='addToBagBodyRight'>
           <h3>YOUR BAG</h3>
           <div id='bagDescription'>
-            <p id='quantity'>3 items</p>
+            <p id='quantity'>{`${bagQuantity} items`}</p>
             <p id='totalCost'>
               <span>Total Product Cost:</span>
-              <span>$180.00</span>
+              <span>{`$${bagTotal}`}</span>
             </p>
             <p id='totalDelivery'>
               <span>Total Delivery Cost: </span>
@@ -52,7 +65,7 @@ function AddToBagConfirmation({
             <div id='border'></div>
             <p id='grandTotal'>
               <span id='total'>Total:</span>
-              <span>$180.00</span>
+              <span>{`$${bagTotal}`}</span>
             </p>
           </div>
           <div id='buttons'>
