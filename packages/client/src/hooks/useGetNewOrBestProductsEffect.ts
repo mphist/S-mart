@@ -5,8 +5,10 @@ import { GET_NEW_ARRIVALS } from '../graphql/getNewArrivals'
 import { Product } from '../graphql/types'
 
 export default function useGetNewOrBestProductsEffect() {
-  const [getNewArrivals, { loading: loadingNew, data: dataNew }] =
-    useLazyQuery<{ getNewArrivals: Product[] }>(GET_NEW_ARRIVALS)
+  const [
+    getNewArrivals,
+    { loading: loadingNew, data: dataNew, error: errorNew },
+  ] = useLazyQuery<{ getNewArrivals: Product[] }>(GET_NEW_ARRIVALS)
   const [newArrivals, setNewArrivals] = useState<Product[] | undefined>()
   const [getBestSellers, { loading: loadingBest, data: dataBest }] =
     useLazyQuery<{ getBestSellers: Product[] }>(GET_BEST_SELLERS)
@@ -26,5 +28,5 @@ export default function useGetNewOrBestProductsEffect() {
     dataBest,
   ])
 
-  return { newArrivals, bestSellers }
+  return { loadingNew, loadingBest, newArrivals, bestSellers, errorNew }
 }

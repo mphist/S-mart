@@ -2,6 +2,7 @@ import { css } from '@emotion/react'
 import Product from '../Product/Product'
 import { Product as ProductType } from '../../graphql/types'
 import useGetNewOrBestProductsEffect from '../../hooks/useGetNewOrBestProductsEffect'
+import { useEffect, useState } from 'react'
 
 export type ProductListProps = {
   category?: string
@@ -9,7 +10,11 @@ export type ProductListProps = {
 }
 
 function ProductList({ category, products }: ProductListProps) {
-  const { newArrivals, bestSellers } = useGetNewOrBestProductsEffect()
+  const { newArrivals, bestSellers, errorNew } = useGetNewOrBestProductsEffect()
+  if (errorNew) {
+    alert('Our server is currently down. We will be right back!')
+    return null
+  }
   if (category) {
     return (
       <section css={productList}>
