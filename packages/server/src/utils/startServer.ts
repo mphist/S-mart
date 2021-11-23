@@ -1,10 +1,12 @@
-import { PrismaClient } from '.prisma/client'
+import 'dotenv/config'
 import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
 import { resolvers } from '../resolvers'
 import loadDbRoute from '../routes/api/loadDb'
 import { typeDefs } from '../typeDefs'
 import { context } from './context'
+import stripeRoute from '../routes/api/stripe'
+import cors from 'cors'
 
 export const startServer = async () => {
   const app = express()
@@ -17,11 +19,18 @@ export const startServer = async () => {
     context,
   })
 
+  const corsOptions = {
+    origin: ['http://localhost:3000'], //add prod url
+    credentials: true,
+  }
   //middleware
+  app.use(cors(corsOptions))
+  app.use(express.json())
 
   //routes
   const router = express.Router()
   app.use('/api/loadDb', loadDbRoute(router))
+  app.use('/api/stripe', stripeRoute(router))
 
   await server.start()
   server.applyMiddleware({ app })
