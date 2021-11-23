@@ -7,7 +7,7 @@ import { useOverlayState } from '../../atoms/uiState'
 import AddToBagConfirmation from '../AddToBagConfirmation/AddToBagConfirmation'
 import { Product } from '../../graphql/types'
 import { useProductState } from '../../atoms/product'
-import { ShoppingBag } from '../../utils/shoppingBag'
+import { Item, ShoppingBag } from '../../utils/shoppingBag'
 
 export type ProductDescriptionProps = {
   product: Product
@@ -74,15 +74,29 @@ function ProductDescription({ product }: ProductDescriptionProps) {
       // } else {
       //   setErrorColor(true)
       // }
+
+      const newItem = new Item(
+        quantity,
+        product.price,
+        product.name,
+        product.image[productState.color][0],
+        product.id.toString()
+      )
+
       let oldBag = sessionStorage.getItem('bag')
       let newBag
       if (!oldBag) newBag = new ShoppingBag()
       else {
         const bagObj = JSON.parse(oldBag)
-        newBag = new ShoppingBag(bagObj.quantity, bagObj.cost)
+        newBag = new ShoppingBag(
+          bagObj.totalQuantity,
+          bagObj.totalPrice,
+          bagObj.items
+        )
       }
       newBag.addQuantity(quantity)
       newBag.newTotal(quantity, product.price)
+      newBag.addItem(newItem)
 
       const strNewBag = JSON.stringify(newBag)
       sessionStorage.setItem('bag', strNewBag)

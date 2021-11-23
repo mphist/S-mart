@@ -1,6 +1,7 @@
 import { css } from '@mui/styled-engine'
 import { useEffect, useState } from 'react'
 import { useOverlayState } from '../../atoms/uiState'
+import client from '../../utils/client'
 import { ShoppingBag } from '../../utils/shoppingBag'
 
 export type AddToBagConfirmationProps = {
@@ -22,15 +23,36 @@ function AddToBagConfirmation({
   const [, setOverlayState] = useOverlayState()
   const [bagQuantity, setBagQuantity] = useState(0)
   const [bagTotal, setBagTotal] = useState(0)
+  const [shoppingBag, setShoppingBag] = useState({})
   useEffect(() => {
     const bag = sessionStorage.getItem('bag')
     if (bag) {
       const bagObj = JSON.parse(bag)
-      const shoppingBag = new ShoppingBag(bagObj.quantity, bagObj.cost)
-      setBagQuantity(shoppingBag.getQuantity())
-      setBagTotal(shoppingBag.getCost())
+      const shoppingBag = new ShoppingBag(
+        bagObj.totalQuantity,
+        bagObj.totalPrice,
+        bagObj.items
+      )
+      setBagQuantity(shoppingBag.getTotalQuantity())
+      setBagTotal(shoppingBag.getTotalPrice())
+      setShoppingBag(shoppingBag)
     }
   }, [])
+
+  const callCheckoutApi = async () => {
+    const { data: redirectionUrl } = await client.post(
+      '/stripe/create-checkout-session',
+      {
+        // name: productInfo.name,
+        // total: bagTotal,
+        // image: productInfo.image,
+        shoppingBag,
+      }
+    )
+    console.log(redirectionUrl)
+    window.location.href = redirectionUrl
+  }
+
   return (
     <div css={addToBagConfirmation}>
       <div id='addToBagHeader'>
@@ -75,7 +97,9 @@ function AddToBagConfirmation({
             >
               CONTINUE SHOPPING
             </button>
-            <button id='checkout'>CHECKOUT</button>
+            <button id='checkout' onClick={callCheckoutApi}>
+              CHECKOUT
+            </button>
           </div>
         </div>
       </div>
