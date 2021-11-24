@@ -78,7 +78,7 @@ function AddToBagConfirmation({
             <p id='quantity'>{`${bagQuantity} items`}</p>
             <p id='totalCost'>
               <span>Total Product Cost:</span>
-              <span>{`$${bagTotal}`}</span>
+              <span>{`$${Math.round(bagTotal * 100) / 100}`}</span>
             </p>
             <p id='totalDelivery'>
               <span>Total Delivery Cost: </span>
@@ -87,7 +87,7 @@ function AddToBagConfirmation({
             <div id='border'></div>
             <p id='grandTotal'>
               <span id='total'>Total:</span>
-              <span>{`$${bagTotal}`}</span>
+              <span>{`$${Math.round(bagTotal * 100) / 100}`}</span>
             </p>
           </div>
           <div id='buttons'>
