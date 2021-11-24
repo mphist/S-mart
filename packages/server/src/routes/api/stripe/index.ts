@@ -22,13 +22,27 @@ export default function stripeRoute(router: Router) {
       itemsArr.push(lineItem)
     })
 
+    // const min = Math.ceil(4e6)
+    // const max = Math.floor(5e6)
+    // const id = Math.floor(Math.random() * (max - min) + min)
     const session = await stripe.checkout.sessions.create({
       line_items: itemsArr as Stripe.Checkout.SessionCreateParams.LineItem[],
       mode: 'payment',
-      success_url: 'http://localhost:3000/success', // clear sessionStorage after success
-      cancel_url: 'http://localhost:3000/cancel',
+      success_url: `http://localhost:3000/thank-you-for-your-purchase?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: 'http://localhost:3000',
     })
+
     res.send(session.url)
+  })
+
+  router.get('/check-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.retrieve(
+      req.query.session_id as string
+    )
+    const customer = await stripe.customers.retrieve(session.customer as string)
+
+    if (customer) res.status(200).send(customer)
+    else res.status(404).send('customer not found')
   })
 
   return router
