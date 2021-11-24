@@ -23,7 +23,7 @@ function ProductDescription({ product }: ProductDescriptionProps) {
     const liNodes = document?.querySelector('#sizeWrapper')?.childNodes
     liNodes?.forEach((e) => (e as Element).removeAttribute('class'))
     e.currentTarget.className = 'selected'
-    setSize(e.currentTarget.id)
+    setSize(e.currentTarget.innerText)
   }
 
   const selectColor = (
@@ -107,7 +107,7 @@ function ProductDescription({ product }: ProductDescriptionProps) {
 
   const renderSize = (type: string) => {
     switch (type) {
-      case 'CLOTHING': {
+      case 'clothing': {
         return (
           <ul id='sizeWrapper'>
             <li id='xs' onClick={selectSize}>
@@ -127,6 +127,51 @@ function ProductDescription({ product }: ProductDescriptionProps) {
             </li>
             <li id='xxl' onClick={selectSize}>
               XXL
+            </li>
+          </ul>
+        )
+      }
+      case 'shoes': {
+        return (
+          <ul id='sizeWrapper'>
+            <li id='seven' onClick={selectSize}>
+              7
+            </li>
+            <li id='seven-half' onClick={selectSize}>
+              7.5
+            </li>
+            <li id='eight' onClick={selectSize}>
+              8
+            </li>
+            <li id='eight-half' onClick={selectSize}>
+              8.5
+            </li>
+            <li id='nine' onClick={selectSize}>
+              9
+            </li>
+            <li id='nine-half' onClick={selectSize}>
+              9.5
+            </li>
+            <li id='ten' onClick={selectSize}>
+              10
+            </li>
+            <li id='ten-half' onClick={selectSize}>
+              10.5
+            </li>
+            <li id='eleven' onClick={selectSize}>
+              11
+            </li>
+            <li id='eleven-half' onClick={selectSize}>
+              11.5
+            </li>
+            <li id='twelve' onClick={selectSize}>
+              12
+            </li>
+            <li id='twelve-half' onClick={selectSize}>
+              12.5
+            </li>
+            <li id='thirteen' onClick={selectSize}>
+              13
             </li>
           </ul>
         )
@@ -160,7 +205,7 @@ function ProductDescription({ product }: ProductDescriptionProps) {
           </ul>
         </div>
 
-        <div id='size'>{renderSize('CLOTHING')}</div>
+        <div id='size'>{renderSize(product.type)}</div>
         <div id='error'>{errorSize && <p>Please select your size</p>}</div>
         <div id='quant_btns'>
           <div id='quantity'>
