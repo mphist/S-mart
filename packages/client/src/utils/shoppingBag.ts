@@ -3,6 +3,8 @@ type ItemType = {
   price: number
   image: string
   name: string
+  color: string
+  size: string
   id?: string
 }
 
@@ -37,6 +39,8 @@ export class ShoppingBag {
           price: item.price,
           image: item.image,
           name: item.name,
+          color: item.color,
+          size: item.size,
         },
       }
     else if (this.items[item.id!]) {
@@ -47,6 +51,8 @@ export class ShoppingBag {
         price: item.price,
         image: item.image,
         name: item.name,
+        color: item.color,
+        size: item.size,
       }
     }
   }
@@ -65,12 +71,16 @@ export class Item {
   price: number
   image: string
   name: string
+  color: string
+  size: string
   id: string
 
   constructor(
     quantity: number,
     price: number,
     name: string,
+    color: string,
+    size: string,
     image: string,
     id: string
   ) {
@@ -78,6 +88,8 @@ export class Item {
     this.price = price
     this.image = image
     this.name = name
+    this.color = color
+    this.size = size
     this.id = id
   }
 

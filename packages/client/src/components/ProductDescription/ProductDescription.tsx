@@ -79,6 +79,8 @@ function ProductDescription({ product }: ProductDescriptionProps) {
         quantity,
         product.price,
         product.name,
+        productState.color,
+        size,
         product.image[productState.color][0],
         product.id.toString()
       )

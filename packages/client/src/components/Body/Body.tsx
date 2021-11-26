@@ -11,6 +11,7 @@ import ProductCatalog from '../../pages/ProductCatalog/ProductCatalog'
 import { overlayState } from '../../atoms/uiState'
 import Overlay from '../Overlay/Overlay'
 import PurchaseSuccessful from '../../pages/PurchaseSuccessful/PurchaseSuccessful'
+import ShoppingBag from '../../pages/ShoppingBag/ShoppingBag'
 
 export type BodyProps = {}
 
@@ -59,6 +60,9 @@ function Body({}: BodyProps) {
         </Route>
         <Route path='/thank-you-for-your-purchase'>
           <PurchaseSuccessful />
+        </Route>
+        <Route path='/shopping_bag'>
+          <ShoppingBag />
         </Route>
         {overlay && <Overlay />}
       </div>

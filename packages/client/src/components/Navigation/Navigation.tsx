@@ -70,7 +70,11 @@ function Navigation({}: NavigationProps) {
           <img src={profileIcon} alt='profile_btn' />
         </li> */}
         <li>
-          <img src={bagIcon} alt='bag_btn' />
+          <img
+            src={bagIcon}
+            onClick={() => (window.location.href = '/shopping_bag')}
+            alt='bag_btn'
+          />
         </li>
         {/* <li>
           <img src={menuIcon} alt='menu_btn' />
