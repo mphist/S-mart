@@ -8,6 +8,7 @@ import AddToBagConfirmation from '../AddToBagConfirmation/AddToBagConfirmation'
 import { Product } from '../../graphql/types'
 import { useProductState } from '../../atoms/product'
 import { Item, ShoppingBag } from '../../utils/shoppingBag'
+import { useBagState } from '../../atoms/bag'
 
 export type ProductDescriptionProps = {
   product: Product
@@ -42,6 +43,7 @@ function ProductDescription({ product }: ProductDescriptionProps) {
   const [quantity, setQuantity] = useState(1)
   const [errorColor, setErrorColor] = useState()
   const [errorSize, setErrorSize] = useState(false)
+  const [totalQuantity, setTotalQuantity] = useBagState()
 
   const colorKeys = Object.keys(product?.color)
 
@@ -52,18 +54,12 @@ function ProductDescription({ product }: ProductDescriptionProps) {
       .replace(/[0-9()]/g, '')
       .replace('-', '')
   }
-
   useEffect(() => {
-    if (!productState.color) {
-      setProductState({
-        ...productState,
-        color: colorKeys[0],
-      })
-    } else {
-      document.querySelector(`#${parseId(productState.color)}`)!.className =
-        'selected'
-    }
-  }, [productState])
+    const el = document.querySelector(
+      `#${parseId(productState.color) || 'nothing'}`
+    )
+    setProductState({ ...productState, color: colorKeys[0] })
+  }, [])
 
   const handleAddToBag = () => {
     if (isSizeValid(size)) {
@@ -99,7 +95,11 @@ function ProductDescription({ product }: ProductDescriptionProps) {
       newBag.addQuantity(quantity)
       newBag.newTotal(quantity, product.price)
       newBag.addItem(newItem)
-
+      console.log('hey', newBag.getTotalQuantity())
+      setTotalQuantity({
+        ...totalQuantity,
+        quantity: newBag.getTotalQuantity(),
+      })
       const strNewBag = JSON.stringify(newBag)
       sessionStorage.setItem('bag', strNewBag)
     } else {
@@ -195,15 +195,19 @@ function ProductDescription({ product }: ProductDescriptionProps) {
         <div id='color'>
           <p>{`Color: ${productState.color}`}</p>
           <ul id='colorWrapper'>
-            {colorKeys.map((color, key) => (
-              <li
-                key={key}
-                id={parseId(color)}
-                onClick={(e) => selectColor(e, color)}
-              >
-                <img src={product.color[color]} alt='product color' />
-              </li>
-            ))}
+            {colorKeys.map((color, key) => {
+              console.log(key)
+              return (
+                <li
+                  key={key}
+                  id={parseId(color)}
+                  className={key === 0 ? 'selected' : ''}
+                  onClick={(e) => selectColor(e, color)}
+                >
+                  <img src={product.color[color]} alt='product color' />
+                </li>
+              )
+            })}
           </ul>
         </div>
 

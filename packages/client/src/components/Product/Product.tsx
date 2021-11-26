@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import { Link } from 'react-router-dom'
 import hoodieNew from '../../assets/products/newHoodie.jpg'
 import { Product as ProductType } from '../../graphql/types'
 
@@ -10,13 +11,13 @@ function Product({ item }: ProductProps) {
   const linkName = item?.name.replaceAll(' ', '-').toLowerCase()
   return (
     <li css={itemList}>
-      <a href={`/product/${linkName}-${item?.id}`}>
+      <Link to={`/product/${linkName}-${item?.id}`}>
         <img src={Object.values(item!.image)[0][0]} alt={`product}`} />
         <div css={description}>
           <span>{`$${item?.price}`}</span>
           <p>{item?.name}</p>
         </div>
-      </a>
+      </Link>
     </li>
   )
 }

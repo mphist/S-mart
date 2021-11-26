@@ -7,12 +7,13 @@ export type ProductDetailsProps = {}
 
 function ProductDetails({}: ProductDetailsProps) {
   const product = useGetProductEffect()
+
   if (!product) return null
   return (
     <section css={productDetails}>
       <div css={productDetailsWrapper}>
-        <ProductImages image={product!.image} />
-        <ProductDescription product={product!} />
+        <ProductImages image={product.image} />
+        <ProductDescription product={product} />
       </div>
     </section>
   )

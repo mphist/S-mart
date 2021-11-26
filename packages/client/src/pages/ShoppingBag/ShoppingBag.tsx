@@ -19,7 +19,6 @@ function ShoppingBag({}: ShoppingBagProps) {
     const bag = sessionStorage.getItem('bag')
     if (bag) {
       const bagObj = JSON.parse(bag)
-      console.log(bagObj)
       setItems(bagObj.items)
     }
   }, [setItems])
@@ -30,7 +29,6 @@ function ShoppingBag({}: ShoppingBagProps) {
         {Object.entries(items).map((item) => (
           <BagItem id={item[0]} item={item[1]} />
         ))}
-        {/* <BagItem /> */}
       </div>
       <div css={right}></div>
     </div>

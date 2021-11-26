@@ -1,11 +1,10 @@
 import { css } from '@emotion/react'
-import searchIcon from '../../assets/search_icon.png'
-import profileIcon from '../../assets/profile_icon.png'
 import bagIcon from '../../assets/bag_icon.png'
-import menuIcon from '../../assets/menu_icon.png'
 import { useMenuDropdownState, useTimerState } from '../../atoms/menuDropdown'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
+import { useRecoilValue } from 'recoil'
+import { bagState } from '../../atoms/bag'
 
 export type NavigationProps = {}
 
@@ -14,6 +13,10 @@ function Navigation({}: NavigationProps) {
   const [timer, setTimer] = useTimerState()
   const [ignore, setIgnore] = useState<NodeJS.Timeout | null>(null)
   const [openSearch, setOpenSearch] = useState(false)
+  const { quantity } = useRecoilValue(bagState)
+  const [quantityFromSession, setQuantityFromSession] = useState<
+    string | number
+  >('')
   const openMenu = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     const id = e.currentTarget.id
     if (timer) {
@@ -33,6 +36,16 @@ function Navigation({}: NavigationProps) {
       )
     )
   }
+
+  useEffect(() => {
+    const bag = sessionStorage.getItem('bag')
+    if (bag) {
+      const bagObj = JSON.parse(bag)
+      setQuantityFromSession(bagObj.totalQuantity)
+    } else {
+      setQuantityFromSession('')
+    }
+  }, [])
 
   const mouseLeave = () => {
     ignore && clearTimeout(ignore)
@@ -69,12 +82,15 @@ function Navigation({}: NavigationProps) {
         {/* <li>
           <img src={profileIcon} alt='profile_btn' />
         </li> */}
-        <li>
+        <li id='bagIcon'>
           <img
             src={bagIcon}
             onClick={() => (window.location.href = '/shopping_bag')}
             alt='bag_btn'
           />
+          <span id='quantity'>
+            {quantity > 0 ? quantity : quantityFromSession}
+          </span>
         </li>
         {/* <li>
           <img src={menuIcon} alt='menu_btn' />
@@ -122,6 +138,30 @@ const navigation = (id: string | null) => css`
   }
   .secondary {
     margin-left: 16rem;
+    #bagIcon {
+      span {
+        /* max-width: 2rem;
+        background: #4e4eec;
+        color: white;
+        border-radius: 50%;
+        position: relative;
+        top: -0.5rem;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.8rem;
+        left: -0.2rem; */
+        background: #4e4eec;
+        color: white;
+        border-radius: 50%;
+        display: inline-block;
+        line-height: 1.6rem;
+        width: 1.6rem;
+        text-align: center;
+        position: relative;
+        left: -0.2rem;
+        top: -0.4rem;
+        font-size: 0.8rem;
+      }
+    }
   }
 `
 
