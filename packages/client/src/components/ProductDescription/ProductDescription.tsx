@@ -196,7 +196,6 @@ function ProductDescription({ product }: ProductDescriptionProps) {
           <p>{`Color: ${productState.color}`}</p>
           <ul id='colorWrapper'>
             {colorKeys.map((color, key) => {
-              console.log(key)
               return (
                 <li
                   key={key}

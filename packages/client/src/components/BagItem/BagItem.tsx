@@ -1,4 +1,5 @@
 import { css } from '@mui/styled-engine'
+import { Link } from 'react-router-dom'
 import closeIcon from '../../assets/close_icon.png'
 
 export type BagItemProps = {
@@ -14,15 +15,22 @@ export type BagItemProps = {
 }
 
 function BagItem({ id, item }: BagItemProps) {
+  const linkName = `/product/'${item.name
+    .replaceAll(' ', '-')
+    .toLowerCase()}-${id}`
   return (
     <div css={bagItem}>
       <div css={left}>
-        <img src={item.image} alt='bag-item' />
+        <Link to={linkName}>
+          <img src={item.image} alt='bag-item' />
+        </Link>
       </div>
       <div css={right}>
         <div className='top'>
           <div id='text'>
-            <p id='name'>{item.name}</p>
+            <Link to={linkName}>
+              <p id='name'>{item.name}</p>
+            </Link>
             <p id='color'>{item.color}</p>
             <p id='size'>{`SIZE: ${item.size}`}</p>
           </div>
@@ -67,6 +75,11 @@ const right = css`
     #text {
       margin-left: 1rem;
       width: 75%;
+      a {
+        outline: none;
+        color: black;
+        text-decoration: none;
+      }
       #name {
         max-height: 3rem;
         overflow: hidden;
