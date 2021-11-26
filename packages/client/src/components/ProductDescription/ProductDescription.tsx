@@ -9,6 +9,7 @@ import { Product } from '../../graphql/types'
 import { useProductState } from '../../atoms/product'
 import { Item, ShoppingBag } from '../../utils/shoppingBag'
 import { useBagState } from '../../atoms/bag'
+import { useLocation } from 'react-router'
 
 export type ProductDescriptionProps = {
   product: Product
@@ -28,12 +29,17 @@ function ProductDescription({ product }: ProductDescriptionProps) {
   }
 
   const selectColor = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    color: string
+    color: string,
+    e?: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => {
     const liNodes = document?.querySelector('#colorWrapper')?.childNodes
     liNodes?.forEach((e) => (e as Element).removeAttribute('class'))
-    e.currentTarget.className = 'selected'
+    if (e) {
+      e.currentTarget.className = 'selected'
+    } else {
+      const el = document.querySelector(`#${parseId(color)}`)
+      el!.className = 'selected'
+    }
     setProductState({ ...productState, color })
   }
 
@@ -44,6 +50,7 @@ function ProductDescription({ product }: ProductDescriptionProps) {
   const [errorColor, setErrorColor] = useState()
   const [errorSize, setErrorSize] = useState(false)
   const [totalQuantity, setTotalQuantity] = useBagState()
+  const location = useLocation()
 
   const colorKeys = Object.keys(product?.color)
 
@@ -55,10 +62,21 @@ function ProductDescription({ product }: ProductDescriptionProps) {
       .replace('-', '')
   }
   useEffect(() => {
-    const el = document.querySelector(
-      `#${parseId(productState.color) || 'nothing'}`
-    )
-    setProductState({ ...productState, color: colorKeys[0] })
+    const bag = sessionStorage.getItem('bag')
+    if (location.state) {
+      if (bag) {
+        const bagObj = JSON.parse(bag)
+        const item = bagObj.items[product.id]
+        if (item) {
+          selectColor(item.color)
+          setProductState({ ...productState, color: item.color })
+        } else {
+          setProductState({ ...productState, color: colorKeys[0] })
+        }
+      }
+    } else {
+      setProductState({ ...productState, color: colorKeys[0] })
+    }
   }, [])
 
   const handleAddToBag = () => {
@@ -201,7 +219,7 @@ function ProductDescription({ product }: ProductDescriptionProps) {
                   key={key}
                   id={parseId(color)}
                   className={key === 0 ? 'selected' : ''}
-                  onClick={(e) => selectColor(e, color)}
+                  onClick={(e) => selectColor(color, e)}
                 >
                   <img src={product.color[color]} alt='product color' />
                 </li>
