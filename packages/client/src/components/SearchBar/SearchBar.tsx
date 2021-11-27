@@ -32,17 +32,19 @@ function SearchBar({}: SearchBarProps) {
 const searchBar = (openSearch: boolean) => css`
   img {
     position: relative;
+    left: 1rem;
   }
   input {
     visibility: hidden;
     width: 0;
     position: absolute;
-    top: 5.05rem;
-    right: 35rem;
+    top: 5.2rem;
+    right: 35.3rem;
     transition: width 0.5s ease-out;
     padding: 0.1rem 0.5rem;
     padding-right: 2rem;
     font-size: 0.8rem;
+    border: 1px solid black;
     &:focus {
       outline: none;
     }
