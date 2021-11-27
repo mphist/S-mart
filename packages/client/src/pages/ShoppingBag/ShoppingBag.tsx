@@ -7,16 +7,6 @@ import BagItem from '../../components/BagItem/BagItem'
 export type ShoppingBagProps = {}
 
 function ShoppingBag({}: ShoppingBagProps) {
-  const [items, setItems] = useState<{
-    [key: string]: {
-      image: string
-      name: string
-      price: number
-      quantity: number
-      color: string
-      size: string
-    }
-  }>({})
   const [bagState, setBagState] = useBagState()
   useEffect(() => {
     const bag = sessionStorage.getItem('bag')
@@ -46,7 +36,6 @@ function ShoppingBag({}: ShoppingBagProps) {
     if (items) {
       if (Object.keys(items).length > 0) {
         return Object.entries(items).map((item, key) => {
-          console.log(key, item)
           return key === 0 ? (
             <>
               <h1>YOUR BAG</h1>
@@ -60,26 +49,88 @@ function ShoppingBag({}: ShoppingBagProps) {
     }
     return <h1>Your bag is empty</h1>
   }
-
   console.log(bagState.items)
   return (
     <div css={shoppingBag}>
-      <div css={left}>
-        {/* <h1>YOUR BAG</h1> */}
-        {/* {bagState.items &&
-          Object.entries(bagState.items).map((item) => (
-            <BagItem id={item[0]} item={item[1]} />
-          ))} */}
-        {renderItems(bagState.items)}
-      </div>
-      <div css={right}></div>
+      <div css={left}>{renderItems(bagState.items)}</div>
+      {bagState.items && Object.keys(bagState.items).length > 0 && (
+        <div css={right}>
+          <div id='orderSummary'>
+            <h2>ORDER SUMMARY</h2>
+            <div id='row'>
+              <p id='items'>{`${bagState.totalQuantity} ITEMS`}</p>
+              <p id='price'>{`$ ${
+                Math.round(bagState.totalPrice * 100) / 100
+              }`}</p>
+            </div>
+            <div id='row'>
+              <p id='delivery'>DELIVERY</p>
+              <p id='price'>FREE</p>
+            </div>
+            <div id='row'>
+              <p id='tax'>Sales Tax</p>
+              <p id='price'>{`$ ${
+                Math.round(bagState.totalPrice * 100 * 0.13) / 100
+              }`}</p>
+            </div>
+            <div id='row'>
+              <p id='total'>
+                <strong>TOTAL</strong>
+              </p>
+              <p id='price'>
+                <strong>{`$ ${
+                  Math.round(bagState.totalPrice * 100 * 1.13) / 100
+                }`}</strong>
+              </p>
+            </div>
+          </div>
+          <div id='buttons'>
+            <button>CHECKOUT</button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
 
 const left = css``
 
-const right = css``
+const right = css`
+  font-size: 0.9rem;
+  width: 50%;
+  #orderSummary {
+    margin: 0 auto;
+    width: 23rem;
+    #row {
+      display: flex;
+      justify-content: space-between;
+      p {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+  #buttons {
+    margin-left: 11rem;
+    margin-top: 2rem;
+
+    button {
+      width: 23rem;
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
+      padding: 0.7rem;
+      border: none;
+      background: black;
+      color: white;
+      transition: color 0.3s;
+      &:hover {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+`
 
 const shoppingBag = css`
   h1 {
