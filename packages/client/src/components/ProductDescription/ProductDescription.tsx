@@ -49,7 +49,7 @@ function ProductDescription({ product }: ProductDescriptionProps) {
   const [quantity, setQuantity] = useState(1)
   const [errorColor, setErrorColor] = useState()
   const [errorSize, setErrorSize] = useState(false)
-  const [totalQuantity, setTotalQuantity] = useBagState()
+  const [bagState, setBagState] = useBagState()
   const location = useLocation()
 
   const colorKeys = Object.keys(product?.color)
@@ -113,10 +113,9 @@ function ProductDescription({ product }: ProductDescriptionProps) {
       newBag.addQuantity(quantity)
       newBag.newTotal(quantity, product.price)
       newBag.addItem(newItem)
-      console.log('hey', newBag.getTotalQuantity())
-      setTotalQuantity({
-        ...totalQuantity,
-        quantity: newBag.getTotalQuantity(),
+      setBagState({
+        ...bagState,
+        totalQuantity: newBag.getTotalQuantity(),
       })
       const strNewBag = JSON.stringify(newBag)
       sessionStorage.setItem('bag', strNewBag)

@@ -1,6 +1,8 @@
 import { css } from '@mui/styled-engine'
 import { Link } from 'react-router-dom'
 import closeIcon from '../../assets/close_icon.png'
+import { useBagState } from '../../atoms/bag'
+import { ShoppingBag } from '../../utils/shoppingBag'
 
 export type BagItemProps = {
   id: string
@@ -18,6 +20,25 @@ function BagItem({ id, item }: BagItemProps) {
   const linkName = `/product/'${item.name
     .replaceAll(' ', '-')
     .toLowerCase()}-${id}`
+
+  const [, setBagState] = useBagState()
+
+  const handleRemoveItem = () => {
+    const bag = sessionStorage.getItem('bag')
+    const bagObj = JSON.parse(bag!)
+    bagObj.totalQuantity -= item.quantity
+    bagObj.totalPrice -= item.quantity * item.price
+    delete bagObj.items[id]
+
+    const shoppingBag = new ShoppingBag(
+      bagObj.totalQuantity,
+      bagObj.totalPrice,
+      bagObj.items
+    )
+    sessionStorage.setItem('bag', JSON.stringify(shoppingBag))
+    setBagState(shoppingBag)
+  }
+
   return (
     <div css={bagItem}>
       <div css={left}>
@@ -40,7 +61,7 @@ function BagItem({ id, item }: BagItemProps) {
               : item.price + '.00'
           }`}</div>
           <div id='button'>
-            <img src={closeIcon} alt='close' />
+            <img src={closeIcon} alt='close' onClick={handleRemoveItem} />
           </div>
         </div>
         <div className='bottom'>
