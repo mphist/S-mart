@@ -49,7 +49,18 @@ function ShoppingBag({}: ShoppingBagProps) {
     }
     return <h1>Your bag is empty</h1>
   }
-  console.log(bagState.items)
+
+  const normalizeNumber = (num: number) => {
+    const str = num.toString()
+    const dotLocation = str.indexOf('.')
+    if (dotLocation > 0) {
+      if (!str[dotLocation + 2]) {
+        return str + '0'
+      } else return str
+    }
+    return str + '.00'
+  }
+
   return (
     <div css={shoppingBag}>
       <div css={left}>{renderItems(bagState.items)}</div>
@@ -59,9 +70,9 @@ function ShoppingBag({}: ShoppingBagProps) {
             <h2>ORDER SUMMARY</h2>
             <div id='row'>
               <p id='items'>{`${bagState.totalQuantity} ITEMS`}</p>
-              <p id='price'>{`$ ${
+              <p id='price'>{`$ ${normalizeNumber(
                 Math.round(bagState.totalPrice * 100) / 100
-              }`}</p>
+              )}`}</p>
             </div>
             <div id='row'>
               <p id='delivery'>DELIVERY</p>
@@ -69,18 +80,18 @@ function ShoppingBag({}: ShoppingBagProps) {
             </div>
             <div id='row'>
               <p id='tax'>Sales Tax</p>
-              <p id='price'>{`$ ${
+              <p id='price'>{`$ ${normalizeNumber(
                 Math.round(bagState.totalPrice * 100 * 0.13) / 100
-              }`}</p>
+              )}`}</p>
             </div>
             <div id='row'>
               <p id='total'>
                 <strong>TOTAL</strong>
               </p>
               <p id='price'>
-                <strong>{`$ ${
+                <strong>{`$ ${normalizeNumber(
                   Math.round(bagState.totalPrice * 100 * 1.13) / 100
-                }`}</strong>
+                )}`}</strong>
               </p>
             </div>
           </div>
