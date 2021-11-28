@@ -1,4 +1,4 @@
-type ItemType = {
+export type ItemType = {
   quantity: number
   price: number
   image: string
@@ -9,7 +9,7 @@ type ItemType = {
 }
 
 type ItemsType = {
-  [id: string]: ItemType
+  [key: string]: ItemType[]
 }
 
 export class ShoppingBag {
@@ -32,27 +32,28 @@ export class ShoppingBag {
   }
 
   addItem(item: ItemType) {
-    if (!this.items)
+    if (!this.items) {
       this.items = {
-        [item.id!]: {
-          quantity: item.quantity,
-          price: item.price,
-          image: item.image,
-          name: item.name,
-          color: item.color,
-          size: item.size,
-        },
+        [item.id!]: [{ ...item }],
       }
-    else if (this.items[item.id!]) {
-      this.items[item.id!]['quantity'] += item.quantity
     } else {
-      this.items[item.id!] = {
-        quantity: item.quantity,
-        price: item.price,
-        image: item.image,
-        name: item.name,
-        color: item.color,
-        size: item.size,
+      const itemArr = this.items[item.id!]
+      if (itemArr) {
+        let found = false
+        for (let i = 0; i < itemArr.length; i++) {
+          if (itemArr[i].color === item.color) {
+            if (itemArr[i].size === item.size) {
+              itemArr[i].quantity += item.quantity
+              found = true
+              return
+            }
+          }
+        }
+        if (!found) {
+          itemArr.push({ ...item })
+        }
+      } else {
+        this.items[item.id!] = [{ ...item }]
       }
     }
   }

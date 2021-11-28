@@ -3,6 +3,7 @@ import { css } from '@mui/styled-engine'
 import { useEffect, useState } from 'react'
 import { useBagState } from '../../atoms/bag'
 import BagItem from '../../components/BagItem/BagItem'
+import { ItemType } from '../../utils/shoppingBag'
 
 export type ShoppingBagProps = {}
 
@@ -21,29 +22,21 @@ function ShoppingBag({}: ShoppingBagProps) {
     }
   }, [])
 
-  const renderItems = (
-    items: {
-      [key: string]: {
-        image: string
-        name: string
-        price: number
-        quantity: number
-        color: string
-        size: string
-      }
-    } | null
-  ) => {
+  const renderItems = (items: { [key: string]: ItemType[] } | null) => {
     if (items) {
       if (Object.keys(items).length > 0) {
-        return Object.entries(items).map((item, key) => {
+        return Object.entries(items).map((itemArr, key) => {
           return key === 0 ? (
             <>
               <h1>YOUR BAG</h1>
-              <BagItem id={item[0]} item={item[1]} />
+              {itemArr[1].map((item) => (
+                <BagItem id={itemArr[0]} item={item} />
+              ))}
             </>
           ) : (
-            <BagItem id={item[0]} item={item[1]} />
+            itemArr[1].map((item) => <BagItem id={itemArr[0]} item={item} />)
           )
+          // <BagItem id={itemArr[0]} item={item[1]} />
         })
       }
     }

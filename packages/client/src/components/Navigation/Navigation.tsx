@@ -13,7 +13,7 @@ function Navigation({}: NavigationProps) {
   const [timer, setTimer] = useTimerState()
   const [ignore, setIgnore] = useState<NodeJS.Timeout | null>(null)
   const [openSearch, setOpenSearch] = useState(false)
-  const { totalQuantity } = useRecoilValue(bagState)
+  const bagState_ = useRecoilValue(bagState)
   const [quantityFromSession, setQuantityFromSession] = useState<
     string | number
   >('')
@@ -36,7 +36,6 @@ function Navigation({}: NavigationProps) {
       )
     )
   }
-
   useEffect(() => {
     const bag = sessionStorage.getItem('bag')
     if (bag) {
@@ -45,7 +44,7 @@ function Navigation({}: NavigationProps) {
     } else {
       setQuantityFromSession('')
     }
-  }, [totalQuantity])
+  }, [bagState_])
 
   const mouseLeave = () => {
     ignore && clearTimeout(ignore)
@@ -89,7 +88,9 @@ function Navigation({}: NavigationProps) {
             alt='bag_btn'
           />
           <span id='quantity'>
-            {totalQuantity > 0 ? totalQuantity : quantityFromSession || ''}
+            {bagState_.totalQuantity > 0
+              ? bagState_.totalQuantity
+              : quantityFromSession || ''}
           </span>
         </li>
         {/* <li>

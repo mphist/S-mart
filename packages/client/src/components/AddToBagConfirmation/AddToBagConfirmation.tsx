@@ -49,7 +49,6 @@ function AddToBagConfirmation({
         shoppingBag,
       }
     )
-    console.log(redirectionUrl)
     window.location.href = redirectionUrl
   }
 

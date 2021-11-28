@@ -1,6 +1,7 @@
 import { css } from '@mui/styled-engine'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
+import { useBagState } from '../../atoms/bag'
 import client from '../../utils/client'
 
 export type PurchaseSuccessfulProps = {}
@@ -8,6 +9,7 @@ export type PurchaseSuccessfulProps = {}
 function PurchaseSuccessful({}: PurchaseSuccessfulProps) {
   const [valid, setValid] = useState<boolean | null>(null)
   const [name, setName] = useState('')
+  const [bagState, setBagState] = useBagState()
   const { search } = useLocation()
   const id = search.split('=')[1]
   useEffect(() => {
@@ -18,6 +20,7 @@ function PurchaseSuccessful({}: PurchaseSuccessfulProps) {
         sessionStorage.removeItem('bag')
         setName(res.data.name)
         setValid(true)
+        setBagState({ totalQuantity: 0, totalPrice: 0, items: null })
       } else setValid(false)
     }
     checkSession()

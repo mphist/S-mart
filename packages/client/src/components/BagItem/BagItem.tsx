@@ -42,7 +42,12 @@ function BagItem({ id, item }: BagItemProps) {
   return (
     <div css={bagItem}>
       <div css={left}>
-        <Link to={{ pathname: linkName, state: { prevPath: 'shoppingBag' } }}>
+        <Link
+          to={{
+            pathname: linkName,
+            state: { prevPath: 'shoppingBag', color: item.color },
+          }}
+        >
           <img src={item.image} alt='bag-item' />
         </Link>
       </div>

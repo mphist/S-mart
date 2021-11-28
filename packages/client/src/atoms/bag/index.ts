@@ -1,17 +1,11 @@
 import { atom, useRecoilState } from 'recoil'
+import { ItemType } from '../../utils/shoppingBag'
 
 type BagStateType = {
   totalQuantity: number
   totalPrice: number
   items: {
-    [key: string]: {
-      image: string
-      name: string
-      price: number
-      quantity: number
-      color: string
-      size: string
-    }
+    [key: string]: ItemType[]
   } | null
 }
 

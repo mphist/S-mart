@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import Rating from '@mui/material/Rating'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useOverlayState } from '../../atoms/uiState'
 import AddToBagConfirmation from '../AddToBagConfirmation/AddToBagConfirmation'
 import { Product } from '../../graphql/types'
@@ -50,7 +50,7 @@ function ProductDescription({ product }: ProductDescriptionProps) {
   const [errorColor, setErrorColor] = useState()
   const [errorSize, setErrorSize] = useState(false)
   const [bagState, setBagState] = useBagState()
-  const location = useLocation()
+  const location = useLocation<{ prevPath: string; color: string }>()
 
   const colorKeys = Object.keys(product?.color)
 
@@ -65,11 +65,16 @@ function ProductDescription({ product }: ProductDescriptionProps) {
     const bag = sessionStorage.getItem('bag')
     if (location.state) {
       if (bag) {
-        const bagObj = JSON.parse(bag)
-        const item = bagObj.items[product.id]
-        if (item) {
-          selectColor(item.color)
-          setProductState({ ...productState, color: item.color })
+        // const bagObj = JSON.parse(bag)
+        // const itemArr = bagObj.items[product.id]
+        // console.log(itemArr)
+        // if (itemArr.length > 0) {
+        //   selectColor(itemArr.color)
+        //   setProductState({ ...productState, color: itemArr.color })
+        // }
+        if (location.state.color) {
+          selectColor(location.state.color)
+          setProductState({ ...productState, color: location.state.color })
         } else {
           setProductState({ ...productState, color: colorKeys[0] })
         }
@@ -114,8 +119,10 @@ function ProductDescription({ product }: ProductDescriptionProps) {
       newBag.newTotal(quantity, product.price)
       newBag.addItem(newItem)
       setBagState({
-        ...bagState,
-        totalQuantity: newBag.getTotalQuantity(),
+        // totalPrice: newBag.getTotalPrice(),
+        // totalQuantity: newBag.getTotalQuantity(),
+        // items:
+        ...newBag,
       })
       const strNewBag = JSON.stringify(newBag)
       sessionStorage.setItem('bag', strNewBag)
