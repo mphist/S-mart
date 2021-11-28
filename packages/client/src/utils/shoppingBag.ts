@@ -8,7 +8,7 @@ export type ItemType = {
   id?: string
 }
 
-type ItemsType = {
+export type ItemsType = {
   [key: string]: ItemType[]
 }
 
@@ -17,7 +17,7 @@ export class ShoppingBag {
   totalPrice: number
   items: ItemsType | null
 
-  constructor(quantity = 0, cost = 0, items = null) {
+  constructor(quantity = 0, cost = 0, items: ItemsType | null = null) {
     this.totalQuantity = quantity
     this.totalPrice = cost
     this.items = items

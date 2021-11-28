@@ -2,7 +2,6 @@ import { css } from '@mui/styled-engine'
 import { useEffect, useState } from 'react'
 import { useOverlayState } from '../../atoms/uiState'
 import callCheckoutApi from '../../utils/callCheckoutApi'
-import client from '../../utils/client'
 import { ShoppingBag } from '../../utils/shoppingBag'
 
 export type AddToBagConfirmationProps = {
@@ -39,19 +38,6 @@ function AddToBagConfirmation({
       setShoppingBag(shoppingBag)
     }
   }, [])
-
-  // const callCheckoutApi = async () => {
-  //   const { data: redirectionUrl } = await client.post(
-  //     '/stripe/create-checkout-session',
-  //     {
-  //       // name: productInfo.name,
-  //       // total: bagTotal,
-  //       // image: productInfo.image,
-  //       shoppingBag,
-  //     }
-  //   )
-  //   window.location.href = redirectionUrl
-  // }
 
   return (
     <div css={addToBagConfirmation}>

@@ -2,7 +2,7 @@ import { css } from '@mui/styled-engine'
 import { Link } from 'react-router-dom'
 import closeIcon from '../../assets/close_icon.png'
 import { useBagState } from '../../atoms/bag'
-import { ShoppingBag } from '../../utils/shoppingBag'
+import { ItemsType, ShoppingBag } from '../../utils/shoppingBag'
 
 export type BagItemProps = {
   id: string
@@ -25,10 +25,28 @@ function BagItem({ id, item }: BagItemProps) {
 
   const handleRemoveItem = () => {
     const bag = sessionStorage.getItem('bag')
-    const bagObj = JSON.parse(bag!)
+    const bagObj: {
+      totalQuantity: number
+      totalPrice: number
+      items: ItemsType | null
+    } = JSON.parse(bag!)
     bagObj.totalQuantity -= item.quantity
     bagObj.totalPrice -= item.quantity * item.price
-    delete bagObj.items[id]
+
+    if (bagObj.items) {
+      const itemsArr = bagObj.items[id]
+      for (let i = 0; i < itemsArr.length; i++) {
+        if (itemsArr[i].color === item.color) {
+          if (itemsArr[i].size === item.size) {
+            itemsArr.splice(i, 1)
+            if (itemsArr.length < 1) {
+              delete bagObj.items[id]
+            }
+            break
+          }
+        }
+      }
+    }
 
     const shoppingBag = new ShoppingBag(
       bagObj.totalQuantity,
