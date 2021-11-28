@@ -3,16 +3,29 @@ import { css } from '@mui/styled-engine'
 import { useEffect, useState } from 'react'
 import { useBagState } from '../../atoms/bag'
 import BagItem from '../../components/BagItem/BagItem'
-import { ItemType } from '../../utils/shoppingBag'
+import {
+  ItemType,
+  ShoppingBag as ShoppingBagClass,
+} from '../../utils/shoppingBag'
+import callCheckoutApi from '../../utils/callCheckoutApi'
 
 export type ShoppingBagProps = {}
 
 function ShoppingBag({}: ShoppingBagProps) {
   const [bagState, setBagState] = useBagState()
+  const [shoppingBagState, setShoppingBagState] = useState<
+    ShoppingBagClass | {}
+  >({})
   useEffect(() => {
     const bag = sessionStorage.getItem('bag')
     if (bag) {
       const bagObj = JSON.parse(bag)
+      const shoppingBag = new ShoppingBagClass(
+        bagObj.totalQuantity,
+        bagObj.totalPrice,
+        bagObj.items
+      )
+      setShoppingBagState(shoppingBag)
       setBagState({
         ...bagState,
         totalQuantity: bagObj.totalQuantity,
@@ -89,7 +102,9 @@ function ShoppingBag({}: ShoppingBagProps) {
             </div>
           </div>
           <div id='buttons'>
-            <button>CHECKOUT</button>
+            <button onClick={() => callCheckoutApi(shoppingBagState)}>
+              CHECKOUT
+            </button>
           </div>
         </div>
       )}
