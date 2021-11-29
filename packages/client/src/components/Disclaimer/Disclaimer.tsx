@@ -7,7 +7,9 @@ function Disclaimer({}: DisclaimerProps) {
     <div css={disclaimer}>
       <p>
         S-mart was built for a demonstration purpose. You are not able to
-        purchase any items here.
+        purchase any items here.&nbsp;
+        <a href='https://www.sportchek.ca/'>SportChek</a> &nbsp; has the rights
+        to the images and description of all products on this app.
       </p>
     </div>
   )
