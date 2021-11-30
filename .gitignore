@@ -12,6 +12,8 @@
 
 # production
 /build
+/packages/client/build
+/packages/server/build
 
 # misc
 .DS_Store
