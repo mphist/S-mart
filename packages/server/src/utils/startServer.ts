@@ -10,8 +10,9 @@ import cors from 'cors'
 
 export const startServer = async () => {
   const app = express()
-  const port =
-    process.env.NODE_ENV === 'production' ? 'replace with prod port' : 4000
+  // const port =
+  //   process.env.NODE_ENV === 'production' ? 'replace with prod port' : 4000
+  const port = process.env.PORT || 4000
 
   const server = new ApolloServer({
     typeDefs,
@@ -20,7 +21,7 @@ export const startServer = async () => {
   })
 
   const corsOptions = {
-    origin: ['http://localhost:3000'], //add prod url
+    origin: ['http://localhost:3000', process.env.CLIENT_URL!], //add prod url
     credentials: true,
   }
   //middleware

@@ -38,8 +38,15 @@ export default function stripeRoute(router: Router) {
     const session = await stripe.checkout.sessions.create({
       line_items: itemsArr as Stripe.Checkout.SessionCreateParams.LineItem[],
       mode: 'payment',
-      success_url: `http://localhost:3000/thank-you-for-your-purchase?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: 'http://localhost:3000',
+      success_url:
+        process.env.NODE_ENV === 'production'
+          ? `${process.env
+              .CLIENT_URL!}/thank-you-for-your-purchase?session_id={CHECKOUT_SESSION_ID}`
+          : 'http://localhost:3000/thank-you-for-your-purchase?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url:
+        process.env.NODE_ENV === 'production'
+          ? process.env.CLIENT_URL!
+          : 'http://localhost:3000',
     })
 
     res.send(session.url)
