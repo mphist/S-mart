@@ -4,6 +4,7 @@
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
+    "db:generate": "npx prisma generate",
     "db:migrate:prod": "npx prisma migrate deploy",
     "db:migrate": "prisma migrate dev"
   },
