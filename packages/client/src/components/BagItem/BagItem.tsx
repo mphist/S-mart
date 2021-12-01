@@ -72,7 +72,12 @@ function BagItem({ id, item }: BagItemProps) {
       <div css={right}>
         <div className='top'>
           <div id='text'>
-            <Link to={linkName}>
+            <Link
+              to={{
+                pathname: linkName,
+                state: { prevPath: 'shoppingBag', color: item.color },
+              }}
+            >
               <p id='name'>{item.name}</p>
             </Link>
             <p id='color'>{item.color}</p>
