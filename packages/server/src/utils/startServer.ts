@@ -7,6 +7,7 @@ import { typeDefs } from '../typeDefs'
 import { context } from './context'
 import stripeRoute from '../routes/api/stripe'
 import cors from 'cors'
+import { nudgeDyno } from './nudgeDyno'
 
 export const startServer = async () => {
   const app = express()
@@ -37,6 +38,7 @@ export const startServer = async () => {
   server.applyMiddleware({ app })
 
   app.listen(port, () => {
+    if (process.env.NODE_ENV === 'production') nudgeDyno()
     console.log(
       `🚀 Server ready at http://localhost:4000${server.graphqlPath}')`
     )
