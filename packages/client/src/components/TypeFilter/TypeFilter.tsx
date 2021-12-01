@@ -12,17 +12,28 @@ import { useEffect } from 'react'
 import { useFilterState } from '../../atoms/filters'
 import useProductsQueryEffect from '../../hooks/useProductsQueryEffect'
 
-export type TypeFilterProps = {}
+export type TypeFilterProps = {
+  catalogType: string
+}
 
-function TypeFilter({}: TypeFilterProps) {
+function TypeFilter({ catalogType }: TypeFilterProps) {
   const [filter, setFilter] = useFilterState()
-  const { type: initialType, category } = useProductsQueryEffect()
+  const { category } = useProductsQueryEffect()
   const type = filter.type
 
   const ITEM_HEIGHT = 48
   const ITEM_PADDING_TOP = 8
 
-  const types = ['Hoodies & Sweaters', 'Shirts', 'Pants', 'Jackets']
+  const types =
+    catalogType === 'clothing'
+      ? ['Hoodies & Sweaters', 'Shirts', 'Pants', 'Jackets']
+      : [
+          'Sneakers',
+          'Running Shoes',
+          'Tennis Shoes',
+          'Basketball Shoes',
+          'Boots',
+        ]
 
   const MenuProps = {
     PaperProps: {
@@ -41,6 +52,7 @@ function TypeFilter({}: TypeFilterProps) {
     const {
       target: { value },
     } = e
+    console.log(value)
     setFilter(
       // On autofill we get a the stringified value.
       typeof value === 'string'

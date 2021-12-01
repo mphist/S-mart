@@ -13,7 +13,7 @@ function SelectedFilter({}: SelectedFilterProps) {
   const [filter, setFilter] = useFilterState()
 
   const clearAllFilters = () => {
-    setFilter({ type: [], size: [], color: [] })
+    setFilter({ type: [], size: [], color: [], categories: [] })
   }
 
   const removeSelectedFilter = (

@@ -2,13 +2,15 @@ import { css } from '@mui/styled-engine'
 import SizeFilter from '../SizeFilter/SizeFilter'
 import TypeFilter from '../TypeFilter/TypeFilter'
 
-export type FilterProps = {}
+export type FilterProps = {
+  catalogType: string
+}
 
-function Filter({}: FilterProps) {
+function Filter({ catalogType }: FilterProps) {
   return (
     <section css={filterHeader}>
       <div css={filterHeaderLeft}>
-        <TypeFilter />
+        <TypeFilter catalogType={catalogType} />
         <SizeFilter />
       </div>
       <div css={filterHeaderRight}></div>
