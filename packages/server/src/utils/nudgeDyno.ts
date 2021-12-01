@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const nudgeDyno = () => {
-  const host = process.env.BACKEND_HOST_PROD
+  const host = process.env.SERVER_URL
   console.log('nudging')
   setTimeout(async () => {
     if (host)
