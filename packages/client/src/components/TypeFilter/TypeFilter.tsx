@@ -19,7 +19,7 @@ function TypeFilter({}: TypeFilterProps) {
   const ITEM_HEIGHT = 48
   const ITEM_PADDING_TOP = 8
 
-  const types = ['Hoodies', 'Sweaters', 'Shirts', 'Pants', 'Jackets']
+  const types = ['Hoodies & Sweaters', 'Shirts', 'Pants', 'Jackets']
 
   const MenuProps = {
     PaperProps: {
