@@ -68,7 +68,7 @@ function TypeFilter({ catalogType }: TypeFilterProps) {
     const {
       target: { value },
     } = e
-    console.log(value)
+
     setFilter(
       // On autofill we get a the stringified value.
       typeof value === 'string'

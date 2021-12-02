@@ -2,7 +2,6 @@ import { css } from '@emotion/react'
 import Product from '../Product/Product'
 import { Product as ProductType } from '../../graphql/types'
 import useGetNewOrBestProductsEffect from '../../hooks/useGetNewOrBestProductsEffect'
-import { useEffect, useState } from 'react'
 
 export type ProductListProps = {
   category?: string
@@ -98,6 +97,7 @@ const listForCatalog = css`
 
 const productList = css`
   margin: 4rem 0;
+  width: 90rem;
 `
 
 export default ProductList

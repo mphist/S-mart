@@ -104,6 +104,7 @@ function Navigation({}: NavigationProps) {
 const navigation = (id: string | null) => css`
   display: flex;
   align-items: center;
+  margin-top: 3rem;
 
   ul {
     display: flex;
@@ -115,6 +116,7 @@ const navigation = (id: string | null) => css`
       color: #5c5b5b;
       text-decoration: none;
       font-size: 1rem;
+
       img {
         cursor: pointer;
         vertical-align: middle;

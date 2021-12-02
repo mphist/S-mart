@@ -16,8 +16,10 @@ function Browse({}: BrowseProps) {
 
 const browse = css`
   .background {
-    width: 100%;
-    margin: 0 auto;
+    // make child's width wider than parent's
+    width: 99.5vw; //minus the scrollbar width
+    position: relative;
+    left: calc(-50vw + 50%);
     img {
       /* background-size: cover; */
       width: 100%;

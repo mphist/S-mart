@@ -16,6 +16,7 @@ const logo = css`
   width: 12rem;
   text-align: center;
   cursor: pointer;
+  margin-top: 3rem;
   a {
     text-decoration: none;
     color: black;

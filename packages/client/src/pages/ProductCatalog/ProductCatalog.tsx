@@ -34,6 +34,7 @@ function ProductCatalog({}: ProductCatalogProps) {
 }
 
 const productCatalog = css`
+  margin-top: 5rem;
   #catalogHeader {
     text-transform: uppercase;
   }
