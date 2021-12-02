@@ -14,19 +14,21 @@ function Menu({ category, id }: MenuProps) {
           <h3>CLOTHING</h3>
           <ul>
             <li>
-              <Link to={`/${id}-clothing-new-arrivals`}>New Arrivals</Link>
+              <Link to={`/clothing/${id}-new-arrivals`}>New Arrivals</Link>
             </li>
             <li>
-              <Link to={`/${id}-hoodies&sweaters`}>Hoodies & Sweaters</Link>
+              <Link to={`/clothing/${id}-hoodies&sweaters`}>
+                Hoodies & Sweaters
+              </Link>
             </li>
             <li>
-              <Link to={`/${id}-shirts`}>Shirts</Link>
+              <Link to={`/clothing/${id}-shirts`}>Shirts</Link>
             </li>
             <li>
-              <Link to={`/${id}-pants`}>Pants</Link>
+              <Link to={`/clothing/${id}-pants`}>Pants</Link>
             </li>
             <li>
-              <Link to={`/${id}-jackets`}>Jackets</Link>
+              <Link to={`/clothing/${id}-jackets`}>Jackets</Link>
             </li>
           </ul>
         </div>
@@ -38,22 +40,22 @@ function Menu({ category, id }: MenuProps) {
           <h3>SHOES</h3>
           <ul>
             <li>
-              <Link to={`/${id}-shoes-new-arrivals`}>New Arrivals</Link>
+              <Link to={`/shoes/${id}-new-arrivals`}>New Arrivals</Link>
             </li>
             <li>
-              <Link to={`/${id}-sneakers`}>Sneakers</Link>
+              <Link to={`/shoes/${id}-sneakers`}>Sneakers</Link>
             </li>
             <li>
-              <Link to={`/${id}-running_shoes`}>Running Shoes</Link>
+              <Link to={`/shoes/${id}-running_shoes`}>Running Shoes</Link>
             </li>
             <li>
-              <Link to={`/${id}-tennis_shoes`}>Tennis Shoes</Link>
+              <Link to={`/shoes/${id}-tennis_shoes`}>Tennis Shoes</Link>
             </li>
             <li>
-              <Link to={`/${id}-basketball_shoes`}>Basketball Shoes</Link>
+              <Link to={`/shoes/${id}-basketball_shoes`}>Basketball Shoes</Link>
             </li>
             <li>
-              <Link to={`/${id}-boots`}>Boots</Link>
+              <Link to={`/shoes/${id}-boots`}>Boots</Link>
             </li>
           </ul>
         </div>
@@ -65,19 +67,21 @@ function Menu({ category, id }: MenuProps) {
           <h3>ACCESSORIES</h3>
           <ul>
             <li>
-              <Link to={`/${id}-accessories-new-arrivals`}>New Arrivals</Link>
+              <Link to={`/accessories/${id}-accessories-new-arrivals`}>
+                New Arrivals
+              </Link>
             </li>
             <li>
-              <Link to={`/${id}-hats`}>Hats</Link>
+              <Link to={`/accessories/${id}-hats`}>Hats</Link>
             </li>
             <li>
-              <Link to={`/${id}-belts`}>Belts</Link>
+              <Link to={`/accessories/${id}-belts`}>Belts</Link>
             </li>
             <li>
-              <Link to={`/${id}-socks`}>Socks</Link>
+              <Link to={`/accessories/${id}-socks`}>Socks</Link>
             </li>
             <li>
-              <Link to={`/${id}-gloves`}>Gloves</Link>
+              <Link to={`/accessories/${id}-gloves`}>Gloves</Link>
             </li>
           </ul>
         </div>
@@ -89,16 +93,18 @@ function Menu({ category, id }: MenuProps) {
           <h3>BOYS CLOTHING</h3>
           <ul>
             <li>
-              <Link to={`/boys-hoodies&sweaters`}>Hoodies & Sweaters</Link>
+              <Link to={`/clothing/boys-hoodies&sweaters`}>
+                Hoodies & Sweaters
+              </Link>
             </li>
             <li>
-              <Link to={`/boys-shirts`}>Shirts</Link>
+              <Link to={`/clothing/boys-shirts`}>Shirts</Link>
             </li>
             <li>
-              <Link to={`/boys-pants`}>Pants</Link>
+              <Link to={`/clothing/boys-pants`}>Pants</Link>
             </li>
             <li>
-              <Link to={`/boys-jackets`}>Jackets</Link>
+              <Link to={`/clothing/boys-jackets`}>Jackets</Link>
             </li>
           </ul>
         </div>
@@ -110,16 +116,18 @@ function Menu({ category, id }: MenuProps) {
           <h3>GIRLS CLOTHING</h3>
           <ul>
             <li>
-              <Link to={`/girls-hoodies&sweaters`}>Hoodies & Sweaters</Link>
+              <Link to={`/clothing/girls-hoodies&sweaters`}>
+                Hoodies & Sweaters
+              </Link>
             </li>
             <li>
-              <Link to={`/girls-shirts`}>Shirts</Link>
+              <Link to={`/clothing/girls-shirts`}>Shirts</Link>
             </li>
             <li>
-              <Link to={`/girls-pants`}>Pants</Link>
+              <Link to={`/clothing/girls-pants`}>Pants</Link>
             </li>
             <li>
-              <Link to={`/girls-jackets`}>Jackets</Link>
+              <Link to={`/clothing/girls-jackets`}>Jackets</Link>
             </li>
           </ul>
         </div>
@@ -131,13 +139,13 @@ function Menu({ category, id }: MenuProps) {
           <h3>BOYS SHOES</h3>
           <ul>
             <li>
-              <Link to={`/boys-sneakers`}>Sneakers</Link>
+              <Link to={`/shoes/boys-sneakers`}>Sneakers</Link>
             </li>
             <li>
-              <Link to={`/boys-running_shoes`}>Running Shoes</Link>
+              <Link to={`/shoes/boys-running_shoes`}>Running Shoes</Link>
             </li>
             <li>
-              <Link to={`/boys-soccer_cleats`}>Soccer Cleats</Link>
+              <Link to={`/shoes/boys-soccer_cleats`}>Soccer Cleats</Link>
             </li>
           </ul>
         </div>
@@ -149,13 +157,13 @@ function Menu({ category, id }: MenuProps) {
           <h3>GIRLS SHOES</h3>
           <ul>
             <li>
-              <Link to={`/girls-sneakers`}>Sneakers</Link>
+              <Link to={`/shoes/girls-sneakers`}>Sneakers</Link>
             </li>
             <li>
-              <Link to={`/girls-running_shoes`}>Running Shoes</Link>
+              <Link to={`/shoes/girls-running_shoes`}>Running Shoes</Link>
             </li>
             <li>
-              <Link to={`/girls-soccer_cleats`}>Soccer Cleats</Link>
+              <Link to={`/shoes/girls-soccer_cleats`}>Soccer Cleats</Link>
             </li>
           </ul>
         </div>
@@ -167,13 +175,13 @@ function Menu({ category, id }: MenuProps) {
           <h3>ACCESSORIES</h3>
           <ul>
             <li>
-              <Link to={`/${id}-backpacks`}>Backpacks</Link>
+              <Link to={`/accessories/${id}-backpacks`}>Backpacks</Link>
             </li>
             <li>
-              <Link to={`/${id}-hats`}>Hats</Link>
+              <Link to={`/accessories/${id}-hats`}>Hats</Link>
             </li>
             <li>
-              <Link to={`/${id}-socks`}>Socks</Link>
+              <Link to={`/accessories/${id}-socks`}>Socks</Link>
             </li>
           </ul>
         </div>

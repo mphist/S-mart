@@ -24,16 +24,32 @@ function TypeFilter({ catalogType }: TypeFilterProps) {
   const ITEM_HEIGHT = 48
   const ITEM_PADDING_TOP = 8
 
-  const types =
-    catalogType === 'clothing'
-      ? ['Hoodies & Sweaters', 'Shirts', 'Pants', 'Jackets']
-      : [
-          'Sneakers',
-          'Running Shoes',
-          'Tennis Shoes',
-          'Basketball Shoes',
-          'Boots',
-        ]
+  let types: string[] = []
+  switch (catalogType) {
+    case 'clothing':
+      types = ['Hoodies & Sweaters', 'Shirts', 'Pants', 'Jackets']
+      break
+    case 'shoes':
+      types = [
+        'Sneakers',
+        'Running Shoes',
+        'Tennis Shoes',
+        'Basketball Shoes',
+        'Boots',
+      ]
+      break
+  }
+
+  // const types =
+  //   catalogType === 'clothing'
+  //     ? ['Hoodies & Sweaters', 'Shirts', 'Pants', 'Jackets']
+  //     : [
+  //         'Sneakers',
+  //         'Running Shoes',
+  //         'Tennis Shoes',
+  //         'Basketball Shoes',
+  //         'Boots',
+  //       ]
 
   const MenuProps = {
     PaperProps: {

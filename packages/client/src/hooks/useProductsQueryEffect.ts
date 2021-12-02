@@ -12,6 +12,7 @@ export default function useProductsQueryEffect() {
   const [category, setCategory] = useState('')
   const [products, setProducts] = useState<Product[] | undefined>()
   const [loading, setLoading] = useState(true)
+  const [catalogType, setCatalogType] = useState('')
   const [
     getProductsByCategoryAndGender,
     { loading: loadingProducts, data: results },
@@ -27,7 +28,7 @@ export default function useProductsQueryEffect() {
   ] = useLazyQuery<{ getNewArrivalsByTypeAndGender: Product[] }>(
     GET_NEW_ARRIVALS_BY_TYPE_AND_GENDER,
     {
-      variables: { type, gender: gender[0]?.toUpperCase() },
+      variables: { type: catalogType, gender: gender[0]?.toUpperCase() },
     }
   )
 
@@ -55,14 +56,16 @@ export default function useProductsQueryEffect() {
 
   const setQueryParams = (url: string) => {
     const location = url.split('-')
+    const catalogType = locationStr.split('/')[0]
+    setCatalogType(catalogType)
     if (location[location.length - 1] === 'arrivals') {
-      setType(location[1])
+      // setType(location[1])
       setCategory('New Arrivals')
     } else {
       setCategory(location[1])
     }
-    setGender(location[0])
+    setGender(location[0].split('/')[1])
   }
 
-  return { loading, products, gender, type, category }
+  return { loading, products, gender, type, category, catalogType }
 }
