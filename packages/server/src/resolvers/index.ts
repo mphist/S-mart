@@ -6,6 +6,7 @@ import { getNewArrivals } from './getNewArrivals'
 import { getNewArrivalsByTypeAndGender } from './getNewArrivalsByTypeAndGender'
 import { getProduct } from './getProduct'
 import { getProductsByCategoryAndGender } from './getProductsByCategoryAndGender'
+import { getProductsFilteredByTypesAndGender } from './getProductsFilteredByTypesAndGender'
 
 export const resolvers = {
   Color: colorScalar,
@@ -59,6 +60,22 @@ export const resolvers = {
     getBestSellers: async (_: any, __: any, context: Context) => {
       try {
         const res = await getBestSellers(context)
+        return res
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    getProductsFilteredByTypesAndGender: async (
+      _: any,
+      { types, gender }: any,
+      context: Context
+    ) => {
+      try {
+        const res = await getProductsFilteredByTypesAndGender(
+          types,
+          gender,
+          context
+        )
         return res
       } catch (e) {
         console.log(e)
