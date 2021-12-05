@@ -19,7 +19,9 @@ function ProductDetails({}: ProductDetailsProps) {
   )
 }
 
-const productDetails = css``
+const productDetails = css`
+  margin-top: 5rem;
+`
 const productDetailsWrapper = css`
   display: flex;
   /* justify-content: center;
