@@ -24,9 +24,10 @@ function ProductImages({ image }: ProductImagesProps) {
   }
 
   const img = document.querySelector('#preview')
-
+  console.log('1', img)
   useEffect(() => {
     setMainImage('')
+    console.log('2', img)
     if (img) {
       const divNodes = img.parentNode?.parentNode?.childNodes
       divNodes?.forEach((e) =>
