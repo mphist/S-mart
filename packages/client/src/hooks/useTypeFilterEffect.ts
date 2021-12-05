@@ -20,15 +20,17 @@ export default function useTypeFilterEffect(gender: string) {
   }, [category])
 
   useEffect(() => {
-    getProductsFilteredByTypesAndGender()
-    const tempProducts: Product[] = []
-    data?.getProductsFilteredByTypesAndGender.forEach((products) =>
-      tempProducts.push(...products)
-    )
-    setProducts(tempProducts)
+    if (filter.type) {
+      getProductsFilteredByTypesAndGender()
+      const tempProducts: Product[] = []
+      data?.getProductsFilteredByTypesAndGender.forEach((products) =>
+        tempProducts.push(...products)
+      )
+      setProducts(tempProducts)
+    }
   }, [filter, data, getProductsFilteredByTypesAndGender])
 
-  return { filter, setFilter, category, products }
+  return { filter, setFilter, category, products, loading }
 }
 
 const parseCategory = (category: string) => {

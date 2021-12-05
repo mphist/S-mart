@@ -12,23 +12,37 @@ export type ProductCatalogProps = {}
 function ProductCatalog({}: ProductCatalogProps) {
   const { loading, products, gender, type, category, catalogType } =
     useProductsQueryEffect()
-  const { products: filteredProducts } = useTypeFilterEffect(gender)
+  const { products: filteredProducts, loading: loadingFilter } =
+    useTypeFilterEffect(gender)
   const { type: filterType } = useRecoilValue(filterState)
-  if (loading) return null
 
-  const displayNumberofItems = () => {
-    if (filteredProducts) {
-      if (filteredProducts.length > 0)
-        return (
-          filteredProducts.length +
-          (filteredProducts.length > 1 ? ' items' : 'item')
-        )
-    } else if (products) {
-      if (products.length > 0)
-        return products.length + (products.length > 1 ? ' items' : 'item')
+  const determineProducts = () => {
+    if (category === 'New Arrivals') {
+      if (filteredProducts && filteredProducts.length > 0 && products) {
+        const tempProducts = []
+        tempProducts.push(...filteredProducts, ...products)
+        return {
+          products: tempProducts,
+          number: tempProducts.length + ' items',
+        }
+      } else if (!loadingFilter && products) {
+        return { products, number: products.length + ' items' }
+      }
+      return { number: '' }
+    } else {
+      if (filteredProducts && filteredProducts.length > 0) {
+        return {
+          products: filteredProducts,
+          number: filteredProducts.length + ' items',
+        }
+      } else if (!loadingFilter && products) {
+        return { products, number: products.length + ' items' }
+      }
     }
-    return ''
+    return { number: '' }
   }
+
+  if (loading) return null
 
   return (
     <div css={productCatalog}>
@@ -43,11 +57,11 @@ function ProductCatalog({}: ProductCatalogProps) {
               : category.replace('&', ' & ').replace('_', ' ')
           }`}
         </i>
-        <p>{`${displayNumberofItems()}`}</p>
+        <p>{`${determineProducts()?.number}`}</p>
       </h2>
       <Filter catalogType={catalogType} gender={gender} />
       <SelectedFilter />
-      <ProductList products={filteredProducts || products} />
+      <ProductList products={determineProducts()?.products} />
     </div>
   )
 }
