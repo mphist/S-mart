@@ -8,22 +8,16 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material'
-import { useEffect } from 'react'
-import { useFilterState } from '../../atoms/filters'
-import useProductsQueryEffect from '../../hooks/useProductsQueryEffect'
+import useTypeFilterEffect from '../../hooks/useTypeFilterEffect'
 
 export type TypeFilterProps = {
   catalogType: string
+  gender: string
 }
 
-function TypeFilter({ catalogType }: TypeFilterProps) {
-  const [filter, setFilter] = useFilterState()
-  const { category } = useProductsQueryEffect()
-  const type = filter.type
-
-  const ITEM_HEIGHT = 48
-  const ITEM_PADDING_TOP = 8
-
+function TypeFilter({ catalogType, gender }: TypeFilterProps) {
+  // const [filter, setFilter] = useFilterState()
+  // const { category } = useProductsQueryEffect()
   let types: string[] = []
   switch (catalogType) {
     case 'clothing':
@@ -39,17 +33,11 @@ function TypeFilter({ catalogType }: TypeFilterProps) {
       ]
       break
   }
+  const { filter, setFilter } = useTypeFilterEffect(gender)
+  const type = filter.type
 
-  // const types =
-  //   catalogType === 'clothing'
-  //     ? ['Hoodies & Sweaters', 'Shirts', 'Pants', 'Jackets']
-  //     : [
-  //         'Sneakers',
-  //         'Running Shoes',
-  //         'Tennis Shoes',
-  //         'Basketball Shoes',
-  //         'Boots',
-  //       ]
+  const ITEM_HEIGHT = 48
+  const ITEM_PADDING_TOP = 8
 
   const MenuProps = {
     PaperProps: {
@@ -60,9 +48,9 @@ function TypeFilter({ catalogType }: TypeFilterProps) {
     },
   }
 
-  useEffect(() => {
-    setFilter({ ...filter, type: [parseCategory(category)] })
-  }, [category])
+  // useEffect(() => {
+  //   setFilter({ ...filter, type: [parseCategory(category)] })
+  // }, [category])
 
   const handleChange = (e: SelectChangeEvent<typeof type>) => {
     const {
@@ -127,27 +115,6 @@ function TypeFilter({ catalogType }: TypeFilterProps) {
       </Select>
     </FormControl>
   )
-}
-
-const parseCategory = (category: string) => {
-  const arrAnd = category.split('&')
-  const arrUnder = category.split('_')
-
-  let string: string = ''
-  if (arrAnd.length > 1) {
-    arrAnd.forEach(
-      (str) => (string += ' ' + str[0].toUpperCase() + str.slice(1) + ' &')
-    )
-  } else if (arrUnder.length > 1) {
-    arrUnder.forEach(
-      (str) => (string += ' ' + str[0].toUpperCase() + str.slice(1))
-    )
-    return string.slice(1)
-  } else {
-    return category[0]?.toUpperCase() + category.slice(1)
-  }
-  const cat = string.slice(1, string.length - 2)
-  return cat
 }
 
 export default TypeFilter

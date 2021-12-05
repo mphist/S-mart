@@ -4,13 +4,14 @@ import TypeFilter from '../TypeFilter/TypeFilter'
 
 export type FilterProps = {
   catalogType: string
+  gender: string
 }
 
-function Filter({ catalogType }: FilterProps) {
+function Filter({ catalogType, gender }: FilterProps) {
   return (
     <section css={filterHeader}>
       <div css={filterHeaderLeft}>
-        <TypeFilter catalogType={catalogType} />
+        <TypeFilter catalogType={catalogType} gender={gender} />
         <SizeFilter />
       </div>
       <div css={filterHeaderRight}></div>
