@@ -38,8 +38,8 @@ const searchBar = (openSearch: boolean) => css`
     visibility: hidden;
     width: 0;
     position: absolute;
-    top: 5.2rem;
-    right: 35.3rem;
+    top: 4.2rem;
+    right: 35rem;
     transition: width 0.5s ease-out;
     padding: 0.1rem 0.5rem;
     padding-right: 2rem;
