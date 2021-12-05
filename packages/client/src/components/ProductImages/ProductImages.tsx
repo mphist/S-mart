@@ -4,13 +4,15 @@ import { useRecoilValue } from 'recoil'
 import { productState } from '../../atoms/product'
 
 export type ProductImagesProps = {
-  image: any
+  image: {
+    [key: string]: string[]
+  }
 }
 
 function ProductImages({ image }: ProductImagesProps) {
   const { color: selectedColor } = useRecoilValue(productState)
   const [mainImage, setMainImage] = useState('')
-
+  const [img, setImg] = useState<Element | null>(null)
   const selectMain = (
     e: React.MouseEvent<HTMLImageElement, MouseEvent>,
     img: string
@@ -23,18 +25,27 @@ function ProductImages({ image }: ProductImagesProps) {
     setMainImage(img)
   }
 
-  const img = document.querySelector('#preview')
-  console.log('1', img)
+  // const img = document.querySelector('#preview')
+  // console.log('1', img)
   useEffect(() => {
     setMainImage('')
-    console.log('2', img)
-    if (img) {
+    if (!img) {
+      setImg(document.querySelector('#preview'))
+    } else {
       const divNodes = img.parentNode?.parentNode?.childNodes
       divNodes?.forEach((e) =>
         (e.childNodes[0] as Element).removeAttribute('class')
       )
       img.className = 'selected'
     }
+    // console.log('2', img)
+    // if (img) {
+    //   const divNodes = img.parentNode?.parentNode?.childNodes
+    //   divNodes?.forEach((e) =>
+    //     (e.childNodes[0] as Element).removeAttribute('class')
+    //   )
+    //   img.className = 'selected'
+    // }
   }, [selectedColor, img])
 
   return (
