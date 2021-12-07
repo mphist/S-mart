@@ -152,6 +152,7 @@ const right = css`
 `
 
 const shoppingBag = css`
+  margin-top: 3rem;
   h1 {
     margin: 0;
   }
