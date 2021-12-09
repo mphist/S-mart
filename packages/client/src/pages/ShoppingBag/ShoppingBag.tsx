@@ -111,7 +111,9 @@ function ShoppingBag({}: ShoppingBagProps) {
           </div>
         )}
       </div>
-      {bagState.items && <TestCreditCard />}
+      {bagState.items && Object.keys(bagState.items).length > 0 && (
+        <TestCreditCard />
+      )}
     </>
   )
 }
