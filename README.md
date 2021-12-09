@@ -1,6 +1,6 @@
 # S-mart (work in progress)
 
-S-mart is a mock E-commerce app, presenting clothing and accessory products from various online retail stores. Users will be able to test adding items to their shopping bag and checkout via Stripe.
+[S-mart](https://s-mart-three.vercel.app) is a mock E-commerce app, presenting clothing products from existing online retail stores. Users will be able to **test** adding items to their shopping bag and checkout via Stripe with test credit cards provided by Stripe.
 
 \*Users will not actually be able to purchase items on this app as it was only built for demonstration purposes.
 
@@ -32,6 +32,7 @@ Client project is built with React and the following libraries/technologies were
 - React Router
 - Recoil
 - Emotion
+- Apollo Client
 
 ### Server
 
@@ -43,4 +44,4 @@ Server project is built with Express and PostgreSQL was used for the database. T
 
 ### Mock Products
 
-All products and images related to the products presented on this app were sourced from Adidas, Banana Republic.
+All products and images related to the products presented on this app were sourced from [SportChek](https://www.sportchek.ca)
