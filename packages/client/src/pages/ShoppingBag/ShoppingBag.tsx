@@ -8,6 +8,7 @@ import {
   ShoppingBag as ShoppingBagClass,
 } from '../../utils/shoppingBag'
 import callCheckoutApi from '../../utils/callCheckoutApi'
+import TestCreditCard from '../../components/TestCreditCard/TestCreditCard'
 
 export type ShoppingBagProps = {}
 
@@ -68,47 +69,50 @@ function ShoppingBag({}: ShoppingBagProps) {
   }
 
   return (
-    <div css={shoppingBag}>
-      <div css={left}>{renderItems(bagState.items)}</div>
-      {bagState.items && Object.keys(bagState.items).length > 0 && (
-        <div css={right}>
-          <div id='orderSummary'>
-            <h2>ORDER SUMMARY</h2>
-            <div id='row'>
-              <p id='items'>{`${bagState.totalQuantity} ITEMS`}</p>
-              <p id='price'>{`$ ${normalizeNumber(
-                Math.round(bagState.totalPrice * 100) / 100
-              )}`}</p>
+    <>
+      <div css={shoppingBag}>
+        <div css={left}>{renderItems(bagState.items)}</div>
+        {bagState.items && Object.keys(bagState.items).length > 0 && (
+          <div css={right}>
+            <div id='orderSummary'>
+              <h2>ORDER SUMMARY</h2>
+              <div id='row'>
+                <p id='items'>{`${bagState.totalQuantity} ITEMS`}</p>
+                <p id='price'>{`$ ${normalizeNumber(
+                  Math.round(bagState.totalPrice * 100) / 100
+                )}`}</p>
+              </div>
+              <div id='row'>
+                <p id='delivery'>DELIVERY</p>
+                <p id='price'>FREE</p>
+              </div>
+              <div id='row'>
+                <p id='tax'>Sales Tax</p>
+                <p id='price'>{`$ ${normalizeNumber(
+                  Math.round(bagState.totalPrice * 100 * 0.13) / 100
+                )}`}</p>
+              </div>
+              <div id='row'>
+                <p id='total'>
+                  <strong>TOTAL</strong>
+                </p>
+                <p id='price'>
+                  <strong>{`$ ${normalizeNumber(
+                    Math.round(bagState.totalPrice * 100 * 1.13) / 100
+                  )}`}</strong>
+                </p>
+              </div>
             </div>
-            <div id='row'>
-              <p id='delivery'>DELIVERY</p>
-              <p id='price'>FREE</p>
-            </div>
-            <div id='row'>
-              <p id='tax'>Sales Tax</p>
-              <p id='price'>{`$ ${normalizeNumber(
-                Math.round(bagState.totalPrice * 100 * 0.13) / 100
-              )}`}</p>
-            </div>
-            <div id='row'>
-              <p id='total'>
-                <strong>TOTAL</strong>
-              </p>
-              <p id='price'>
-                <strong>{`$ ${normalizeNumber(
-                  Math.round(bagState.totalPrice * 100 * 1.13) / 100
-                )}`}</strong>
-              </p>
+            <div id='buttons'>
+              <button onClick={() => callCheckoutApi(shoppingBagState)}>
+                CHECKOUT
+              </button>
             </div>
           </div>
-          <div id='buttons'>
-            <button onClick={() => callCheckoutApi(shoppingBagState)}>
-              CHECKOUT
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+      {bagState.items && <TestCreditCard />}
+    </>
   )
 }
 
