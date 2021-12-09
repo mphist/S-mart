@@ -45,8 +45,8 @@ export default function stripeRoute(router: Router) {
           : 'http://localhost:3000/thank-you-for-your-purchase?session_id={CHECKOUT_SESSION_ID}',
       cancel_url:
         process.env.NODE_ENV === 'production'
-          ? process.env.CLIENT_URL!
-          : 'http://localhost:3000',
+          ? process.env.CLIENT_URL! + '/shopping_bag'
+          : 'http://localhost:3000/shopping_bag',
     })
 
     res.send(session.url)
