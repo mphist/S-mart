@@ -14,6 +14,9 @@ function ProductList({ category, products }: ProductListProps) {
     alert('Our server is currently down. We will be right back!')
     return null
   }
+  if (!newArrivals && !bestSellers) {
+    return null
+  }
   if (category) {
     return (
       <section css={productList}>
