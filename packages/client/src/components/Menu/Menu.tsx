@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
+import { clearFilterInSession } from '../../utils/clearFilterInSession'
 
 export type MenuProps = {
   category?: string
@@ -14,21 +15,41 @@ function Menu({ category, id }: MenuProps) {
           <h3>CLOTHING</h3>
           <ul>
             <li>
-              <Link to={`/clothing/${id}-new-arrivals`}>New Arrivals</Link>
+              <Link
+                to={`/clothing/${id}-new-arrivals`}
+                onClick={clearFilterInSession}
+              >
+                New Arrivals
+              </Link>
             </li>
             <li>
-              <Link to={`/clothing/${id}-hoodies&sweaters`}>
+              <Link
+                to={`/clothing/${id}-hoodies&sweaters`}
+                onClick={clearFilterInSession}
+              >
                 Hoodies & Sweaters
               </Link>
             </li>
             <li>
-              <Link to={`/clothing/${id}-shirts`}>Shirts</Link>
+              <Link
+                to={`/clothing/${id}-shirts`}
+                onClick={clearFilterInSession}
+              >
+                Shirts
+              </Link>
             </li>
             <li>
-              <Link to={`/clothing/${id}-pants`}>Pants</Link>
+              <Link to={`/clothing/${id}-pants`} onClick={clearFilterInSession}>
+                Pants
+              </Link>
             </li>
             <li>
-              <Link to={`/clothing/${id}-jackets`}>Jackets</Link>
+              <Link
+                to={`/clothing/${id}-jackets`}
+                onClick={clearFilterInSession}
+              >
+                Jackets
+              </Link>
             </li>
           </ul>
         </div>
@@ -40,22 +61,46 @@ function Menu({ category, id }: MenuProps) {
           <h3>SHOES</h3>
           <ul>
             <li>
-              <Link to={`/shoes/${id}-new-arrivals`}>New Arrivals</Link>
+              <Link
+                to={`/shoes/${id}-new-arrivals`}
+                onClick={clearFilterInSession}
+              >
+                New Arrivals
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/${id}-sneakers`}>Sneakers</Link>
+              <Link to={`/shoes/${id}-sneakers`} onClick={clearFilterInSession}>
+                Sneakers
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/${id}-running_shoes`}>Running Shoes</Link>
+              <Link
+                to={`/shoes/${id}-running_shoes`}
+                onClick={clearFilterInSession}
+              >
+                Running Shoes
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/${id}-tennis_shoes`}>Tennis Shoes</Link>
+              <Link
+                to={`/shoes/${id}-tennis_shoes`}
+                onClick={clearFilterInSession}
+              >
+                Tennis Shoes
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/${id}-basketball_shoes`}>Basketball Shoes</Link>
+              <Link
+                to={`/shoes/${id}-basketball_shoes`}
+                onClick={clearFilterInSession}
+              >
+                Basketball Shoes
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/${id}-boots`}>Boots</Link>
+              <Link to={`/shoes/${id}-boots`} onClick={clearFilterInSession}>
+                Boots
+              </Link>
             </li>
           </ul>
         </div>
@@ -67,21 +112,44 @@ function Menu({ category, id }: MenuProps) {
           <h3>ACCESSORIES</h3>
           <ul>
             <li>
-              <Link to={`/accessories/${id}-accessories-new-arrivals`}>
+              <Link
+                to={`/accessories/${id}-accessories-new-arrivals`}
+                onClick={clearFilterInSession}
+              >
                 New Arrivals
               </Link>
             </li>
             <li>
-              <Link to={`/accessories/${id}-hats`}>Hats</Link>
+              <Link
+                to={`/accessories/${id}-hats`}
+                onClick={clearFilterInSession}
+              >
+                Hats
+              </Link>
             </li>
             <li>
-              <Link to={`/accessories/${id}-belts`}>Belts</Link>
+              <Link
+                to={`/accessories/${id}-belts`}
+                onClick={clearFilterInSession}
+              >
+                Belts
+              </Link>
             </li>
             <li>
-              <Link to={`/accessories/${id}-socks`}>Socks</Link>
+              <Link
+                to={`/accessories/${id}-socks`}
+                onClick={clearFilterInSession}
+              >
+                Socks
+              </Link>
             </li>
             <li>
-              <Link to={`/accessories/${id}-gloves`}>Gloves</Link>
+              <Link
+                to={`/accessories/${id}-gloves`}
+                onClick={clearFilterInSession}
+              >
+                Gloves
+              </Link>
             </li>
           </ul>
         </div>
@@ -93,18 +161,30 @@ function Menu({ category, id }: MenuProps) {
           <h3>BOYS CLOTHING</h3>
           <ul>
             <li>
-              <Link to={`/clothing/boys-hoodies&sweaters`}>
+              <Link
+                to={`/clothing/boys-hoodies&sweaters`}
+                onClick={clearFilterInSession}
+              >
                 Hoodies & Sweaters
               </Link>
             </li>
             <li>
-              <Link to={`/clothing/boys-shirts`}>Shirts</Link>
+              <Link to={`/clothing/boys-shirts`} onClick={clearFilterInSession}>
+                Shirts
+              </Link>
             </li>
             <li>
-              <Link to={`/clothing/boys-pants`}>Pants</Link>
+              <Link to={`/clothing/boys-pants`} onClick={clearFilterInSession}>
+                Pants
+              </Link>
             </li>
             <li>
-              <Link to={`/clothing/boys-jackets`}>Jackets</Link>
+              <Link
+                to={`/clothing/boys-jackets`}
+                onClick={clearFilterInSession}
+              >
+                Jackets
+              </Link>
             </li>
           </ul>
         </div>
@@ -116,18 +196,33 @@ function Menu({ category, id }: MenuProps) {
           <h3>GIRLS CLOTHING</h3>
           <ul>
             <li>
-              <Link to={`/clothing/girls-hoodies&sweaters`}>
+              <Link
+                to={`/clothing/girls-hoodies&sweaters`}
+                onClick={clearFilterInSession}
+              >
                 Hoodies & Sweaters
               </Link>
             </li>
             <li>
-              <Link to={`/clothing/girls-shirts`}>Shirts</Link>
+              <Link
+                to={`/clothing/girls-shirts`}
+                onClick={clearFilterInSession}
+              >
+                Shirts
+              </Link>
             </li>
             <li>
-              <Link to={`/clothing/girls-pants`}>Pants</Link>
+              <Link to={`/clothing/girls-pants`} onClick={clearFilterInSession}>
+                Pants
+              </Link>
             </li>
             <li>
-              <Link to={`/clothing/girls-jackets`}>Jackets</Link>
+              <Link
+                to={`/clothing/girls-jackets`}
+                onClick={clearFilterInSession}
+              >
+                Jackets
+              </Link>
             </li>
           </ul>
         </div>
@@ -139,13 +234,25 @@ function Menu({ category, id }: MenuProps) {
           <h3>BOYS SHOES</h3>
           <ul>
             <li>
-              <Link to={`/shoes/boys-sneakers`}>Sneakers</Link>
+              <Link to={`/shoes/boys-sneakers`} onClick={clearFilterInSession}>
+                Sneakers
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/boys-running_shoes`}>Running Shoes</Link>
+              <Link
+                to={`/shoes/boys-running_shoes`}
+                onClick={clearFilterInSession}
+              >
+                Running Shoes
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/boys-soccer_cleats`}>Soccer Cleats</Link>
+              <Link
+                to={`/shoes/boys-soccer_cleats`}
+                onClick={clearFilterInSession}
+              >
+                Soccer Cleats
+              </Link>
             </li>
           </ul>
         </div>
@@ -157,13 +264,25 @@ function Menu({ category, id }: MenuProps) {
           <h3>GIRLS SHOES</h3>
           <ul>
             <li>
-              <Link to={`/shoes/girls-sneakers`}>Sneakers</Link>
+              <Link to={`/shoes/girls-sneakers`} onClick={clearFilterInSession}>
+                Sneakers
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/girls-running_shoes`}>Running Shoes</Link>
+              <Link
+                to={`/shoes/girls-running_shoes`}
+                onClick={clearFilterInSession}
+              >
+                Running Shoes
+              </Link>
             </li>
             <li>
-              <Link to={`/shoes/girls-soccer_cleats`}>Soccer Cleats</Link>
+              <Link
+                to={`/shoes/girls-soccer_cleats`}
+                onClick={clearFilterInSession}
+              >
+                Soccer Cleats
+              </Link>
             </li>
           </ul>
         </div>
@@ -175,13 +294,28 @@ function Menu({ category, id }: MenuProps) {
           <h3>ACCESSORIES</h3>
           <ul>
             <li>
-              <Link to={`/accessories/${id}-backpacks`}>Backpacks</Link>
+              <Link
+                to={`/accessories/${id}-backpacks`}
+                onClick={clearFilterInSession}
+              >
+                Backpacks
+              </Link>
             </li>
             <li>
-              <Link to={`/accessories/${id}-hats`}>Hats</Link>
+              <Link
+                to={`/accessories/${id}-hats`}
+                onClick={clearFilterInSession}
+              >
+                Hats
+              </Link>
             </li>
             <li>
-              <Link to={`/accessories/${id}-socks`}>Socks</Link>
+              <Link
+                to={`/accessories/${id}-socks`}
+                onClick={clearFilterInSession}
+              >
+                Socks
+              </Link>
             </li>
           </ul>
         </div>

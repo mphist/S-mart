@@ -16,7 +16,17 @@ export default function useTypeFilterEffect(gender: string) {
     )
 
   useEffect(() => {
-    setFilter({ ...filter, type: [parseCategory(category)] })
+    const session = sessionStorage.getItem('filter')
+    let storedFilter: string[] = []
+    if (session) {
+      storedFilter = JSON.parse(session)
+    }
+
+    if (storedFilter && storedFilter.length > 0) {
+      setFilter({ ...filter, type: storedFilter })
+    } else {
+      setFilter({ ...filter, type: [parseCategory(category)] })
+    }
   }, [category])
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import { css } from '@mui/styled-engine'
 import { useFilterState } from '../../atoms/filters'
+import { storeFilterInSession } from '../../utils/storeFilterInSession'
 
 export type SelectedFilterProps = {}
 
@@ -24,9 +25,12 @@ function SelectedFilter({}: SelectedFilterProps) {
     } = e
     const type = id.split('-')[0]
     const name = id.split('-')[1]
+
+    const newFilter = filter.type.filter((name_) => name_ !== name)
+    storeFilterInSession(newFilter)
     setFilter({
       ...filter,
-      [type]: [...filter[type]!.filter((name_) => name_ !== name)],
+      [type]: newFilter,
     })
   }
   return (

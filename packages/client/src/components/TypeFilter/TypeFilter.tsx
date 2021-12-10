@@ -9,6 +9,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 import useTypeFilterEffect from '../../hooks/useTypeFilterEffect'
+import { storeFilterInSession } from '../../utils/storeFilterInSession'
 
 export type TypeFilterProps = {
   catalogType: string
@@ -16,8 +17,6 @@ export type TypeFilterProps = {
 }
 
 function TypeFilter({ catalogType, gender }: TypeFilterProps) {
-  // const [filter, setFilter] = useFilterState()
-  // const { category } = useProductsQueryEffect()
   let types: string[] = []
   switch (catalogType) {
     case 'clothing':
@@ -34,7 +33,15 @@ function TypeFilter({ catalogType, gender }: TypeFilterProps) {
       break
   }
   const { filter, setFilter } = useTypeFilterEffect(gender)
-  const type = filter.type
+  const session = sessionStorage.getItem('filter')
+  let storedFilter: string[] = []
+  if (session) {
+    storedFilter = JSON.parse(session)
+  }
+  const type =
+    storedFilter && storedFilter.length > filter.type.length
+      ? storedFilter
+      : filter.type
 
   const ITEM_HEIGHT = 48
   const ITEM_PADDING_TOP = 8
@@ -48,14 +55,12 @@ function TypeFilter({ catalogType, gender }: TypeFilterProps) {
     },
   }
 
-  // useEffect(() => {
-  //   setFilter({ ...filter, type: [parseCategory(category)] })
-  // }, [category])
-
   const handleChange = (e: SelectChangeEvent<typeof type>) => {
     const {
       target: { value },
     } = e
+
+    storeFilterInSession(value)
 
     setFilter(
       // On autofill we get a the stringified value.
@@ -81,18 +86,6 @@ function TypeFilter({ catalogType, gender }: TypeFilterProps) {
         Type
       </InputLabel>
 
-      {/* <Select
-        labelId='typeFilter'
-        value={type}
-        sx={{ height: 50 }}
-        onChange={(e) => setType(e.target.value)}
-      >
-        <MenuItem value='hoodies'>Hoodies</MenuItem>
-        <MenuItem value='sweaters'>Sweaters</MenuItem>
-        <MenuItem value='shirts'>Shirts</MenuItem>
-        <MenuItem value='pants'>Pants</MenuItem>
-        <MenuItem value='jackets'>Jackets</MenuItem>
-      </Select> */}
       <Select
         labelId='typeFilter'
         multiple
