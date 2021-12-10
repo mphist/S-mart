@@ -17,7 +17,7 @@ function SearchBar({}: SearchBarProps) {
   }, [openSearch])
 
   return (
-    <div css={searchBar(openSearch)}>
+    <div css={searchBar(openSearch, document.body.scrollHeight)}>
       <input id='searchInput' type='text' ref={ref} placeholder='Search' />
       <img
         id='searchBtn'
@@ -29,7 +29,7 @@ function SearchBar({}: SearchBarProps) {
   )
 }
 
-const searchBar = (openSearch: boolean) => css`
+const searchBar = (openSearch: boolean, height: number) => css`
   img {
     position: relative;
     left: 1rem;
@@ -39,7 +39,13 @@ const searchBar = (openSearch: boolean) => css`
     width: 0;
     position: absolute;
     top: 4.2rem;
-    right: 35rem;
+    ${height > 797
+      ? css`
+          right: 34.7rem;
+        `
+      : css`
+          right: 35.2rem;
+        `}
     transition: width 0.5s ease-out;
     padding: 0.1rem 0.5rem;
     padding-right: 2rem;
