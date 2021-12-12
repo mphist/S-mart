@@ -1,5 +1,6 @@
 import { css } from '@mui/styled-engine'
 import { useFilterState } from '../../atoms/filters'
+import { clearFilterInSession } from '../../utils/clearFilterInSession'
 import { storeFilterInSession } from '../../utils/storeFilterInSession'
 
 export type SelectedFilterProps = {}
@@ -12,9 +13,9 @@ export const isEmpty = (obj: Object) => {
 
 function SelectedFilter({}: SelectedFilterProps) {
   const [filter, setFilter] = useFilterState()
-
   const clearAllFilters = () => {
-    setFilter({ type: [], size: [], color: [], categories: [] })
+    clearFilterInSession()
+    setFilter({ type: [filter.type[0]], size: [], color: [], categories: [] })
   }
 
   const removeSelectedFilter = (

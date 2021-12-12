@@ -27,7 +27,7 @@ export default function useTypeFilterEffect(gender: string) {
     } else {
       setFilter({ ...filter, type: [parseCategory(category)] })
     }
-  }, [category])
+  }, [category, setFilter])
 
   useEffect(() => {
     if (filter.type) {
