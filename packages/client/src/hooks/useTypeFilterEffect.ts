@@ -21,11 +21,12 @@ export default function useTypeFilterEffect(gender: string) {
     if (session) {
       storedFilter = JSON.parse(session)
     }
+    const parsedCategory = parseCategory(category)
 
     if (storedFilter && storedFilter.length > 0) {
       setFilter({ ...filter, type: storedFilter })
-    } else {
-      setFilter({ ...filter, type: [parseCategory(category)] })
+    } else if (parsedCategory) {
+      setFilter({ ...filter, type: [parsedCategory] })
     }
   }, [category, setFilter])
 
@@ -44,6 +45,9 @@ export default function useTypeFilterEffect(gender: string) {
 }
 
 const parseCategory = (category: string) => {
+  if (category === '') {
+    return null
+  }
   const arrAnd = category.split('&')
   const arrUnder = category.split('_')
 
