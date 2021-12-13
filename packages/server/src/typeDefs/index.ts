@@ -38,6 +38,7 @@ export const typeDefs = gql`
     ): [[Product]]
     getNewArrivals: [Product]
     getBestSellers: [Product]
+    searchProducts(name: String): [Product]
   }
 
   type Mutation {

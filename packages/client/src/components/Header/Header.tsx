@@ -2,6 +2,7 @@ import { css } from '@emotion/react'
 import Disclaimer from '../Disclaimer/Disclaimer'
 import Logo from '../Logo/Logo'
 import Navigation from '../Navigation/Navigation'
+import SearchResults from '../SearchResults/SearchResults'
 
 export type HeaderProps = {}
 
@@ -11,6 +12,7 @@ function Header({}: HeaderProps) {
       <Disclaimer />
       <Logo />
       <Navigation />
+      <SearchResults />
     </header>
   )
 }

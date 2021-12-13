@@ -1,29 +1,51 @@
 import { css } from '@mui/styled-engine'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import searchIcon from '../../assets/search_icon.png'
+import useSearchEffect from '../../hooks/useSearchEffect'
 
 export type SearchBarProps = {}
 
 function SearchBar({}: SearchBarProps) {
-  const [openSearch, setOpenSearch] = useState(false)
+  const { searchState, setSearchState } = useSearchEffect()
+  const [timer, setTimer] = useState<NodeJS.Timeout>()
   const ref = useRef<HTMLInputElement>(null)
 
-  useEffect(() => {
-    if (openSearch) ref.current?.focus()
-    window.addEventListener('click', (e) => {
+  const closeSearchBar = useCallback(
+    (e: MouseEvent) => {
       const id = (e.target as Element).id
-      if (id !== 'searchInput' && id !== 'searchBtn') setOpenSearch(false)
-    })
-  }, [openSearch])
+      if (id !== 'searchInput' && id !== 'searchBtn')
+        setSearchState({ ...searchState, open: false })
+    },
+    [setSearchState, searchState]
+  )
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchState({ ...searchState, name: e.target.value })
+  }
+
+  useEffect(() => {
+    if (searchState.open) ref.current?.focus()
+    window.addEventListener('click', closeSearchBar)
+    return () => {
+      window.removeEventListener('click', closeSearchBar)
+    }
+  }, [searchState, setSearchState, closeSearchBar])
 
   return (
-    <div css={searchBar(openSearch, document.body.scrollHeight)}>
-      <input id='searchInput' type='text' ref={ref} placeholder='Search' />
+    <div css={searchBar(searchState.open, document.body.scrollHeight)}>
+      <input
+        id='searchInput'
+        type='text'
+        ref={ref}
+        value={searchState.name}
+        placeholder='Search'
+        onChange={handleSearch}
+      />
       <img
         id='searchBtn'
         src={searchIcon}
         alt='search_btn'
-        onClick={() => setOpenSearch(true)}
+        onClick={() => setSearchState({ ...searchState, open: true })}
       />
     </div>
   )

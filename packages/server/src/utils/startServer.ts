@@ -8,6 +8,7 @@ import { context } from './context'
 import stripeRoute from '../routes/api/stripe'
 import cors from 'cors'
 import { nudgeDyno } from './nudgeDyno'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
 
 export const startServer = async () => {
   const app = express()
@@ -19,6 +20,7 @@ export const startServer = async () => {
     typeDefs,
     resolvers,
     context,
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
   })
 
   const corsOptions = {

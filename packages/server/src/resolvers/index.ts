@@ -7,6 +7,7 @@ import { getNewArrivalsByTypeAndGender } from './getNewArrivalsByTypeAndGender'
 import { getProduct } from './getProduct'
 import { getProductsByCategoryAndGender } from './getProductsByCategoryAndGender'
 import { getProductsFilteredByTypesAndGender } from './getProductsFilteredByTypesAndGender'
+import { searchProducts } from './searchProducts'
 
 export const resolvers = {
   Color: colorScalar,
@@ -76,6 +77,14 @@ export const resolvers = {
           gender,
           context
         )
+        return res
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    searchProducts: async (_: any, { name }: any, context: Context) => {
+      try {
+        const res = await searchProducts(name, context)
         return res
       } catch (e) {
         console.log(e)
