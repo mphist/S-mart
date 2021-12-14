@@ -9,6 +9,7 @@ export const SEARCH_PRODUCTS = gql`
       description
       price
       image
+      id
     }
   }
 `

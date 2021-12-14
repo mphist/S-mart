@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import { Link } from 'react-router-dom'
 import useSearchEffect from '../../hooks/useSearchEffect'
 
 export type SearchResultsProps = {}
@@ -9,34 +10,48 @@ function SearchResults({}: SearchResultsProps) {
   if (!products || products.length < 1) return null
 
   return (
-    <div css={searchResults}>
+    <div css={searchResults(document.body.scrollHeight)}>
       {products?.map((product) => (
         <div css={resultStyle}>
-          <div id='searchImage'>
-            <img
-              src={Object.values(product.image)[0][0]}
-              alt='searchResult-preview'
-            />
-          </div>
-          <div id='searchText'>
-            <div>{product.name}</div>
-            <div>{`$${product.price}`}</div>
-          </div>
+          <Link
+            to={`/product/${product.name.replaceAll(' ', '-').toLowerCase()}-${
+              product.id
+            }`}
+          >
+            <div id='searchImage'>
+              <img
+                src={Object.values(product.image)[0][0]}
+                alt='searchResult-preview'
+              />
+            </div>
+            <div id='searchText'>
+              <div>{product.name}</div>
+              <div>{`$${product.price}`}</div>
+            </div>
+          </Link>
         </div>
       ))}
     </div>
   )
 }
 
-const searchResults = css`
-  width: 25rem;
+const searchResults = (scrollHeight: number) => css`
+  width: 24.9rem;
   height: 14rem;
-  background: tomato;
   position: absolute;
   top: 6rem;
-  right: 19.3rem;
+  ${scrollHeight > 797
+    ? css`
+        right: 19.3rem;
+      `
+    : css`
+        right: 19.8rem;
+      `}
   overflow-y: scroll;
   animation: open 0.8s ease-in-out;
+  z-index: 5;
+  background: white;
+  border: 1px solid black;
   @keyframes open {
     from {
       opacity: 0;
@@ -52,12 +67,22 @@ const resultStyle = css`
   justify-content: center;
   margin: 0.5rem 0;
   cursor: pointer;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+
+  a {
+    width: 100%;
+    display: flex;
+    color: black;
+    text-decoration: none;
+  }
 
   :nth-child(1) {
     margin: 0;
   }
   #searchImage {
-    border: 1px solid black;
     width: 5rem;
     height: 5rem;
     img {
