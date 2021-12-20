@@ -55,20 +55,26 @@ const searchBar = (openSearch: boolean, height: number) => css`
   img {
     position: relative;
     left: 1rem;
+    /* position: absolute;
+    right: 570px;
+    top: 73px; */
   }
   input {
     visibility: hidden;
     width: 0;
-    position: absolute;
-    top: 4.2rem;
+    position: relative;
+    /* position: absolute;
+    top: 4.2rem; */
     ${height > 797
       ? css`
-          right: 34.7rem;
+          /* right: 34.7rem; */
+          right: -44px;
         `
       : css`
-          right: 35.2rem;
+          /* right: 35.2rem; */
+          right: -44px;
         `}
-    transition: width 0.5s ease-out;
+    /* transition: width 0.5s ease-out; */
     padding: 0.1rem 0.5rem;
     padding-right: 2rem;
     font-size: 0.8rem;
@@ -80,7 +86,7 @@ const searchBar = (openSearch: boolean, height: number) => css`
     css`
       visibility: visible;
       width: 7rem;
-      height: 1.5rem;
+      height: 19px;
     `}
   }
 `

@@ -16,10 +16,20 @@ const logo = css`
   width: 12rem;
   text-align: center;
   cursor: pointer;
-  margin-top: 3rem;
+  margin-top: 1rem;
   a {
     text-decoration: none;
     color: black;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 1.5rem;
+  }
+  @media screen and (min-width: 600px) {
+    font-size: 1.7rem;
+  }
+  @media screen and (min-width: 992px) {
+    font-size: 2rem;
   }
 `
 

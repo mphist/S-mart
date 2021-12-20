@@ -66,10 +66,35 @@ const list = css`
     justify-content: space-between;
     align-items: center;
     padding: 0;
+
+    @media screen and (max-width: 600px) {
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media screen and (min-width: 600px) {
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 992px) {
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
     li {
       border: 1px solid lightgray;
       width: 16rem;
       height: 24rem;
+      margin: 0.5rem auto;
+
+      @media screen and (min-width: 992px) {
+        width: 90%;
+        height: 100%;
+      }
+
       cursor: pointer;
       :hover {
         border: 1px solid black;
@@ -86,10 +111,51 @@ const listForCatalog = css`
     grid-template-columns: repeat(4, 1fr);
     list-style: none;
     padding: 0;
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    @media screen and (min-width: 600px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 992px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (min-width: 1460px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* @media screen and (max-width: 600px) {
+      grid-template-columns: repeat(2, 1fr);
+    } */
+
     li {
       border: 1px solid lightgray;
-      width: 22.2rem;
+      /* width: 22.2rem; */
       /* height: 28rem; */
+
+      @media screen and (max-width: 600px) {
+        width: 17rem;
+        margin: 0.5rem auto;
+      }
+      @media screen and (min-width: 600px) {
+        width: 17rem;
+        margin: 0.5rem auto;
+      }
+      @media screen and (min-width: 768px) {
+        width: 19rem;
+        margin: 0 auto;
+      }
+      @media screen and (min-width: 992px) {
+        width: 21rem;
+        margin: 0 auto;
+      }
+      @media screen and (min-width: 1460px) {
+        width: 22.2rem;
+      }
       cursor: pointer;
       :hover {
         border: 1px solid black;
@@ -101,6 +167,30 @@ const listForCatalog = css`
 const productList = css`
   margin: 4rem 0;
   width: 90rem;
+
+  @media screen and (max-width: 600px) {
+    max-width: 100%;
+    margin-right: 2rem;
+    h2 {
+      text-align: center;
+      font-size: 100%;
+    }
+  }
+  @media screen and (min-width: 600px) {
+    max-width: 100%;
+    margin-right: 2rem;
+    h2 {
+      text-align: center;
+      font-size: 100%;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    max-width: 100%;
+    h2 {
+      text-align: center;
+      font-size: 100%;
+    }
+  }
 `
 
 export default ProductList

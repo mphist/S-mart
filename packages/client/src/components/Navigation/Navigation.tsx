@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
 import { useRecoilValue } from 'recoil'
 import { bagState } from '../../atoms/bag'
+import { searchState } from '../../atoms/search'
 
 export type NavigationProps = {}
 
@@ -12,7 +13,7 @@ function Navigation({}: NavigationProps) {
   const [menuDropdownState, setMenuDropdownState] = useMenuDropdownState()
   const [timer, setTimer] = useTimerState()
   const [ignore, setIgnore] = useState<NodeJS.Timeout | null>(null)
-  const [openSearch, setOpenSearch] = useState(false)
+  const searchBar = useRecoilValue(searchState)
   const bagState_ = useRecoilValue(bagState)
   const [quantityFromSession, setQuantityFromSession] = useState<
     string | number
@@ -51,7 +52,7 @@ function Navigation({}: NavigationProps) {
   }
 
   return (
-    <nav css={navigation(menuDropdownState.id)}>
+    <nav css={navigation(menuDropdownState.id, searchBar.open)}>
       <ul className='primary'>
         <li>
           <span id='men' onMouseOver={openMenu} onMouseLeave={mouseLeave}>
@@ -101,16 +102,25 @@ function Navigation({}: NavigationProps) {
   )
 }
 
-const navigation = (id: string | null) => css`
+const navigation = (id: string | null, open: boolean) => css`
   display: flex;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 
   ul {
     display: flex;
     list-style: none;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
+
     li {
       padding: 0 0.8rem;
       color: #5c5b5b;
@@ -126,8 +136,17 @@ const navigation = (id: string | null) => css`
 
   .primary {
     width: 17rem;
+    @media screen and (max-width: 992px) {
+      padding: 0;
+    }
     li {
-      padding: 1.5rem;
+      padding: 0 1.5rem;
+      @media screen and (min-width: 600px) {
+        font-size: 0.8rem;
+      }
+      @media screen and (min-width: 992px) {
+        font-size: 1rem;
+      }
       span {
         cursor: pointer;
       }
@@ -140,7 +159,22 @@ const navigation = (id: string | null) => css`
     }
   }
   .secondary {
-    margin-left: 16rem;
+    @media screen and (max-width: 992px) {
+      padding: 0;
+    }
+    ${!open
+      ? css`
+          margin-left: 16rem;
+          @media screen and (max-width: 904px) {
+            margin-left: 0rem;
+          }
+        `
+      : css`
+          margin-left: 9rem;
+          @media screen and (max-width: 904px) {
+            margin-left: 0rem;
+          }
+        `}
     #bagIcon {
       span {
         /* max-width: 2rem;

@@ -73,6 +73,10 @@ function Body({}: BodyProps) {
 const body = css`
   width: 90rem;
   margin: 0 auto;
+
+  @media screen and (max-width: 1440px) {
+    max-width: 100%;
+  }
 `
 
 export default Body

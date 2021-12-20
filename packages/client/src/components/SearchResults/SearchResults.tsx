@@ -40,6 +40,7 @@ const searchResults = (scrollHeight: number) => css`
   height: 14rem;
   position: absolute;
   top: 6rem;
+
   ${scrollHeight > 797
     ? css`
         right: 19.3rem;

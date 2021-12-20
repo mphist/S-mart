@@ -113,7 +113,16 @@ const menuDropdown = (sticky: boolean) => css`
       `
     : css`
         position: fixed;
-        top: 12%;
+        top: 11.5%;
+        @media screen and (max-width: 1253px) {
+          top: 15.5%;
+        }
+        @media screen and (min-width: 1253px) {
+          top: 12.5%;
+        }
+        @media screen and (min-width: 1900px) {
+          top: 11.5%;
+        }
       `}
   z-index: 1;
   width: 100%;
