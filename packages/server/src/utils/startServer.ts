@@ -40,9 +40,9 @@ export const startServer = async () => {
   server.applyMiddleware({ app })
 
   app.listen(port, () => {
-    if (process.env.NODE_ENV === 'production') nudgeDyno()
+    // if (process.env.NODE_ENV === 'production') nudgeDyno()
     console.log(
-      `🚀 Server ready at http://localhost:4000${server.graphqlPath}')`
+      `🚀 Server ready at http://localhost:${port}${server.graphqlPath}')`
     )
   })
 }
