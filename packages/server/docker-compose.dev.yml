@@ -1,0 +1,10 @@
+version: '3'
+services:
+  node-app:
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=${DATABASE_URL_DEV}
+    command: >
+      sh -c "npm run db:migrate && 
+             npm run start"
+    # command: npm run start
