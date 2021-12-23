@@ -4,7 +4,7 @@ services:
     build: .
     image: mphist/s-mart-server
     volumes:
-      - ./:/app:ro
+      - ./:/app
       - /app/node_modules
     environment:
       - PORT=4000
