@@ -8,15 +8,6 @@ services:
       - '4000:80'
     depends_on:
       - node-app
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-    depends_on:
-      - nginx
-    command: certonly --email mphist@gmail.com --agree-tos --no-eff-email --staging -d kitkat.bar  -d www.kitkat.bar
   node-app:
     build: .
     # image: mphist/s-mart-server
@@ -37,5 +28,3 @@ services:
       - postgres:/var/lib/postgresql/data
 volumes:
   postgres:
-  certbot-etc:
-  certbot-var:
