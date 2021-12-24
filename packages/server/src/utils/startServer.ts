@@ -20,6 +20,7 @@ export const startServer = async () => {
     typeDefs,
     resolvers,
     context,
+    introspection: true,
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
   })
 
