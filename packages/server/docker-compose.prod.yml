@@ -29,6 +29,9 @@ services:
       sh -c "npm run db:migrate:prod &&
              npm run build &&
              npm run start:prod"
+  db:
+    networks:
+      - app-network
 volumes:
   certbot-etc:
   certbot-var:
