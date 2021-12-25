@@ -12,8 +12,8 @@ function Header({}: HeaderProps) {
     <header css={header}>
       <Disclaimer />
       <div className='subHeader'>
-        <Logo />
         <HamburgerMenu />
+        <Logo />
         <Navigation />
         <SearchResults />
       </div>

@@ -107,8 +107,11 @@ const navigation = (id: string | null, open: boolean) => css`
   align-items: center;
   margin-top: 1rem;
 
-  @media screen and (max-width: 768px) {
-    display: none;
+  @media screen and (max-width: 767px) {
+    /* display: none; */
+    .primary {
+      display: none;
+    }
   }
 
   ul {
@@ -159,8 +162,13 @@ const navigation = (id: string | null, open: boolean) => css`
     }
   }
   .secondary {
+    position: absolute;
+    right: 12rem;
     @media screen and (max-width: 992px) {
       padding: 0;
+    }
+    @media screen and (max-width: 1253px) {
+      right: 0;
     }
     ${!open
       ? css`

@@ -60,6 +60,9 @@ const searchBar = (openSearch: boolean, height: number) => css`
     top: 73px; */
   }
   input {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
     visibility: hidden;
     width: 0;
     position: relative;

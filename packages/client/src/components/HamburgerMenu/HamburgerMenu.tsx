@@ -13,8 +13,11 @@ function HamburgerMenu({}: HamburgerMenuProps) {
 
 const hamburgerMenu = css`
   display: none;
-  @media screen and (max-width: 768px) {
+  cursor: pointer;
+  @media screen and (max-width: 767px) {
     display: block;
+    position: absolute;
+    left: 2rem;
     margin-top: 1.6rem;
   }
 `
