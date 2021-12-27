@@ -6,7 +6,7 @@ export type SearchResultsProps = {}
 
 function SearchResults({}: SearchResultsProps) {
   const { searchState, products } = useSearchEffect()
-  if (!searchState.open) return null
+  if (!searchState.regularOpen) return null
   if (!products || products.length < 1) return null
 
   return (
@@ -55,7 +55,7 @@ const searchResults = (scrollHeight: number) => css`
     right: 4.25rem;
     top: 7.4rem;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 

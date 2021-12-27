@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import Rating from '@mui/material/Rating'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useOverlayState } from '../../atoms/uiState'
 import AddToBagConfirmation from '../AddToBagConfirmation/AddToBagConfirmation'
 import { Product } from '../../graphql/types'
@@ -80,9 +80,12 @@ function ProductDescription({ product }: ProductDescriptionProps) {
         }
       }
     } else {
-      setProductState({ ...productState, color: colorKeys[0] })
+      setProductState({
+        ...productState,
+        color: colorKeys[0],
+      })
     }
-  }, [])
+  }, [product])
 
   const handleAddToBag = () => {
     if (isSizeValid(size)) {

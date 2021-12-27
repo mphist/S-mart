@@ -52,7 +52,7 @@ function Navigation({}: NavigationProps) {
   }
 
   return (
-    <nav css={navigation(menuDropdownState.id, searchBar.open)}>
+    <nav css={navigation(menuDropdownState.id, searchBar.regularOpen)}>
       <ul className='primary'>
         <li>
           <span id='men' onMouseOver={openMenu} onMouseLeave={mouseLeave}>
