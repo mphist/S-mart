@@ -121,7 +121,7 @@ const navigation = (id: string | null, open: boolean) => css`
     align-items: center;
 
     @media screen and (max-width: 600px) {
-      flex-direction: column;
+      /* flex-direction: column; */
     }
 
     li {
