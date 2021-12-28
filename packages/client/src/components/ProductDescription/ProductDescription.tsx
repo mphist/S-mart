@@ -274,6 +274,30 @@ function ProductDescription({ product }: ProductDescriptionProps) {
 
 const productDescription = css`
   /* width: 50%; */
+  @media screen and (max-width: 1350px) {
+    margin-top: 2.5rem;
+    text-align: center;
+    h2 {
+      margin: 0 auto;
+    }
+    #ratings {
+      justify-content: center;
+    }
+    #description {
+      margin: 0 auto;
+      text-align: start;
+    }
+    #colorWrapper {
+      justify-content: center;
+    }
+    #sizeWrapper {
+      justify-content: center;
+    }
+    #quantity {
+      justify-content: center;
+    }
+  }
+
   padding: 0 2rem;
   h2 {
     margin: 0.2rem 0;
