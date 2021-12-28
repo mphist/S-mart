@@ -5,7 +5,7 @@ import useSearchEffect from '../../hooks/useSearchEffect'
 export type SearchResultsProps = {}
 
 function SearchResults({}: SearchResultsProps) {
-  const { searchState, products } = useSearchEffect()
+  const { searchState, products, setSearchState } = useSearchEffect()
   if (!searchState.regularOpen) return null
   if (!products || products.length < 1) return null
 
@@ -17,6 +17,9 @@ function SearchResults({}: SearchResultsProps) {
             to={`/product/${product.name.replaceAll(' ', '-').toLowerCase()}-${
               product.id
             }`}
+            onClick={() =>
+              setSearchState({ ...searchState, mobileOpen: false })
+            }
           >
             <div id='searchImage'>
               <img
