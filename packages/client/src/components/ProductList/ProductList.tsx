@@ -124,7 +124,7 @@ const listForCatalog = css`
     @media screen and (min-width: 992px) {
       grid-template-columns: repeat(3, 1fr);
     }
-    @media screen and (min-width: 1460px) {
+    @media screen and (min-width: 1530px) {
       grid-template-columns: repeat(4, 1fr);
     }
 
@@ -148,10 +148,27 @@ const listForCatalog = css`
       @media screen and (min-width: 768px) {
         width: 19rem;
         margin: 0 auto;
+        margin-top: 10px;
       }
       @media screen and (min-width: 992px) {
-        width: 21rem;
+        width: 18.5rem;
         margin: 0 auto;
+        margin-top: 10px;
+      }
+      /* @media screen and (min-width: 1025px) {
+        width: 18.7rem;
+        margin: 0 auto;
+        margin-top: 10px;
+      } */
+      @media screen and (min-width: 1050px) {
+        width: 19.5rem;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+      @media screen and (min-width: 1080px) {
+        width: 20rem;
+        margin: 0 auto;
+        margin-top: 10px;
       }
       @media screen and (min-width: 1460px) {
         width: 22.2rem;

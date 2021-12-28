@@ -65,11 +65,19 @@ function SelectedFilter({}: SelectedFilterProps) {
 
 const selectedFilter = css`
   margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+
+  @media screen and (max-width: 675px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   span {
-    margin: 0 0.5rem;
+    margin: 0.3rem 0.5rem;
     padding: 0.2rem 0.7rem;
     background: #f0efef;
     border-radius: 10%;
+    width: max-content;
     cursor: pointer;
     span {
       font-size: 80%;
@@ -84,6 +92,7 @@ const selectedFilter = css`
     font-size: 0.85rem;
     background: white;
     margin-left: 1rem;
+    width: max-content;
     cursor: pointer;
     span {
       background: white;
