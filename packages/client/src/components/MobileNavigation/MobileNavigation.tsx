@@ -1,11 +1,8 @@
 import { css } from '@emotion/react'
-import {
-  faChevronLeft,
-  faChevronRight,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useMobileNavigationState } from '../../atoms/mobileNavigation'
 import MobileListItem from '../MobileListItem/MobileListItem'
 
@@ -13,13 +10,23 @@ export type MobileNavigationProps = {}
 
 function MobileNavigation({}: MobileNavigationProps) {
   const [showCategoryNav, setShowCategoryNav] = useState(false)
+  const [showSubCategoryNav, setShowSubCategoryNav] = useState(false)
+  const [showMenuNav, setShowMenuNav] = useState(false)
   const [type, setType] = useState('')
+  const [category, setCategory] = useState('')
+  const [subCategory, setSubCategory] = useState('')
+  const [subCategoryArr, setSubCategoryArr] = useState<string[]>([])
   const [mobileNavigationState, setMobileNavigationState] =
     useMobileNavigationState()
 
-  const renderClassName = (showCategoryNav: boolean) => {
-    if (showCategoryNav) return 'categoryNav open'
+  const renderClassNameCategory = (show: boolean) => {
+    if (show) return 'categoryNav open'
     else return 'categoryNav'
+  }
+
+  const renderClassNameSubCategory = (show: boolean) => {
+    if (show) return 'subCategoryNav open'
+    else return 'subCategoryNav'
   }
 
   const handleSelectType = (type: string) => {
@@ -28,9 +35,36 @@ function MobileNavigation({}: MobileNavigationProps) {
   }
 
   const handleSelectCategory = (category: string) => {
-    // setShowCategoryNav(true)
-    // setType(category)
+    setShowSubCategoryNav(true)
+    setCategory(category)
   }
+
+  useEffect(() => {
+    switch (category) {
+      case 'Clothing':
+        setSubCategoryArr([
+          'New Arrivals',
+          'Hoodies & Sweaters',
+          'Shirts',
+          'Pants',
+          'Jackets',
+        ])
+        return
+      case 'Shoes':
+        setSubCategoryArr([
+          'New Arrivals',
+          'Sneakers',
+          'Running_Shoes',
+          'Tennis_Shoes',
+          'Basketball_Shoes',
+          'Boots',
+        ])
+        return
+      case 'Accessories':
+        setSubCategoryArr(['New Arrivals', 'Hats', 'Belts', 'Socks', 'Gloves'])
+        return
+    }
+  }, [category])
 
   return (
     <div css={mobileNavigation}>
@@ -59,7 +93,7 @@ function MobileNavigation({}: MobileNavigationProps) {
           />
         </ul>
       </div>
-      <div className={renderClassName(showCategoryNav)}>
+      <div className={renderClassNameCategory(showCategoryNav)}>
         <header>
           <FontAwesomeIcon
             icon={faChevronLeft}
@@ -85,12 +119,42 @@ function MobileNavigation({}: MobileNavigationProps) {
           />
           <MobileListItem
             category='Shoes'
-            onClick={() => handleSelectCategory('Clothing')}
+            onClick={() => handleSelectCategory('Shoes')}
           />
           <MobileListItem
             category='Accessories'
-            onClick={() => handleSelectCategory('Clothing')}
+            onClick={() => handleSelectCategory('Accessories')}
           />
+        </ul>
+      </div>
+      <div className={renderClassNameSubCategory(showSubCategoryNav)}>
+        <header>
+          <FontAwesomeIcon
+            icon={faChevronLeft}
+            className='backBtn'
+            onClick={() => setShowSubCategoryNav(false)}
+          />
+          <h2>{`${type} > ${category}`}</h2>
+          <FontAwesomeIcon
+            icon={faTimes}
+            className='closeBtn'
+            onClick={() =>
+              setMobileNavigationState({
+                typeOpen: false,
+                categoryOpen: false,
+              })
+            }
+          />
+        </header>
+        <ul className='subCategorySection'>
+          {subCategoryArr.map((subCategory: string, key: number) => (
+            <MobileListItem
+              key={key}
+              type={type}
+              category={category}
+              subCategory={subCategory}
+            />
+          ))}
         </ul>
       </div>
     </div>
@@ -103,6 +167,7 @@ const mobileNavigation = css`
   top: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 10;
 
   .typeNav {
     margin-top: 2rem;
@@ -130,7 +195,8 @@ const mobileNavigation = css`
       }
     }
   }
-  .categoryNav {
+  .categoryNav,
+  .subCategoryNav {
     position: fixed;
     top: 0;
     width: 100vw;
@@ -155,9 +221,8 @@ const mobileNavigation = css`
         font-size: 25px;
       }
     }
-    .categorySection {
-      list-style: none;
-
+    .categorySection,
+    .subCategorySection {
       list-style: none;
       font-size: 17px;
       li {
@@ -170,10 +235,15 @@ const mobileNavigation = css`
           margin-top: 7px;
           font-size: 14px;
         }
+        a {
+          text-decoration: none;
+          color: black;
+        }
       }
     }
   }
-  .categoryNav.open {
+  .categoryNav.open,
+  .subCategoryNav.open {
     transform: translateX(1%);
   }
 `
