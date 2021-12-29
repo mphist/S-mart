@@ -20,7 +20,19 @@ function MobileSearch({ handleSearch }: MobileSearchProps) {
     }
   }, [searchState])
 
+  const handleClose = () => {
+    const el = document.querySelector('#mobileSearchBar__open')
+    if (el) {
+      el.id = 'mobileSearchBar'
+    }
+    setSearchState({
+      ...searchState,
+      mobileOpen: false,
+    })
+  }
+
   return (
+    // <div css={mobileSearchBar(searchState.mobileOpen)} id='mobileSearchBar'>
     <div css={mobileSearchBar(searchState.mobileOpen)} id='mobileSearchBar'>
       <div id='mobileSearchInput'>
         <FontAwesomeIcon
@@ -33,12 +45,7 @@ function MobileSearch({ handleSearch }: MobileSearchProps) {
             height: 'auto',
             cursor: 'pointer',
           }}
-          onClick={() => {
-            setSearchState({
-              ...searchState,
-              mobileOpen: false,
-            })
-          }}
+          onClick={handleClose}
         />
         <SearchInput
           ref={ref}
@@ -52,10 +59,10 @@ function MobileSearch({ handleSearch }: MobileSearchProps) {
 }
 
 const mobileSearchBar = (openSearch: boolean) => css`
-  ${!openSearch &&
+  /* ${!openSearch &&
   css`
     display: none;
-  `}
+  `} */
 
   @media screen and (min-width: 768px) {
     display: none;
@@ -67,6 +74,8 @@ const mobileSearchBar = (openSearch: boolean) => css`
   height: 100vh;
   width: 100vw;
   z-index: 20;
+  transform: translateX(100%);
+  transition: transform 0.2s ease-in;
 
   #mobileSearchInput {
     width: 100%;

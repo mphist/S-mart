@@ -1,12 +1,15 @@
+import React, { ForwardedRef, forwardRef } from 'react'
 import { SearchState } from '../../atoms/search'
 
 export type SearchInputProps = {
-  ref: React.RefObject<HTMLInputElement>
   searchState: SearchState
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-function SearchInput({ ref, searchState, handleSearch }: SearchInputProps) {
+function SearchInput(
+  { searchState, handleSearch }: SearchInputProps,
+  ref: React.Ref<HTMLInputElement>
+) {
   return (
     <input
       id='searchInput'
@@ -19,4 +22,4 @@ function SearchInput({ ref, searchState, handleSearch }: SearchInputProps) {
   )
 }
 
-export default SearchInput
+export default forwardRef<HTMLInputElement, SearchInputProps>(SearchInput)

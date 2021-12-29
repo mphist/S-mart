@@ -25,12 +25,25 @@ function SearchBar({}: SearchBarProps) {
     [setSearchState]
   )
 
+  const handleClickSearch = () => {
+    const el = document.querySelector('#mobileSearchBar')
+    if (el) {
+      el.id = 'mobileSearchBar__open'
+    }
+    setSearchState({
+      ...searchState,
+      regularOpen: true,
+      mobileOpen: true,
+    })
+  }
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchState({ ...searchState, name: e.target.value })
   }
 
   useEffect(() => {
     if (searchState.regularOpen) {
+      console.log('search open', ref.current)
       ref.current?.focus()
 
       window.addEventListener('click', closeSearchBar)
@@ -41,7 +54,7 @@ function SearchBar({}: SearchBarProps) {
   }, [searchState, setSearchState, closeSearchBar])
 
   return (
-    <>
+    <div css={searchBarWrapper}>
       <div css={searchBar(searchState.regularOpen, document.body.scrollHeight)}>
         <SearchInput
           ref={ref}
@@ -52,19 +65,19 @@ function SearchBar({}: SearchBarProps) {
           id='searchBtn'
           src={searchIcon}
           alt='search_btn'
-          onClick={() =>
-            setSearchState({
-              ...searchState,
-              regularOpen: true,
-              mobileOpen: true,
-            })
-          }
+          onClick={handleClickSearch}
         />
       </div>
       <MobileSearch handleSearch={handleSearch} />
-    </>
+    </div>
   )
 }
+
+const searchBarWrapper = css`
+  #mobileSearchBar__open {
+    transform: translateX(2.5%);
+  }
+`
 
 const searchBar = (openSearch: boolean, height: number) => css`
   img {
