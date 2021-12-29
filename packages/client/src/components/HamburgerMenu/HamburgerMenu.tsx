@@ -1,12 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { css } from '@emotion/react'
+import { useMobileNavigationState } from '../../atoms/mobileNavigation'
 export type HamburgerMenuProps = {}
 
 function HamburgerMenu({}: HamburgerMenuProps) {
+  const [mobileNavigationState, setMobileNavigationState] =
+    useMobileNavigationState()
   return (
     <div css={hamburgerMenu}>
-      <FontAwesomeIcon icon={faBars} />
+      <FontAwesomeIcon
+        icon={faBars}
+        onClick={() =>
+          setMobileNavigationState({ ...mobileNavigationState, typeOpen: true })
+        }
+      />
     </div>
   )
 }

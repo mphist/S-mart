@@ -1,13 +1,17 @@
 import { css } from '@emotion/react'
+import { useRecoilValue } from 'recoil'
+import { mobileNavigationState } from '../../atoms/mobileNavigation'
 import Disclaimer from '../Disclaimer/Disclaimer'
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu'
 import Logo from '../Logo/Logo'
+import MobileNavigation from '../MobileNavigation/MobileNavigation'
 import Navigation from '../Navigation/Navigation'
 import SearchResults from '../SearchResults/SearchResults'
 
 export type HeaderProps = {}
 
 function Header({}: HeaderProps) {
+  const { typeOpen } = useRecoilValue(mobileNavigationState)
   return (
     <header css={header}>
       <Disclaimer />
@@ -15,6 +19,7 @@ function Header({}: HeaderProps) {
         <HamburgerMenu />
         <Logo />
         <Navigation />
+        {typeOpen && <MobileNavigation />}
         <SearchResults />
       </div>
     </header>
