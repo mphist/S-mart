@@ -64,6 +64,7 @@ function ProductImages({ image }: ProductImagesProps) {
       </div>
       <div css={right}>
         <img
+          id='main'
           src={mainImage || image[selectedColor]?.[0]}
           alt='view-selected'
         ></img>
@@ -77,10 +78,18 @@ const productImages = css`
   justify-content: center;
   /* align-items: center; */
   width: 50%;
+  @media screen and (max-width: 1350px) {
+    flex-direction: column;
+    margin: 0 auto;
+  }
 `
 const left = css`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 1350px) {
+    flex-direction: row;
+    order: 2;
+  }
   justify-content: center;
   align-items: center;
   #image {
@@ -98,6 +107,11 @@ const left = css`
   }
 `
 const right = css`
+  @media screen and (max-width: 1350px) {
+    img {
+      order: 1;
+    }
+  }
   width: 100%;
   img {
     width: 100%;

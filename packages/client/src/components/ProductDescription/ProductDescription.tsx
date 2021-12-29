@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import Rating from '@mui/material/Rating'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useOverlayState } from '../../atoms/uiState'
 import AddToBagConfirmation from '../AddToBagConfirmation/AddToBagConfirmation'
 import { Product } from '../../graphql/types'
@@ -80,9 +80,12 @@ function ProductDescription({ product }: ProductDescriptionProps) {
         }
       }
     } else {
-      setProductState({ ...productState, color: colorKeys[0] })
+      setProductState({
+        ...productState,
+        color: colorKeys[0],
+      })
     }
-  }, [])
+  }, [product])
 
   const handleAddToBag = () => {
     if (isSizeValid(size)) {
@@ -271,6 +274,30 @@ function ProductDescription({ product }: ProductDescriptionProps) {
 
 const productDescription = css`
   /* width: 50%; */
+  @media screen and (max-width: 1350px) {
+    margin-top: 2.5rem;
+    text-align: center;
+    h2 {
+      margin: 0 auto;
+    }
+    #ratings {
+      justify-content: center;
+    }
+    #description {
+      margin: 0 auto;
+      text-align: start;
+    }
+    #colorWrapper {
+      justify-content: center;
+    }
+    #sizeWrapper {
+      justify-content: center;
+    }
+    #quantity {
+      justify-content: center;
+    }
+  }
+
   padding: 0 2rem;
   h2 {
     margin: 0.2rem 0;

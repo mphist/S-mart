@@ -71,11 +71,12 @@ function Body({}: BodyProps) {
 }
 
 const body = css`
-  width: 90rem;
   margin: 0 auto;
-
-  @media screen and (max-width: 1440px) {
-    max-width: 100%;
+  @media screen and (min-width: 1440px) {
+    width: 90rem;
+  }
+  @media screen and (max-width: 1530px) {
+    max-width: 90%;
   }
 `
 

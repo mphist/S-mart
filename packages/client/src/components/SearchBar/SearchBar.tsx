@@ -1,7 +1,10 @@
+import React from 'react'
 import { css } from '@mui/styled-engine'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import searchIcon from '../../assets/search_icon.png'
 import useSearchEffect from '../../hooks/useSearchEffect'
+import MobileSearch from '../MobileSearch/MobileSearch'
+import SearchInput from '../SearchInput/SearchInput'
 
 export type SearchBarProps = {}
 
@@ -14,42 +17,67 @@ function SearchBar({}: SearchBarProps) {
     (e: MouseEvent) => {
       const id = (e.target as Element).id
       if (id !== 'searchInput' && id !== 'searchBtn')
-        setSearchState({ ...searchState, open: false })
+        setSearchState((searchState) => ({
+          ...searchState,
+          regularOpen: false,
+        }))
     },
-    [setSearchState, searchState]
+    [setSearchState]
   )
+
+  const handleClickSearch = () => {
+    const el = document.querySelector('#mobileSearchBar')
+    if (el) {
+      el.id = 'mobileSearchBar__open'
+    }
+    setSearchState({
+      ...searchState,
+      regularOpen: true,
+      mobileOpen: true,
+    })
+  }
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchState({ ...searchState, name: e.target.value })
   }
 
   useEffect(() => {
-    if (searchState.open) ref.current?.focus()
-    window.addEventListener('click', closeSearchBar)
-    return () => {
-      window.removeEventListener('click', closeSearchBar)
+    if (searchState.regularOpen) {
+      console.log('search open', ref.current)
+      ref.current?.focus()
+
+      window.addEventListener('click', closeSearchBar)
+      return () => {
+        window.removeEventListener('click', closeSearchBar)
+      }
     }
   }, [searchState, setSearchState, closeSearchBar])
 
   return (
-    <div css={searchBar(searchState.open, document.body.scrollHeight)}>
-      <input
-        id='searchInput'
-        type='text'
-        ref={ref}
-        value={searchState.name}
-        placeholder='Search'
-        onChange={handleSearch}
-      />
-      <img
-        id='searchBtn'
-        src={searchIcon}
-        alt='search_btn'
-        onClick={() => setSearchState({ ...searchState, open: true })}
-      />
+    <div css={searchBarWrapper}>
+      <div css={searchBar(searchState.regularOpen, document.body.scrollHeight)}>
+        <SearchInput
+          ref={ref}
+          searchState={searchState}
+          handleSearch={handleSearch}
+        />
+        <img
+          id='searchBtn'
+          src={searchIcon}
+          alt='search_btn'
+          onClick={handleClickSearch}
+        />
+      </div>
+      <MobileSearch handleSearch={handleSearch} />
     </div>
   )
 }
+
+const searchBarWrapper = css`
+  #mobileSearchBar__open {
+    transform: translateX(0.5%);
+  }
+`
 
 const searchBar = (openSearch: boolean, height: number) => css`
   img {
@@ -60,6 +88,9 @@ const searchBar = (openSearch: boolean, height: number) => css`
     top: 73px; */
   }
   input {
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
     visibility: hidden;
     width: 0;
     position: relative;

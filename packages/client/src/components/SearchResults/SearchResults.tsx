@@ -5,8 +5,8 @@ import useSearchEffect from '../../hooks/useSearchEffect'
 export type SearchResultsProps = {}
 
 function SearchResults({}: SearchResultsProps) {
-  const { searchState, products } = useSearchEffect()
-  if (!searchState.open) return null
+  const { searchState, products, setSearchState } = useSearchEffect()
+  if (!searchState.regularOpen) return null
   if (!products || products.length < 1) return null
 
   return (
@@ -17,6 +17,9 @@ function SearchResults({}: SearchResultsProps) {
             to={`/product/${product.name.replaceAll(' ', '-').toLowerCase()}-${
               product.id
             }`}
+            onClick={() =>
+              setSearchState({ ...searchState, mobileOpen: false })
+            }
           >
             <div id='searchImage'>
               <img
@@ -39,15 +42,33 @@ const searchResults = (scrollHeight: number) => css`
   width: 24.9rem;
   height: 14rem;
   position: absolute;
-  top: 6rem;
+  top: 7.5rem;
+  right: 16.2rem;
 
-  ${scrollHeight > 797
+  @media screen and (min-width: 993px) {
+    right: 4.25rem;
+    top: 7.6rem;
+  }
+  @media screen and (min-width: 1253px) {
+    top: 6.2rem;
+    right: 16.25rem;
+  }
+
+  @media screen and (max-width: 993px) {
+    right: 4.25rem;
+    top: 7.4rem;
+  }
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+
+  /* ${scrollHeight > 797
     ? css`
         right: 19.3rem;
       `
     : css`
         right: 19.8rem;
-      `}
+      `} */
   overflow-y: scroll;
   animation: open 0.8s ease-in-out;
   z-index: 5;

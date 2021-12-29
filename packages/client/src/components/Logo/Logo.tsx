@@ -28,6 +28,10 @@ const logo = css`
   @media screen and (min-width: 600px) {
     font-size: 1.7rem;
   }
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    margin-right: 35rem;
+  }
   @media screen and (min-width: 992px) {
     font-size: 2rem;
   }
