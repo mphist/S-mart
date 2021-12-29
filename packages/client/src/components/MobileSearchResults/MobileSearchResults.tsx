@@ -19,11 +19,14 @@ function MobileSearchResults({}: MobileSearchResultsProps) {
           HTMLElement
         >
     > = []
-    let el = React.createElement('strong', null, keyword)
+
     nameArr.forEach((word) => {
       if (word.match(regex)) {
         result.push(' ')
-        result.push(el)
+        result.push(
+          React.createElement('strong', null, keyword),
+          word.replace(regex, '')
+        )
       } else {
         result.push(' ' + word)
       }
