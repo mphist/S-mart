@@ -40,7 +40,7 @@ function MobileSearch({ handleSearch }: MobileSearchProps) {
           style={{
             position: 'fixed',
             top: '7px',
-            left: '7px',
+            left: '23px',
             width: '13px',
             height: 'auto',
             cursor: 'pointer',
@@ -84,7 +84,7 @@ const mobileSearchBar = (openSearch: boolean) => css`
       letter-spacing: 0.5px;
       position: fixed;
       right: 0;
-      left: 30px;
+      left: 45px;
       width: 94%;
       height: 1.5rem;
       padding: 3px;

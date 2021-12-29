@@ -75,7 +75,7 @@ function SearchBar({}: SearchBarProps) {
 
 const searchBarWrapper = css`
   #mobileSearchBar__open {
-    transform: translateX(2.5%);
+    transform: translateX(0.5%);
   }
 `
 
